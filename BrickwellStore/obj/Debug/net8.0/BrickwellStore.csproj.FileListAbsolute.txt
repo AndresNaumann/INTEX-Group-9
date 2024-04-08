@@ -574,3 +574,5 @@ C:\Users\nauma\OneDrive\Desktop\INTEX-Group-9\BrickwellStore\obj\Debug\net8.0\re
 C:\Users\nauma\OneDrive\Desktop\INTEX-Group-9\BrickwellStore\obj\Debug\net8.0\BrickwellStore.pdb
 C:\Users\nauma\OneDrive\Desktop\INTEX-Group-9\BrickwellStore\obj\Debug\net8.0\BrickwellStore.genruntimeconfig.cache
 C:\Users\nauma\OneDrive\Desktop\INTEX-Group-9\BrickwellStore\obj\Debug\net8.0\ref\BrickwellStore.dll
+C:\Users\nauma\OneDrive\Desktop\INTEX-Group-9\BrickwellStore\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+C:\Users\nauma\OneDrive\Desktop\INTEX-Group-9\BrickwellStore\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll

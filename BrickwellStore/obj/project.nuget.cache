@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "eFg6+fW8vy/45OWnbXZtOuvX6VV+JIGgiIVGdRfCTfq0+i/7B8gEdbuVU0BoOIQ9JyD1Q95DLkUn7W1y8t5WqQ==",
+  "dgSpecHash": "4pxI2JLLq02yK40MLefqSuUlIe0AwoOJmswY9Czo/vXbh/z7fXF9Yev8RD4FtFOC10lHnw8rq5GQ+aAvt5n6kw==",
   "success": true,
   "projectFilePath": "C:\\Users\\nauma\\OneDrive\\Desktop\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
   "expectedPackageFiles": [
@@ -56,6 +56,8 @@
     "C:\\Users\\nauma\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\nauma\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\nauma\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "C:\\Users\\nauma\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\8.0.3\\microsoft.aspnetcore.authentication.facebook.8.0.3.nupkg.sha512",
+    "C:\\Users\\nauma\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\8.0.3\\microsoft.aspnetcore.authentication.google.8.0.3.nupkg.sha512",
     "C:\\Users\\nauma\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.3\\microsoft.aspnetcore.cryptography.internal.8.0.3.nupkg.sha512",
     "C:\\Users\\nauma\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.3\\microsoft.aspnetcore.cryptography.keyderivation.8.0.3.nupkg.sha512",
     "C:\\Users\\nauma\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\8.0.0\\microsoft.aspnetcore.diagnostics.entityframeworkcore.8.0.0.nupkg.sha512",
