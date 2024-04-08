@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BrickwellStore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ada8f53449e370e7086e6a996693caaa57f0dadd")]
 [assembly: System.Reflection.AssemblyProductAttribute("BrickwellStore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BrickwellStore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
