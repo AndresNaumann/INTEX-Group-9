@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IntexGroup9")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+baf427e4ef230e3cdf5d5adc4053126fee7fe214")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+057e8708354a68e2ce3fe2411835c77b762062cb")]
 [assembly: System.Reflection.AssemblyProductAttribute("IntexGroup9")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IntexGroup9")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,12 +1,88 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Alexander\\Desktop\\Program\\Repos\\INTEX-Group-9\\IntexGroup9\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{32AB3242-EAF9-4E33-8E8A-3035FE72967E}|IntexGroup9\\IntexGroup9.csproj|c:\\users\\alexander\\desktop\\program\\repos\\intex-group-9\\intexgroup9\\intexgroup9\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{32AB3242-EAF9-4E33-8E8A-3035FE72967E}|IntexGroup9\\IntexGroup9.csproj|solutionrelative:intexgroup9\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32AB3242-EAF9-4E33-8E8A-3035FE72967E}|IntexGroup9\\IntexGroup9.csproj|c:\\users\\alexander\\desktop\\program\\repos\\intex-group-9\\intexgroup9\\intexgroup9\\infrastructure\\emptytaghelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32AB3242-EAF9-4E33-8E8A-3035FE72967E}|IntexGroup9\\IntexGroup9.csproj|solutionrelative:intexgroup9\\infrastructure\\emptytaghelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32AB3242-EAF9-4E33-8E8A-3035FE72967E}|IntexGroup9\\IntexGroup9.csproj|c:\\users\\alexander\\desktop\\program\\repos\\intex-group-9\\intexgroup9\\intexgroup9\\models\\viewmodels\\emptymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32AB3242-EAF9-4E33-8E8A-3035FE72967E}|IntexGroup9\\IntexGroup9.csproj|solutionrelative:intexgroup9\\models\\viewmodels\\emptymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32AB3242-EAF9-4E33-8E8A-3035FE72967E}|IntexGroup9\\IntexGroup9.csproj|c:\\users\\alexander\\desktop\\program\\repos\\intex-group-9\\intexgroup9\\intexgroup9\\intexgroup9.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{32AB3242-EAF9-4E33-8E8A-3035FE72967E}|IntexGroup9\\IntexGroup9.csproj|solutionrelative:intexgroup9\\intexgroup9.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmptyTagHelper.cs",
+              "DocumentMoniker": "C:\\Users\\Alexander\\Desktop\\Program\\Repos\\INTEX-Group-9\\IntexGroup9\\IntexGroup9\\Infrastructure\\EmptyTagHelper.cs",
+              "RelativeDocumentMoniker": "IntexGroup9\\Infrastructure\\EmptyTagHelper.cs",
+              "ToolTip": "C:\\Users\\Alexander\\Desktop\\Program\\Repos\\INTEX-Group-9\\IntexGroup9\\IntexGroup9\\Infrastructure\\EmptyTagHelper.cs",
+              "RelativeToolTip": "IntexGroup9\\Infrastructure\\EmptyTagHelper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-08T14:45:58.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "emptyModel.cs",
+              "DocumentMoniker": "C:\\Users\\Alexander\\Desktop\\Program\\Repos\\INTEX-Group-9\\IntexGroup9\\IntexGroup9\\Models\\ViewModels\\emptyModel.cs",
+              "RelativeDocumentMoniker": "IntexGroup9\\Models\\ViewModels\\emptyModel.cs",
+              "ToolTip": "C:\\Users\\Alexander\\Desktop\\Program\\Repos\\INTEX-Group-9\\IntexGroup9\\IntexGroup9\\Models\\ViewModels\\emptyModel.cs",
+              "RelativeToolTip": "IntexGroup9\\Models\\ViewModels\\emptyModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-08T14:44:25.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\Alexander\\Desktop\\Program\\Repos\\INTEX-Group-9\\IntexGroup9\\IntexGroup9\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "IntexGroup9\\Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\Alexander\\Desktop\\Program\\Repos\\INTEX-Group-9\\IntexGroup9\\IntexGroup9\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "IntexGroup9\\Views\\_ViewImports.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-08T14:43:12.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IntexGroup9",
+              "DocumentMoniker": "C:\\Users\\Alexander\\Desktop\\Program\\Repos\\INTEX-Group-9\\IntexGroup9\\IntexGroup9\\IntexGroup9.csproj",
+              "RelativeDocumentMoniker": "IntexGroup9\\IntexGroup9.csproj",
+              "ToolTip": "C:\\Users\\Alexander\\Desktop\\Program\\Repos\\INTEX-Group-9\\IntexGroup9\\IntexGroup9\\IntexGroup9.csproj",
+              "RelativeToolTip": "IntexGroup9\\IntexGroup9.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-04-08T14:42:28.515Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
