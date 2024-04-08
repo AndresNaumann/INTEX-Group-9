@@ -2,6 +2,6 @@
 {
     public class ILegoRepository
     {
-        //public IQueryable<Project> Projects { get; }
+        public IQueryable<Product> Products { get; }
     }
 }

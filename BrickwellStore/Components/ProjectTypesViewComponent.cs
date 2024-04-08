@@ -6,11 +6,11 @@ namespace BrickwellStore.Components
 {
     public class ProjectTypesViewComponent : ViewComponent
     {
-        //private ILegoRepository _legorepo;
-        //public ProjectTypesViewComponent(ILegoRepository temp)
-        //{
-        //    _legorepo = temp;
-        //}
+        private ILegoRepository _legorepo;
+        public ProjectTypesViewComponent(ILegoRepository temp)
+        {
+            _legorepo = temp;
+        }
         //public IViewComponentResult Invoke()
         //{
         //    ViewBag.SelectedProjectType = RouteData?.Values["projectType"];
@@ -19,7 +19,7 @@ namespace BrickwellStore.Components
         //        .Distinct()
         //        .OrderBy(x => x);
         //    return View(projectTypes);
-        }
+    }
     }
 }
 
