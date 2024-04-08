@@ -11,6 +11,5 @@ namespace BrickwellStore.Models
 
         // This is a comment and more stuff
 
-
     }
 }
