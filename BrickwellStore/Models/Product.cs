@@ -14,7 +14,6 @@ namespace BrickwellStore.Models
         public string PrimaryColor { get; set; }
         public string SecondaryColor { get; set; }
         public string Description { get; set; }
-
         public string Category { get; set; }
 
     }
