@@ -9,7 +9,7 @@ namespace BrickwellStore.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
 
-        // This is a comment
+        // This is a comment and more stuff
 
 
     }
