@@ -8594,6 +8594,7 @@
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 8.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.3",
       "Microsoft.AspNetCore.Identity.UI >= 8.0.3",
+      "Microsoft.EntityFrameworkCore >= 8.0.3",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.3",
       "Microsoft.EntityFrameworkCore.Sqlite >= 8.0.3",
@@ -8602,24 +8603,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nauma\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\sadieeyre\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nauma\\OneDrive\\Desktop\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
+      "projectUniqueName": "C:\\Users\\sadieeyre\\source\\repos\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
       "projectName": "BrickwellStore",
-      "projectPath": "C:\\Users\\nauma\\OneDrive\\Desktop\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
-      "packagesPath": "C:\\Users\\nauma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nauma\\OneDrive\\Desktop\\INTEX-Group-9\\BrickwellStore\\obj\\",
+      "projectPath": "C:\\Users\\sadieeyre\\source\\repos\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
+      "packagesPath": "C:\\Users\\sadieeyre\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sadieeyre\\source\\repos\\INTEX-Group-9\\BrickwellStore\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\nauma\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\sadieeyre\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8654,6 +8650,10 @@
             "version": "[8.0.3, )"
           },
           "Microsoft.AspNetCore.Identity.UI": {
+            "target": "Package",
+            "version": "[8.0.3, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[8.0.3, )"
           },
@@ -8701,7 +8701,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
