@@ -12,9 +12,11 @@
 
     @foreach (string pc in Model ?? Enumerable.Empty<string>())
     {
-        <a class="btn @(pc == ViewBag.SelectedProductColor ? "btn-primary" : "btn-outline-secondary")" asp-controller="Home" asp-action="Product" asp-route-productColor="@pc" asp-route-pageNum="1">@pc</a>
+        <a class="btn @(pc == ViewBag.SelectedProductColor ? "btn-primary" : "btn-outline-secondary")" asp-controller="Home" asp-action="Product" asp-route-productColor="@pc" asp-route-pageNum="1">@pc</a> 
+
     }
 </div>
+
 
 
 @* @model ProductFiltersViewModel
