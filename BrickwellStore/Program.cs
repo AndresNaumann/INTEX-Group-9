@@ -29,12 +29,16 @@ var configuration = builder.Configuration;
 
 services.AddAuthentication().AddGoogle(googleOptions =>
 {
-    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+    //googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+    //googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+    googleOptions.ClientId = "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";
+    googleOptions.ClientSecret = "246075900303-55r8n0gt13g82j59h4nu9i0qvnlk0m0a.apps.googleusercontent.com";
 }).AddFacebook(facebookOptions =>
 {
-    facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
-    facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
+    //facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
+    //facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
+    facebookOptions.AppId = "946477026888276";
+    facebookOptions.AppSecret = "6dcddd58604753eea3c5e24080ffee0d";
 });
 
 var app = builder.Build();
