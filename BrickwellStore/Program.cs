@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -16,6 +17,12 @@ builder.Services.AddDbContext<BrickwellContext>(options =>
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<ILegoRepository, EFLegoRepository>();
+
+builder.Services.AddRazorPages();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 
 var services = builder.Services;
 var configuration = builder.Configuration;
@@ -47,13 +54,18 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+
+app.UseSession();
+
 app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute("pagenumandcolor", "{productColor}/{pageNum}", new { Controller = "Home", action = "Product" });
+app.MapControllerRoute("pagination", "{pageNum}", new { Controller = "Home", action = "Product", pageNum = 1 });
+app.MapControllerRoute("productColor", "{productColor}", new { Controller = "Home", action = "Product", pageNum = 1 });
+
+app.MapDefaultControllerRoute();
 app.MapRazorPages();
 
 app.Run();
