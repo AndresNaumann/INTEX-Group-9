@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ProductsListViewModel
+
+<h1>Orders (Admin View)</h1>
+
+@* @foreach (Product p in Model.Products)
+{
+    <partial name="ProductSummary" model="p" />
+}
+
+<div page-model="@Model.PaginationInfo" page-action="Product" page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-productColor="@Model.CurrentProductColor" class="btn-group pull-right m-1"></div>
+ *@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Customer ID</th>
+            <th>Date</th>
+            <th>View</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Order order in Model.Orders)
+        {
+            <tr>
+                <td>@order.TransactionId</td>
+                <td>@order.CustomerId</td>
+                <td>@order.Date</td>
+                <td><button class="btn btn-primary">View</button></td>
+                <td><button class="btn btn-danger">Delete</button></td>
+            </tr>
+        }
+    </tbody>
+</table>

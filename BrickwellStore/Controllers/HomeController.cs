@@ -3,16 +3,20 @@ using BrickwellStore.Data.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace BrickwellStore.Controllers
 {
     public class HomeController : Controller
     {
         private ILegoRepository _repo;
+        private UserManager<IdentityUser> _userManager;
 
-        public HomeController(ILegoRepository temp)
+        public HomeController(ILegoRepository temp, UserManager<IdentityUser> userManager)
         {
             _repo = temp;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -76,13 +80,13 @@ namespace BrickwellStore.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminUsers(int pageNum)
+        public IActionResult AdminOrders(int pageNum)
         {
-            int pageSize = 5;
-            var AdminUsers = new ProductsListViewModel
+            int pageSize = 10;
+            var AdminBlah = new ProductsListViewModel
             {
-                Customers = _repo.Customers
-                 .OrderBy(x => x.CustomerFirstName)
+                Orders = _repo.Orders
+                .OrderBy(x => x.Date)
                .Skip((pageNum - 1) * pageSize)
                .Take(pageSize),
 
@@ -90,11 +94,39 @@ namespace BrickwellStore.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = _repo.Customers.Count()
+                    TotalItems = _repo.Orders.Count()
                 },
             };
 
-            return View(AdminUsers);
+            return View(AdminBlah);
+        }
+
+
+        //public IActionResult AdminUsers(int pageNum)
+        //{
+        //    int pageSize = 5;
+        //    var AdminUsers = new ProductsListViewModel
+        //    {
+        //        Customers = _repo.Customers
+        //         .OrderBy(x => x.CustomerFirstName)
+        //       .Skip((pageNum - 1) * pageSize)
+        //       .Take(pageSize),
+
+        //        PaginationInfo = new PaginationInfo
+        //        {
+        //            CurrentPage = pageNum,
+        //            ItemsPerPage = pageSize,
+        //            TotalItems = _repo.Customers.Count()
+        //        },
+        //    };
+
+        //    return View(AdminUsers);
+        //}
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AdminUsers()
+        {
+            var users = _userManager.Users.ToList();
+            return View(users);
         }
 
         //public IActionResult Product(int pageNum, string? productColor)

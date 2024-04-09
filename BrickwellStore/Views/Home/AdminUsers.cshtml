@@ -4,15 +4,18 @@
 @{
 }
 
-@model ProductsListViewModel
+@* @model ProductsListViewModel *@
+
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+
 
 <h1>Users (Admin View)</h1>
 
-<table class="table">
+@* <table class="table">
     <thead>
         <tr>
             <th>Customer ID</th>
-            <th>Name</th>
+            <th>Username</th>
             <th>Age</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -27,6 +30,27 @@
                 <td>@customer.Age</td>
                 <td><button class="btn btn-primary">Edit</button></td>
                 <td><button class="btn btn-danger">Delete</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
+ *@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Username</th>
+            <!-- Add more columns as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@user.UserName</td>
+                <!-- Add more cells as needed -->
             </tr>
         }
     </tbody>
