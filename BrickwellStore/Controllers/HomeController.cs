@@ -2,6 +2,7 @@ using BrickwellStore.Data;
 using BrickwellStore.Data.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BrickwellStore.Controllers
 {
@@ -20,6 +21,12 @@ namespace BrickwellStore.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Secrets()
         {
             return View();
         }
