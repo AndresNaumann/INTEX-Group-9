@@ -11,5 +11,6 @@ namespace BrickwellStore.Data.ViewModels
         public PaginationInfo PaginationInfo { get; set; } = new PaginationInfo();
 
         public string? CurrentProductColor { get; set; }
+        public string? CurrentProductCategory { get; set; }
     }
 }

@@ -9,7 +9,8 @@
 <button class="btn btn-primary">Add a Product</button>
 
 <div class="col-9">
-    <vc:product-filters />
+    <vc:product-colors />
+    <vc:product-categories />
 </div>
 
 @foreach (Product p in Model.Products)
@@ -17,4 +18,4 @@
     <partial name="ProductSummary" model="p" />
 }
 
-<div page-model="@Model.PaginationInfo" page-action="Product" page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-productColor="@Model.CurrentProductColor" class="btn-group pull-right m-1"></div>
+<div page-model="@Model.PaginationInfo" page-action="Product" page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-productColor="@Model.CurrentProductColor" page-url-productCategory="@Model.CurrentProductCategory" class="btn-group pull-right m-1"></div>

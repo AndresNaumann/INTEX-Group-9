@@ -97,16 +97,14 @@ namespace BrickwellStore.Controllers
             return View(AdminUsers);
         }
 
-        //public IActionResult Product(int pageNum, string? productColor)
-
-        //public IActionResult Product(int pageNum, string? productColor)
+        //public IActionResult Product(int pageNum, string? productColor, string? productCategory)
         //{
 
         //    int pageSize = 5;
         //    var Blah = new ProductsListViewModel
         //    {
         //        Products = _repo.Products
-        //        .Where(x => x.PrimaryColor == productColor || productColor == null)
+        //        .Where(x => x.PrimaryColor == productColor || x.SecondaryColor == productColor || productColor == null)
         //       .OrderBy(x => x.Name)
         //       .Skip((pageNum - 1) * pageSize)
         //       .Take(pageSize),
@@ -120,41 +118,74 @@ namespace BrickwellStore.Controllers
 
         //        },
 
-        //        CurrentProductColor = productColor
+        //        CurrentProductColor = productColor,
+        //        CurrentProductCategory = productCategory
         //    };
 
         //    return View(Blah);
 
         //}
-
-        public IActionResult Product(int pageNum, string? productColor, int pageSize = 5)
+        public IActionResult Product(int pageNum, string? productColor, string? productCategory)
         {
-            var filteredProducts = _repo.Products
-                .Where(x => x.PrimaryColor == productColor || x.SecondaryColor == productColor || productColor == null)
-                .OrderBy(x => x.Name)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize);
+            int pageSize = 5;
+            var query = _repo.Products.AsQueryable();
 
-            //var filteredProducts = _repo.Products
-            //.OrderBy(p => p.PrimaryColor == productColor ? 0 : p.SecondaryColor.Contains(productColor) ? 1 : 2)
-            //.ThenBy(p => p.Name)
-            //.Skip((pageNum - 1) * pageSize)
-            //.Take(pageSize);
+            // Apply color filter if provided
+            if (!string.IsNullOrEmpty(productColor))
+            {
+                query = query.Where(x => x.PrimaryColor == productColor || x.SecondaryColor == productColor);
+            }
+
+            // Apply category filter if provided
+            if (!string.IsNullOrEmpty(productCategory))
+            {
+                query = query.Where(x => x.Category == productCategory);
+            }
+
+            var products = query.OrderBy(x => x.Name)
+                                .Skip((pageNum - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToList();
 
             var viewModel = new ProductsListViewModel
             {
-                Products = filteredProducts,
+                Products = _repo.Products,
                 PaginationInfo = new PaginationInfo
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = productColor == null ? _repo.Products.Count() : _repo.Products.Count(x => x.PrimaryColor == productColor)
+                    TotalItems = query.Count() // Count total items from the filtered query
                 },
-                CurrentProductColor = productColor
+                CurrentProductColor = productColor,
+                CurrentProductCategory = productCategory
             };
 
             return View(viewModel);
         }
+
+        //public IActionResult Product(int pageNum, string? productColor, string? productCateogry, int pageSize = 5)
+        //{
+        //    var filteredProducts = _repo.Products
+        //        .Where(x => x.PrimaryColor == productColor || x.SecondaryColor == productColor || productColor == null)
+        //        .OrderBy(x => x.Name)
+        //        .Skip((pageNum - 1) * pageSize)
+        //        .Take(pageSize);
+
+
+        //    var viewModel = new ProductsListViewModel
+        //    {
+        //        Products = filteredProducts,
+        //        PaginationInfo = new PaginationInfo
+        //        {
+        //            CurrentPage = pageNum,
+        //            ItemsPerPage = pageSize,
+        //            TotalItems = productColor == null ? _repo.Products.Count() : _repo.Products.Count(x => x.PrimaryColor == productColor)
+        //        },
+        //        CurrentProductColor = productColor
+        //    };
+
+        //    return View(viewModel);
+        //}
 
         // EDITING ----------------------------------------------------
 

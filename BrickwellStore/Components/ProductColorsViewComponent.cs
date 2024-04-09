@@ -4,10 +4,10 @@ using BrickwellStore.Data;
 
 namespace BrickwellStore.Components
 {
-    public class ProductFiltersViewComponent : ViewComponent
+    public class ProductColorsViewComponent : ViewComponent
     {
         private ILegoRepository _legorepo;
-        public ProductFiltersViewComponent(ILegoRepository temp)
+        public ProductColorsViewComponent(ILegoRepository temp)
         {
             _legorepo = temp;
         }
