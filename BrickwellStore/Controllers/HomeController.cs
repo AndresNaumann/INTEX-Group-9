@@ -48,7 +48,6 @@ namespace BrickwellStore.Controllers
 
 
         [Authorize]
-
         public IActionResult Secrets()
         {
             return View();
@@ -155,6 +154,86 @@ namespace BrickwellStore.Controllers
             };
 
             return View(viewModel);
+        }
+
+        // EDITING ----------------------------------------------------
+
+        // Edit a Customer/User
+
+        [HttpGet]
+        public IActionResult EditCustomer(int id)
+        {
+            var recordToEdit = _repo.GetCustomerById(id);
+
+            return View(recordToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult EditCustomer(Customer updatedInfo)
+        {
+            _repo.DeleteCustomer(updatedInfo.CustomerId);
+            _repo.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // Edit a Product
+
+        [HttpGet]
+        public IActionResult EditProduct(int id)
+        {
+            var recordToEdit = _repo.GetCustomerById(id);
+
+            return View(recordToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult EditProduct(Customer updatedInfo)
+        {
+            _repo.DeleteCustomer(updatedInfo.CustomerId);
+            _repo.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // DELETION ----------------------------------------------------
+
+        // Delete Customers
+
+        [HttpGet]
+        public IActionResult DeleteCustomer(int id)
+        {
+            var recordToDelete = _repo.GetCustomerById(id);
+
+            return View(recordToDelete);
+
+        }
+
+        [HttpPost]
+        public IActionResult DeleteCustomer(Customer customer)
+        {
+            _repo.DeleteCustomer(customer.CustomerId);
+            _repo.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        // Delete Customers
+
+        [HttpGet]
+        public IActionResult DeleteProduct(int id)
+        {
+            var recordToDelete = _repo.GetCustomerById(id);
+
+            return View(recordToDelete);
+
+        }
+
+        [HttpPost]
+        public IActionResult DeleteProduct(Customer customer)
+        {
+            _repo.DeleteCustomer(customer.CustomerId);
+            _repo.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
     }
