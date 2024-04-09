@@ -5,9 +5,9 @@
 @model ProjectsListViewModel
 
 <h1>Our Products</h1>
-@foreach (Project p in Model.Projects)
+@foreach (Product p in Model.Products)
 {
-    <partial name="ProjectSummary" model="p" />
+    <partial name="ProductSummary" model="p" />
 }
 
-<div page-model="@Model.PaginationInfo" page-action="Index" page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-projectType="@Model.CurrentProjectType" class="btn-group pull-right m-1"></div>
+<div page-model="@Model.PaginationInfo" page-action="Product" page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-productColor="@Model.CurrentProductColor" class="btn-group pull-right m-1"></div>

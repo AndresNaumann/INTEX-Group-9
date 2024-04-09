@@ -2,13 +2,13 @@
 {
     public class EFLegoRepository : ILegoRepository
     {
-        private WaterProjectContext _context;
-        public EFLegoRepository(WaterProjectContext temp)
+        private BrickwellContext _context;
+        public EFLegoRepository(BrickwellContext temp)
         {
             _context = temp;
         }
-        public IQueryable<Project> Projects => _context.Projects;
+        public IQueryable<Product> Products => _context.Products;
     }
 }
-}
+
 

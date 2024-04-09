@@ -1,0 +1,25 @@
+﻿
+
+@using BrickwellStore.Infrastructure
+
+
+@model Product
+<div class="card m-1 p-1">
+    <h4>
+        @Model.Name
+        <span class="badge rounded-pill bg-primary text-white float-end"><small>Only $@Model.Price!</small> </span>
+    </h4>
+    <ul>
+        <li>Year: @Model.Year</li>
+        <li>Number of Parts: @Model.NumParts</li>
+        <li>Colors: @Model.PrimaryColor and @Model.SecondaryColor</li>
+        <li>Description: @Model.Description</li>
+        <li>Category: @Model.Category</li>
+    </ul>
+
+    <form id=@Model.ProductId method="post" asp-page="/Cart">
+        <input type="hidden" asp-for="ProductId" />
+        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+        <button type="submit" class="btn-outline-success btn-sm float-end">Add to Cart!</button>
+    </form>
+</div>

@@ -6,10 +6,10 @@
 
 @model IEnumerable<string>
 <div class="d-grid gap-2">
-    <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index" asp-route-projectType="" asp-route-pageNum="">Home</a>
+    <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Product" asp-route-productColor="" asp-route-pageNum="">Home</a>
 
-    @foreach (string pt in Model ?? Enumerable.Empty<string>())
+    @foreach (string pc in Model ?? Enumerable.Empty<string>())
     {
-        <a class="btn @(pt == ViewBag.SelectedProjectType ? "btn-primary" : "btn-outline-secondary")" asp-controller="Home" asp-action="Index" asp-route-projectType="@pt" asp-route-pageNum="1">@pt</a>
+        <a class="btn @(pc == ViewBag.SelectedProductColor ? "btn-primary" : "btn-outline-secondary")" asp-controller="Home" asp-action="Product" asp-route-productColor="@pc" asp-route-pageNum="1">@pc</a>
     }
 </div>

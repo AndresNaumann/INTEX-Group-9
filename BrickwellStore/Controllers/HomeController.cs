@@ -24,28 +24,28 @@ namespace BrickwellStore.Controllers
             return View();
         }
 
-        public IActionResult Product(int pageNum, string? projectType)
+        public IActionResult Product(int pageNum, string? productColor)
         {
 
-            //int pageSize = 5;
-            //var Blah = new ProjectsListViewModel
-            //{
-            //    Projects = _repo.Projects
-            //    .Where(x => x.ProjectType == projectType || projectType == null)
-            //   .OrderBy(x => x.ProjectName)
-            //   .Skip((pageNum - 1) * pageSize)
-            //   .Take(pageSize),
+            int pageSize = 5;
+            var Blah = new ProjectsListViewModel
+            {
+                Products = _repo.Products
+                .Where(x => x.Name == productColor || productColor == null)
+               .OrderBy(x => x.Name)
+               .Skip((pageNum - 1) * pageSize)
+               .Take(pageSize),
 
-            //    PaginationInfo = new PaginationInfo
-            //    {
-            //        CurrentPage = pageNum,
-            //        ItemsPerPage = pageSize,
-            //        TotalItems = projectType == null ? _repo.Projects.Count() : _repo.Projects.Where(x => x.ProjectType == projectType).Count()
+                PaginationInfo = new PaginationInfo
+                {
+                    CurrentPage = pageNum,
+                    ItemsPerPage = pageSize,
+                    TotalItems = productColor == null ? _repo.Products.Count() : _repo.Products.Where(x => x.PrimaryColor == productColor).Count()
 
 
-            //    },
+                },
 
-            //    CurrentProjectType = projectType
+                CurrentProductColor = productColor
             };
 
             return View(Blah);

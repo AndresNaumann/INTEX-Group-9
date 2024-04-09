@@ -11,15 +11,15 @@ namespace BrickwellStore.Components
         {
             _legorepo = temp;
         }
-        //public IViewComponentResult Invoke()
-        //{
-        //    ViewBag.SelectedProjectType = RouteData?.Values["projectType"];
-        //    var projectTypes = _legorepo.Projects
-        //        .Select(x => x.ProjectType)
-        //        .Distinct()
-        //        .OrderBy(x => x);
-        //    return View(projectTypes);
-    }
+        public IViewComponentResult Invoke()
+        {
+            ViewBag.SelectedProductColor = RouteData?.Values["productColor"];
+            var productColors = _legorepo.Products
+                .Select(x => x.PrimaryColor)
+                .Distinct()
+                .OrderBy(x => x);
+            return View(productColors);
+        }
     }
 }
 

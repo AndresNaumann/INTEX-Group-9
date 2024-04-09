@@ -4,18 +4,10 @@ namespace BrickwellStore.Data.ViewModels
 {
     public class ProjectsListViewModel
     {
+        public IQueryable<Product> Products { get; set; }
+
+        public PaginationInfo PaginationInfo { get; set; } = new PaginationInfo();
+
+        public string? CurrentProductColor { get; set; }
     }
 }
-
-
-//namespace WaterProject.Models.ViewModels
-//{
-//    public class ProjectsListViewModel
-//    {
-//        public IQueryable<Project> Projects { get; set; }
-
-//        public PaginationInfo PaginationInfo { get; set; } = new PaginationInfo();
-
-//        public string? CurrentProjectType { get; set; }
-//    }
-//}

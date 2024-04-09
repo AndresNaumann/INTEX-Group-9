@@ -20,17 +20,17 @@ namespace BrickwellStore.Pages
             Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
 
-        public IActionResult OnPost(int projectId, string returnUrl)
+        public IActionResult OnPost(int productId, string returnUrl)
         {
-            //Project p = _repo.Projects
-            // .FirstOrDefault(x => x.ProjectId == projectId);
+            Product p = _repo.Products
+             .FirstOrDefault(x => x.ProductId == productId);
 
-            //if (p != null)
-            //{
-            //    Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
-            //    Cart.AddItem(p, 1);
-            //    HttpContext.Session.SetJson("cart", Cart);
-            //}
+            if (p != null)
+            {
+                Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+                Cart.AddItem(p, 1);
+                HttpContext.Session.SetJson("cart", Cart);
+            }
 
             return RedirectToPage(new { returnUrl = returnUrl });
         }
