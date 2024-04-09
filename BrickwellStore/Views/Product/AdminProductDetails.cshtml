@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Product
+<div class="card m-1 p-1">
+    <center><img src="@Model.ImgLink" style="width:500px" /></center>
+    <h4>
+        @Model.Name
+        <span class="badge rounded-pill bg-primary text-white float-end"><small>Only $@Model.Price!</small> </span>
+    </h4>
+    <ul>
+        <li>Year: @Model.Year</li>
+        <li>Number of Parts: @Model.NumParts</li>
+        <li>Primary Color: @Model.PrimaryColor</li>
+        <li>Secondary Color: @Model.SecondaryColor</li>
+        <li>Description: @Model.Description</li>
+        <li>Category: @Model.Category</li>
+    </ul>
+
+    <form id=@Model.ProductId method="post" asp-page="/Cart">
+        <input type="hidden" asp-for="ProductId" />
+@*         <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+ *@        <button type="submit" class="btn-outline-success btn-sm float-end">Add to Cart!</button>
+        <a asp-controller="Home" asp-action="Product" >Back Home</a>
+
+    </form>
+    <a class="btn btn-info" asp-controller="Home" asp-action="EditProduct" asp-route-id="@Model.ProductId">Edit</a>
+    <a class="btn btn-danger" asp-controller="Home" asp-action="DeleteProduct" asp-route-id="@Model.ProductId">Delete</a>
+</div>

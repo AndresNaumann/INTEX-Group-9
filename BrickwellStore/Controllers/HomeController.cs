@@ -5,7 +5,12 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+<<<<<<< Updated upstream
 using BrickwellStore.Infrastructure;
+=======
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System.Drawing.Printing;
+>>>>>>> Stashed changes
 
 namespace BrickwellStore.Controllers
 {
@@ -239,7 +244,7 @@ namespace BrickwellStore.Controllers
             _repo.AddProduct(product);
             _repo.SaveChanges();
 
-            return View("AdminProduct", product);
+            return RedirectToAction("AdminProducts");
         }
 
         // EDITING ----------------------------------------------------
