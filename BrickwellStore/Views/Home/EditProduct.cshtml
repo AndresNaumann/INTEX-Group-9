@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<!--EDITING A PRODUCT-->
+
+@model Product
+
+<form method="post">
+    <label asp-for="Name">Product Name</label><br />
+    <input asp-for="Name" type="text" required /><br />
+    <br />
+
+    <label asp-for="Year">Year</label><br />
+    <input asp-for="Year" type="number" required /><br /><br />
+
+    <label asp-for="NumParts">Number of Parts</label><br />
+    <input asp-for="NumParts" type="number" required /><br /><br />
+
+    <label asp-for="Price">Price</label><br />
+    <input asp-for="Price" type="number" step="0.01" required /><br /><br />
+
+    <label asp-for="ImgLink">Image Link</label><br />
+    <input asp-for="ImgLink" type="text" required /><br /><br />
+
+    <label asp-for="PrimaryColor">Primary Color</label><br />
+    <input asp-for="PrimaryColor" type="text" required /><br /><br />
+
+    <label asp-for="SecondaryColor">Secondary Color</label><br />
+    <input asp-for="SecondaryColor" type="text" required /><br /><br />
+
+    <label asp-for="Description">Description</label><br />
+    <textarea asp-for="Description" required></textarea><br /><br />
+
+    <label asp-for="Category">Category</label><br />
+    <input asp-for="Category" type="text" required /><br /><br /><br />
+
+    <button type="submit">Submit</button>
+</form>
+

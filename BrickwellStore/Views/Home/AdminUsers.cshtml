@@ -39,18 +39,21 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Id</th>
             <th>Email</th>
             <th>Username</th>
-            <!-- Add more columns as needed -->
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var user in Model)
         {
             <tr>
+                <td><a asp-controller="User" asp-action="UserDetails" asp-route-id="@user.Id">@user.Id</a></td>
                 <td>@user.Email</td>
                 <td>@user.UserName</td>
-                <!-- Add more cells as needed -->
+                @* <td><a asp-controller="Home" asp-action="" asp-route-id="">Edit</a></td> *@
+                <td><a asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@user.Id">Delete</a></td>
             </tr>
         }
     </tbody>

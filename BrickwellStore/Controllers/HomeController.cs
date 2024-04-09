@@ -257,17 +257,16 @@ namespace BrickwellStore.Controllers
         // Edit a Customer/User
 
         [HttpGet]
-        public IActionResult EditCustomer(int id)
+        public IActionResult EditUser(int id)
         {
             var recordToEdit = _repo.GetCustomerById(id);
-
             return View(recordToEdit);
         }
 
         [HttpPost]
-        public IActionResult EditCustomer(Customer updatedInfo)
+        public IActionResult EditUser(Customer updatedInfo)
         {
-            _repo.DeleteCustomer(updatedInfo.CustomerId);
+            _repo.UpdateUser(updatedInfo.CustomerId);
             _repo.SaveChanges();
             return RedirectToAction("AdminUsers");
         }
@@ -278,14 +277,13 @@ namespace BrickwellStore.Controllers
         public IActionResult EditProduct(int id)
         {
             var recordToEdit = _repo.GetProductById(id);
-
             return View(recordToEdit);
         }
 
         [HttpPost]
         public IActionResult EditProduct(Product updatedInfo)
         {
-            _repo.DeleteCustomer(updatedInfo.ProductId);
+            _repo.UpdateProduct(updatedInfo.ProductId);
             _repo.SaveChanges();
             return RedirectToAction("AdminProducts");
         }
@@ -306,7 +304,7 @@ namespace BrickwellStore.Controllers
         [HttpPost]
         public IActionResult DeleteCustomer(Customer customer)
         {
-            _repo.DeleteCustomer(customer.CustomerId);
+            _repo.DeleteUser(customer.CustomerId);
             _repo.SaveChanges();
 
             return RedirectToAction("AdminUsers");
