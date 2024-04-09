@@ -5,6 +5,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using BrickwellStore.Infrastructure;
 
 namespace BrickwellStore.Controllers
 {
@@ -27,6 +28,11 @@ namespace BrickwellStore.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Cart()
+        {
+            return View(); 
         }
 
         [Authorize(Roles = "Admin")]
@@ -314,6 +320,43 @@ namespace BrickwellStore.Controllers
             _repo.SaveChanges();
 
             return RedirectToAction("AdminProducts");
+        }
+
+        // EDIT CART ITEMS 
+
+        public IActionResult EditCartItem(int cartLineId, int quantity)
+        {
+            var cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            var cartLine = cart.Lines.FirstOrDefault(x => x.CartLineId == cartLineId);
+
+            if (cartLine != null && quantity > 0)
+            {
+                cartLine.Quantity = quantity;
+                HttpContext.Session.SetJson("cart", cart);
+            }
+
+            return RedirectToPage("/Cart");
+        }
+
+
+        // DELETE CART ITEM
+        public IActionResult DeleteCartItem(int cartLineId)
+        {
+            var cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            var cartLine = cart.Lines.FirstOrDefault(x => x.CartLineId == cartLineId);
+
+            if (cartLine != null)
+            {
+                cart.Lines.Remove(cartLine);
+                HttpContext.Session.SetJson("cart", cart);
+            }
+            else
+            {
+                // Handle the case where the specified cartLineId is not found (optional).
+                // You can add logging or display an error message.
+            }
+
+            return RedirectToPage("/Cart");
         }
 
     }

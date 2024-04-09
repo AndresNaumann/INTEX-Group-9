@@ -14,6 +14,8 @@
             <th>Quantity:</th>
             <th class="text-right">Amount:</th>
             <th class="text-right">Subtotal:</th>
+            <td>Edit Quantity:</td>
+            <td>Remove Item:</td>
         </tr>
     </thead>
 
@@ -25,6 +27,8 @@
                 <td class="text-center">@l.Quantity</td>
                 <td class="text-right">$@l.Product.Price</td>
                 <td class="text-right">@((@l.Quantity * @l.Product.Price).ToString("c"))</td>
+                <td><a class="btn btn-info" asp-controller="Home" asp-action="EditCartItem" asp-route-id="@l.CartLineId">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Home" asp-action="DeleteCartItem" asp-route-id="@l.CartLineId">Delete</a></td>
             </tr>
         }
     </tbody>

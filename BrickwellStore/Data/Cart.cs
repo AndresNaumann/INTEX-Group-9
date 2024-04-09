@@ -33,7 +33,7 @@ namespace BrickwellStore.Data
 
         public void Clear() => Lines.Clear();
 
-        public decimal CalculateTotal() => Lines.Sum(x => (decimal)x.Price * x.Quantity);
+        public decimal CalculateTotal() => Lines.Sum(x => (decimal)x.Price );
 
         public class CartLine
         {

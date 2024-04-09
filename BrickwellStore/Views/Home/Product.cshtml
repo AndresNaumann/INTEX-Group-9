@@ -7,15 +7,19 @@
 <h1>Our Products</h1>
 
 <button class="btn btn-primary">Add a Product</button>
+<div class="row m-1 p-1">
+    <div class="col-3">
+        <vc:product-colors />
+        <vc:product-categories />
+    </div>
 
-<div class="col-9">
-    <vc:product-colors />
-    <vc:product-categories />
+    <div class="container col-9">
+
+    @foreach (Product p in Model.Products)
+    {
+        <partial name="ProductSummary" model="p" />
+    }
+
+    <div page-model="@Model.PaginationInfo" page-action="Product" page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-productColor="@Model.CurrentProductColor" page-url-productCategory="@Model.CurrentProductCategory" class="btn-group pull-right m-1"></div>
+    </div>
 </div>
-
-@foreach (Product p in Model.Products)
-{
-    <partial name="ProductSummary" model="p" />
-}
-
-<div page-model="@Model.PaginationInfo" page-action="Product" page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-productColor="@Model.CurrentProductColor" page-url-productCategory="@Model.CurrentProductCategory" class="btn-group pull-right m-1"></div>
