@@ -25,9 +25,7 @@ namespace BrickwellStore.Controllers
             return View();
         }
 
-<<<<<<< HEAD
         [Authorize(Roles = "Admin")]
-=======
         public IActionResult AboutUs()
         {
             return View();
@@ -50,18 +48,17 @@ namespace BrickwellStore.Controllers
 
 
         [Authorize]
->>>>>>> 57bb39a830a41db6883ee354a4d669f2044b5663
+
         public IActionResult Secrets()
         {
             return View();
         }
 
-<<<<<<< HEAD
         [Authorize(Roles = "Admin")]
         public IActionResult AdminProducts(int pageNum)
         {
             int pageSize = 10;
-            var AdminBlah = new ProjectsListViewModel
+            var AdminBlah = new ProductsListViewModel
             {
                 Products = _repo.Products
                 .OrderBy(x => x.Name)
@@ -83,7 +80,7 @@ namespace BrickwellStore.Controllers
         public IActionResult AdminUsers(int pageNum)
         {
             int pageSize = 5;
-            var AdminUsers = new ProjectsListViewModel
+            var AdminUsers = new ProductsListViewModel
             {
                 Customers = _repo.Customers
                  .OrderBy(x => x.CustomerFirstName)
@@ -101,8 +98,8 @@ namespace BrickwellStore.Controllers
             return View(AdminUsers);
         }
 
-        public IActionResult Product(int pageNum, string? productColor)
-=======
+        //public IActionResult Product(int pageNum, string? productColor)
+
         //public IActionResult Product(int pageNum, string? productColor)
         //{
 
@@ -132,7 +129,6 @@ namespace BrickwellStore.Controllers
         //}
 
         public IActionResult Product(int pageNum, string? productColor, int pageSize = 5)
->>>>>>> 57bb39a830a41db6883ee354a4d669f2044b5663
         {
             var filteredProducts = _repo.Products
                 .Where(x => x.PrimaryColor == productColor || productColor == null)

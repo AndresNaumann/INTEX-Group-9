@@ -8,6 +8,10 @@
 
 <button class="btn btn-primary">Add a Product</button>
 
+<div class="col-9">
+    <vc:product-filters />
+</div>
+
 @foreach (Product p in Model.Products)
 {
     <partial name="ProductSummary" model="p" />
