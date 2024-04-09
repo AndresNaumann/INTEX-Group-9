@@ -21,5 +21,16 @@ namespace BrickwellStore.Controllers
 
             return View(product);
         }
+
+        public IActionResult AdminProductDetails(int id)
+        {
+            var product = _repo.Products.FirstOrDefault(p => p.ProductId == id);
+            if (product == null)
+            {
+                return NotFound(); // Or handle accordingly
+            }
+
+            return View(product);
+        }
     }
 }
