@@ -131,10 +131,16 @@ namespace BrickwellStore.Controllers
         public IActionResult Product(int pageNum, string? productColor, int pageSize = 5)
         {
             var filteredProducts = _repo.Products
-                .Where(x => x.PrimaryColor == productColor || productColor == null)
+                .Where(x => x.PrimaryColor == productColor || x.SecondaryColor == productColor || productColor == null)
                 .OrderBy(x => x.Name)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize);
+
+            //var filteredProducts = _repo.Products
+            //.OrderBy(p => p.PrimaryColor == productColor ? 0 : p.SecondaryColor.Contains(productColor) ? 1 : 2)
+            //.ThenBy(p => p.Name)
+            //.Skip((pageNum - 1) * pageSize)
+            //.Take(pageSize);
 
             var viewModel = new ProductsListViewModel
             {
