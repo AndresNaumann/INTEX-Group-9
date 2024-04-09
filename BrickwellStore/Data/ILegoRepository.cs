@@ -1,6 +1,6 @@
 ﻿namespace BrickwellStore.Data
 {
-    public class ILegoRepository
+    public interface ILegoRepository
     {
         public IQueryable<Product> Products { get; }
     }
