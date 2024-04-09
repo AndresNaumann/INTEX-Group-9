@@ -31,8 +31,8 @@ services.AddAuthentication().AddGoogle(googleOptions =>
 {
     //googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
     //googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-    googleOptions.ClientId = "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";
-    googleOptions.ClientSecret = "246075900303-55r8n0gt13g82j59h4nu9i0qvnlk0m0a.apps.googleusercontent.com";
+    googleOptions.ClientId = "246075900303-55r8n0gt13g82j59h4nu9i0qvnlk0m0a.apps.googleusercontent.com";
+    googleOptions.ClientSecret = "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";
 }).AddFacebook(facebookOptions =>
 {
     //facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
@@ -63,6 +63,7 @@ app.UseSession();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 //app.MapControllerRoute("pagenumandcolor", "{productColor}/{pageNum}", new { Controller = "Home", action = "Product" });
