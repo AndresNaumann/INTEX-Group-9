@@ -1,3 +1,8 @@
+:root {
+    --bs-font-sans-serif: "Space Grotesk", sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --bs-body-font-family: var(--bs-font-sans-serif);
+}
+
 html {
   font-size: 14px;
 }
