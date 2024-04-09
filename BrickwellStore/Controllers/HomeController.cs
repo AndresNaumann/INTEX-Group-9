@@ -5,12 +5,9 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-<<<<<<< Updated upstream
 using BrickwellStore.Infrastructure;
-=======
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Drawing.Printing;
->>>>>>> Stashed changes
 
 namespace BrickwellStore.Controllers
 {
