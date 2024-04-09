@@ -12,7 +12,7 @@
         void DeleteCustomer(int id);
         void DeleteProduct(int id);
         void SaveChanges();
-
-
+        //Cart? GetCartLine(int cartLineId);
+        
     }
 }

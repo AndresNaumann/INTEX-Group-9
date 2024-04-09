@@ -1,4 +1,4 @@
-﻿@page
+﻿@* @page
 @model BrickwellStore.Pages.EditCartModel
 @{
 }
@@ -11,7 +11,8 @@
 <form method="post">
     <div>
         <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity" value="@Model.CartLine.Quantity" />
-    </div>
+@*         <input type="number" id="quantity" name="quantity" value="@Model.Cart.Quantity" />
+@*     </div>
     <button type="submit">Update Quantity</button>
 </form>
+*@
