@@ -137,9 +137,11 @@ namespace BrickwellStore.Controllers
             return View(users);
         }
 
-        public IActionResult Product(int pageNum, string? productColor, string? productCategory)
+        public IActionResult Product(int pageNum, string? productColor, string? productCategory, int? itemsPerPage)
         {
-            int pageSize = 5;
+            int defaultPageSize = 5;
+
+            int pageSize = itemsPerPage ?? defaultPageSize;
 
             var productsQuery = _repo.Products
                 .Where(x => (x.PrimaryColor == productColor || x.SecondaryColor == productColor) || productColor == null);
@@ -152,7 +154,8 @@ namespace BrickwellStore.Controllers
             var Blah = new ProductsListViewModel
             {
                 Products = productsQuery
-                    .OrderBy(x => x.Name)
+                    .OrderBy(x => x.PrimaryColor == productColor ? 0 : 1) // Order by primary color first
+                    .ThenBy(x => x.Name) // Then order by name
                     .Skip((pageNum - 1) * pageSize)
                     .Take(pageSize),
 
@@ -171,6 +174,7 @@ namespace BrickwellStore.Controllers
 
             return View(Blah);
         }
+
 
         //}
         //public IActionResult Product(int pageNum, string? productColor, string? productCategory)

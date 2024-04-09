@@ -11,6 +11,19 @@
     <div class="col-3">
         <vc:product-colors />
         <vc:product-categories />
+
+        <!-- Product.cshtml -->
+        <form method="get" asp-page="/Product">
+            <label for="itemsPerPage">Items per Page:</label>
+            <select id="itemsPerPage" name="itemsPerPage">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
+            <button type="submit">Apply</button>
+        </form>
+
+
     </div>
 
     <div class="container col-9">
