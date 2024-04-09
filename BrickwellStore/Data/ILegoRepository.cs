@@ -8,8 +8,10 @@
         Customer? GetCustomerById(int id);
         Product? GetProductById(int id);
         void AddProduct(Product product);
-        void DeleteCustomer(int id);
+        void UpdateProduct(int id);
         void DeleteProduct(int id);
+        void UpdateUser(int id);
+        void DeleteUser(int id);
         void SaveChanges();
 
 

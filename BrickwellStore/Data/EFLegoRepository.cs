@@ -7,21 +7,27 @@
         {
             _context = temp;
         }
+
+        // BRING OUT ALL THE TABLES
+
         public IQueryable<Product> Products => _context.Products;
         public IQueryable<Customer> Customers => _context.Customers;
         public IQueryable<Order> Orders => _context.Orders;
+
+        // USER METHODS
 
         public Customer GetCustomerById(int id)
         {
             return _context.Customers.Single(c => c.CustomerId == id);
         }
 
-        public Product GetProductById(int id)
+        public void UpdateUser(int id)
         {
-            return _context.Products.Single(c => c.ProductId == id);
+            var customer = GetCustomerById(id);
+            _context.Customers.Update(customer);
         }
 
-        public void DeleteCustomer(int id)
+        public void DeleteUser(int id)
         {
             var customer = GetCustomerById(id);
             if (customer != null)
@@ -30,9 +36,22 @@
             }
         }
 
+        // PRODUCT METHODS
+
+        public Product GetProductById(int id)
+        {
+            return _context.Products.Single(c => c.ProductId == id);
+        }
+
         public void AddProduct(Product product)
         {
             _context.Products.Add(product);
+        }
+
+        public void UpdateProduct(int id)
+        {
+            var product = GetProductById(id);
+            _context.Products.Update(product);
         }
 
         public void DeleteProduct(int id)
@@ -43,6 +62,8 @@
                 _context.Products.Remove(product);
             }
         }
+
+        // METHOD TO SAVE CHANGES
 
         public void SaveChanges()
         {
