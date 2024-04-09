@@ -32,8 +32,8 @@
                 <td>@product.ProductId</td>
                 <td>@product.Name</td>
                 <td>@product.Price.ToString("C")</td>
-                <td><button class="btn btn-primary">Edit</button></td>
-                <td><button class="btn btn-danger">Delete</button></td>
+                <td><a class="btn btn-info" asp-controller="Home" asp-action="EditProduct" asp-route-id="@product.ProductId">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Home" asp-action="DeleteProduct" asp-route-id="@product.ProductId">Delete</a></td>
             </tr>
         }
     </tbody>

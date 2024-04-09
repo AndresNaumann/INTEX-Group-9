@@ -44,7 +44,7 @@ namespace BrickwellStore.Controllers
         {
             return View();
         }
-
+         
         public IActionResult ThankYou()
         {
             return View();
@@ -219,6 +219,23 @@ namespace BrickwellStore.Controllers
         //    return View(viewModel);
         //}
 
+        // ADDING A PRODUCT -------------------------------------------
+
+        [HttpGet]
+        public IActionResult AddProduct()
+        {
+            return View("AddProduct");
+        }
+
+        [HttpPost]
+        public IActionResult AddProduct(Product product)
+        {
+            _repo.AddProduct(product);
+            _repo.SaveChanges();
+
+            return View("AdminProduct", product);
+        }
+
         // EDITING ----------------------------------------------------
 
         // Edit a Customer/User
@@ -236,7 +253,7 @@ namespace BrickwellStore.Controllers
         {
             _repo.DeleteCustomer(updatedInfo.CustomerId);
             _repo.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminUsers");
         }
 
         // Edit a Product
@@ -244,17 +261,17 @@ namespace BrickwellStore.Controllers
         [HttpGet]
         public IActionResult EditProduct(int id)
         {
-            var recordToEdit = _repo.GetCustomerById(id);
+            var recordToEdit = _repo.GetProductById(id);
 
             return View(recordToEdit);
         }
 
         [HttpPost]
-        public IActionResult EditProduct(Customer updatedInfo)
+        public IActionResult EditProduct(Product updatedInfo)
         {
-            _repo.DeleteCustomer(updatedInfo.CustomerId);
+            _repo.DeleteCustomer(updatedInfo.ProductId);
             _repo.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminProducts");
         }
 
         // DELETION ----------------------------------------------------
@@ -276,7 +293,7 @@ namespace BrickwellStore.Controllers
             _repo.DeleteCustomer(customer.CustomerId);
             _repo.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminUsers");
         }
 
         // Delete Customers
@@ -284,19 +301,19 @@ namespace BrickwellStore.Controllers
         [HttpGet]
         public IActionResult DeleteProduct(int id)
         {
-            var recordToDelete = _repo.GetCustomerById(id);
+            var recordToDelete = _repo.GetProductById(id);
 
             return View(recordToDelete);
 
         }
 
         [HttpPost]
-        public IActionResult DeleteProduct(Customer customer)
+        public IActionResult DeleteProduct(Product product)
         {
-            _repo.DeleteCustomer(customer.CustomerId);
+            _repo.DeleteProduct(product.ProductId);
             _repo.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminProducts");
         }
 
     }

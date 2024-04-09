@@ -4,14 +4,14 @@
 @{
 }
 
-@model Customer
+@model Product
 
 <h2>Confirm Deletion</h2>
-<h3>@Model.CustomerLastName, @Model.CustomerFirstName</h3>
+<h3>@Model.Name: @Model.ProductId</h3>
 
 <form method="post">
-    <input type="hidden" asp-for="CustomerId" />
+    <input type="hidden" asp-for="ProductId" />
 
     <button type="submit">Delete</button>
-    <a class="btn btn-info" asp-controller="Home" asp-action="Index">Cancel</a>
+    <a class="btn btn-info" asp-controller="Home" asp-action="AdminProducts">Cancel</a>
 </form>

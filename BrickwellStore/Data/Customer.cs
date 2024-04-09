@@ -6,6 +6,7 @@ namespace BrickwellStore.Data
     {
         [Key]
         public int CustomerId { get; set; }
+        public int UserId { get; set; }
         public string CustomerFirstName { get; set; }
         public string CustomerLastName { get; set; }
         public string BirthDate { get; set; }
