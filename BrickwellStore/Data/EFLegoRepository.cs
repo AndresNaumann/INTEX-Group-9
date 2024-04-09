@@ -50,10 +50,10 @@ namespace BrickwellStore.Data
             _context.Products.Add(product);
         }
 
-        public void UpdateProduct(int id)
+        public void UpdateProduct(Product product)
         {
-            var product = GetProductById(id);
             _context.Products.Update(product);
+            _context.SaveChanges();
         }
 
         public void DeleteProduct(int id)

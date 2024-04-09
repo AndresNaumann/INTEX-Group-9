@@ -277,14 +277,15 @@ namespace BrickwellStore.Controllers
         public IActionResult EditProduct(int id)
         {
             var recordToEdit = _repo.GetProductById(id);
-            return View(recordToEdit);
+            return View("AddProduct", recordToEdit);
         }
 
         [HttpPost]
         public IActionResult EditProduct(Product updatedInfo)
         {
-            _repo.UpdateProduct(updatedInfo.ProductId);
+            _repo.UpdateProduct(updatedInfo);
             _repo.SaveChanges();
+
             return RedirectToAction("AdminProducts");
         }
 

@@ -11,31 +11,6 @@
 
 <h1>Users (Admin View)</h1>
 
-@* <table class="table">
-    <thead>
-        <tr>
-            <th>Customer ID</th>
-            <th>Username</th>
-            <th>Age</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Customer customer in Model.Customers)
-        {
-            <tr>
-                <td>@customer.CustomerId</td>
-                <td>@customer.CustomerFirstName @customer.CustomerLastName</td>
-                <td>@customer.Age</td>
-                <td><button class="btn btn-primary">Edit</button></td>
-                <td><button class="btn btn-danger">Delete</button></td>
-            </tr>
-        }
-    </tbody>
-</table>
- *@
-
 <table class="table">
     <thead>
         <tr>

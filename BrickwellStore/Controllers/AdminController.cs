@@ -59,7 +59,7 @@ namespace BrickwellStore.Controllers
         [HttpPost]
         public IActionResult EditCustomer(Customer updatedInfo)
         {
-            _repo.DeleteUser(updatedInfo.CustomerId);
+            _repo.UpdateUser(updatedInfo.CustomerId);
             _repo.SaveChanges();
             return RedirectToAction("AdminUsers");
         }
@@ -77,7 +77,7 @@ namespace BrickwellStore.Controllers
         [HttpPost]
         public IActionResult EditProduct(Product updatedInfo)
         {
-            _repo.DeleteUser(updatedInfo.ProductId);
+            _repo.UpdateProduct(updatedInfo);
             _repo.SaveChanges();
             return RedirectToAction("AdminProducts");
         }
