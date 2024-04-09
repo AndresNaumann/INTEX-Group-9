@@ -31,7 +31,7 @@ namespace BrickwellStore.Controllers
             var Blah = new ProjectsListViewModel
             {
                 Products = _repo.Products
-                .Where(x => x.Name == productColor || productColor == null)
+                .Where(x => x.PrimaryColor == productColor || productColor == null)
                .OrderBy(x => x.Name)
                .Skip((pageNum - 1) * pageSize)
                .Take(pageSize),
