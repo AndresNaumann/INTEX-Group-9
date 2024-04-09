@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model ProjectsListViewModel
+
+<h1>Users (Admin View)</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Customer customer in Model.Customers)
+        {
+            <tr>
+                <td>@customer.CustomerId</td>
+                <td>@customer.CustomerFirstName @customer.CustomerLastName</td>
+                <td>@customer.Age</td>
+                <td><button class="btn btn-primary">Edit</button></td>
+                <td><button class="btn btn-danger">Delete</button></td>
+            </tr>
+        }
+    </tbody>
+</table>

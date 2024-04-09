@@ -25,10 +25,54 @@ namespace BrickwellStore.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Secrets()
         {
             return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminProducts(int pageNum)
+        {
+            int pageSize = 10;
+            var AdminBlah = new ProjectsListViewModel
+            {
+                Products = _repo.Products
+                .OrderBy(x => x.Name)
+               .Skip((pageNum - 1) * pageSize)
+               .Take(pageSize),
+
+                PaginationInfo = new PaginationInfo
+                {
+                    CurrentPage = pageNum,
+                    ItemsPerPage = pageSize,
+                    TotalItems = _repo.Products.Count()
+                },
+            };
+
+            return View(AdminBlah);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminUsers(int pageNum)
+        {
+            int pageSize = 5;
+            var AdminUsers = new ProjectsListViewModel
+            {
+                Customers = _repo.Customers
+                 .OrderBy(x => x.CustomerFirstName)
+               .Skip((pageNum - 1) * pageSize)
+               .Take(pageSize),
+
+                PaginationInfo = new PaginationInfo
+                {
+                    CurrentPage = pageNum,
+                    ItemsPerPage = pageSize,
+                    TotalItems = _repo.Customers.Count()
+                },
+            };
+
+            return View(AdminUsers);
         }
 
         public IActionResult Product(int pageNum, string? productColor)

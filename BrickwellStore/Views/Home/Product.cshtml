@@ -5,6 +5,9 @@
 @model ProjectsListViewModel
 
 <h1>Our Products</h1>
+
+<button class="btn btn-primary">Add a Product</button>
+
 @foreach (Product p in Model.Products)
 {
     <partial name="ProductSummary" model="p" />
