@@ -23,8 +23,8 @@
             <tr>
                 <td class="text-left">@l.Product.Name</td>
                 <td class="text-center">@l.Quantity</td>
-                <td class="text-right">$25</td>
-                <td class="text-right">@((@l.Quantity * 25).ToString("c"))</td>
+                <td class="text-right">$@l.Product.Price</td>
+                <td class="text-right">@((@l.Quantity * @l.Product.Price).ToString("c"))</td>
             </tr>
         }
     </tbody>
@@ -39,5 +39,6 @@
 
 
 <div class="text-center">
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping!</a>
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Checkout">Checkout</a>
 </div>

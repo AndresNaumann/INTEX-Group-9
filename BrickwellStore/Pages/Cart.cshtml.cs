@@ -28,7 +28,7 @@ namespace BrickwellStore.Pages
             if (p != null)
             {
                 Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
-                Cart.AddItem(p, 1);
+                Cart.AddItem(p, 1, p.Price);
                 HttpContext.Session.SetJson("cart", Cart);
             }
 

@@ -6,7 +6,7 @@ namespace BrickwellStore.Data
     {
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
 
-        public void AddItem(Product p, int quantity)
+        public void AddItem(Product p, int quantity, double price)
         {
             CartLine? line = Lines
                 .Where(x => x.Product.ProductId == p.ProductId)
@@ -18,12 +18,14 @@ namespace BrickwellStore.Data
                 Lines.Add(new CartLine
                 {
                     Product = p,
-                    Quantity = quantity
+                    Quantity = quantity,
+                    Price = price
                 });
             }
             else
             {
                 line.Quantity += quantity;
+                line.Price += price;
             }
         }
 
@@ -31,13 +33,14 @@ namespace BrickwellStore.Data
 
         public void Clear() => Lines.Clear();
 
-        public decimal CalculateTotal() => Lines.Sum(x => 25 * x.Quantity);
+        public decimal CalculateTotal() => Lines.Sum(x => (decimal)x.Price * x.Quantity);
 
         public class CartLine
         {
             public int CartLineId { get; set; }
             public Product Product { get; set; } = new();
             public int Quantity { get; set; }
+            public double Price { get; set; }
 
         }
     }

@@ -2,7 +2,7 @@
 
 namespace BrickwellStore.Data.ViewModels
 {
-    public class ProjectsListViewModel
+    public class ProductsListViewModel
     {
         public IQueryable<Product> Products { get; set; }
 
