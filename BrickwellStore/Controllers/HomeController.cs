@@ -137,73 +137,81 @@ namespace BrickwellStore.Controllers
             return View(users);
         }
 
-        //public IActionResult Product(int pageNum, string? productColor, string? productCategory)
-        //{
-
-        //    int pageSize = 5;
-        //    var Blah = new ProductsListViewModel
-        //    {
-        //        Products = _repo.Products
-        //        .Where(x => x.PrimaryColor == productColor || x.SecondaryColor == productColor || productColor == null)
-        //       .OrderBy(x => x.Name)
-        //       .Skip((pageNum - 1) * pageSize)
-        //       .Take(pageSize),
-
-        //        PaginationInfo = new PaginationInfo
-        //        {
-        //            CurrentPage = pageNum,
-        //            ItemsPerPage = pageSize,
-        //            TotalItems = productColor == null ? _repo.Products.Count() : _repo.Products.Where(x => x.PrimaryColor == productColor).Count()
-
-
-        //        },
-
-        //        CurrentProductColor = productColor,
-        //        CurrentProductCategory = productCategory
-        //    };
-
-        //    return View(Blah);
-
-        //}
         public IActionResult Product(int pageNum, string? productColor, string? productCategory)
         {
             int pageSize = 5;
-            var query = _repo.Products.AsQueryable();
 
-            // Apply color filter if provided
-            if (!string.IsNullOrEmpty(productColor))
-            {
-                query = query.Where(x => x.PrimaryColor == productColor || x.SecondaryColor == productColor);
-            }
+            var productsQuery = _repo.Products
+                .Where(x => (x.PrimaryColor == productColor || x.SecondaryColor == productColor) || productColor == null);
 
-            // Apply category filter if provided
             if (!string.IsNullOrEmpty(productCategory))
             {
-                query = query.Where(x => x.Category == productCategory);
+                productsQuery = productsQuery.Where(x => x.Category == productCategory);
             }
 
-            var products = query.OrderBy(x => x.Name)
-                                .Skip((pageNum - 1) * pageSize)
-                                .Take(pageSize)
-                                .ToList();
-
-            var viewModel = new ProductsListViewModel
+            var Blah = new ProductsListViewModel
             {
-                Products = _repo.Products,
+                Products = productsQuery
+                    .OrderBy(x => x.Name)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize),
+
                 PaginationInfo = new PaginationInfo
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = query.Count() // Count total items from the filtered query
+                    TotalItems = productColor == null
+                        ? _repo.Products.Count()
+                        : productsQuery.Count()
                 },
+
                 CurrentProductColor = productColor,
                 CurrentProductCategory = productCategory
             };
 
-            return View(viewModel);
+            return View(Blah);
         }
 
-        //public IActionResult Product(int pageNum, string? productColor, string? productCateogry, int pageSize = 5)
+        //}
+        //public IActionResult Product(int pageNum, string? productColor, string? productCategory)
+        //{
+        //    int pageSize = 5;
+        //    var query = _repo.Products.AsQueryable();
+
+        //    // Apply color filter if provided
+        //    if (!string.IsNullOrEmpty(productColor))
+        //    {
+        //        query = query.Where(x => x.PrimaryColor == productColor || x.SecondaryColor == productColor);
+        //    }
+
+        //    // Apply category filter if provided
+        //    if (!string.IsNullOrEmpty(productCategory))
+        //    {
+        //        query = query.Where(x => x.Category == productCategory);
+        //    }
+
+        //    var products = query.OrderBy(x => x.Name)
+        //                        .Skip((pageNum - 1) * pageSize)
+        //                        .Take(pageSize)
+        //                        .ToList();
+
+        //    var viewModel = new ProductsListViewModel
+        //    {
+        //        Products = _repo.Products,
+        //        PaginationInfo = new PaginationInfo
+        //        {
+        //            CurrentPage = pageNum,
+        //            ItemsPerPage = pageSize,
+        //            TotalItems = query.Count() // Count total items from the filtered query
+        //        },
+        //        CurrentProductColor = productColor,
+        //        CurrentProductCategory = productCategory
+        //    };
+
+        //    return View(viewModel);
+        //}
+
+        //public IActionResult Product(int pageNum, string? productColor, string? productCateogry)
         //{
         //    var filteredProducts = _repo.Products
         //        .Where(x => x.PrimaryColor == productColor || x.SecondaryColor == productColor || productColor == null)
@@ -324,21 +332,43 @@ namespace BrickwellStore.Controllers
             return RedirectToAction("AdminProducts");
         }
 
-        // EDIT CART ITEMS 
+        // EDIT CART ITEMS
 
         public IActionResult EditCartItem(int cartLineId, int quantity)
         {
+            // Retrieve the cart from the session or create a new one
             var cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+
+            // Find the cart line with the specified CartLineId
             var cartLine = cart.Lines.FirstOrDefault(x => x.CartLineId == cartLineId);
 
-            if (cartLine != null && quantity > 0)
+            if (cartLine != null)
             {
-                cartLine.Quantity = quantity;
-                HttpContext.Session.SetJson("cart", cart);
+                // Validate the quantity (ensure it's greater than zero)
+                if (quantity > 0)
+                {
+                    cartLine.Quantity = quantity;
+                    HttpContext.Session.SetJson("cart", cart);
+                }
+                else
+                {
+                    // Handle invalid quantity (e.g., display an error message)
+                    // You can customize this part based on your application's requirements
+                    // For now, let's assume you log an error or show a user-friendly message
+                    // indicating that the quantity must be a positive value.
+                }
+            }
+            else
+            {
+                // Handle case when cart line is not found (e.g., log an error)
+                // You can customize this part based on your application's requirements
+                // For example, you might want to redirect the user to an error page.
             }
 
+            // Redirect to the "/Cart" page
             return RedirectToPage("/Cart");
         }
+
 
 
         // DELETE CART ITEM
