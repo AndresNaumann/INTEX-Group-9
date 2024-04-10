@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "\\\\Mac\\Home\\Documents\\GitHub\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj": {}
+    "C:\\Users\\nauma\\OneDrive\\Desktop\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj": {}
   },
   "projects": {
-    "\\\\Mac\\Home\\Documents\\GitHub\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj": {
+    "C:\\Users\\nauma\\OneDrive\\Desktop\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\Mac\\Home\\Documents\\GitHub\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
+        "projectUniqueName": "C:\\Users\\nauma\\OneDrive\\Desktop\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
         "projectName": "BrickwellStore",
-        "projectPath": "\\\\Mac\\Home\\Documents\\GitHub\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
-        "packagesPath": "C:\\Users\\jackcarpenter\\.nuget\\packages\\",
-        "outputPath": "\\\\Mac\\Home\\Documents\\GitHub\\INTEX-Group-9\\BrickwellStore\\obj\\",
+        "projectPath": "C:\\Users\\nauma\\OneDrive\\Desktop\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
+        "packagesPath": "C:\\Users\\nauma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nauma\\OneDrive\\Desktop\\INTEX-Group-9\\BrickwellStore\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\jackcarpenter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nauma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -62,7 +66,7 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -108,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
