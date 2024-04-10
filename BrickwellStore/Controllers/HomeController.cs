@@ -148,7 +148,7 @@ namespace BrickwellStore.Controllers
 
         // ADDING A PRODUCT -------------------------------------------
 
-    
+
 
         // EDITING ----------------------------------------------------
 
@@ -198,7 +198,7 @@ namespace BrickwellStore.Controllers
 
         // Delete Customers
 
-       
+
 
 
     }
