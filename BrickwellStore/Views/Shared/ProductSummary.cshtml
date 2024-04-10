@@ -4,26 +4,28 @@
 
 
 @model Product
-<div class="card m-1 p-1">
-    <h4>
-        @Model.Name
-        <span class="badge rounded-pill bg-primary text-white float-end"><small>Only $@Model.Price!</small> </span>
-    </h4>
-    <ul>
-        <li>Year: @Model.Year</li>
-        <li>Number of Parts: @Model.NumParts</li>
-        <li>Primary Color: @Model.PrimaryColor</li>
-        <li>Secondary Color: @Model.SecondaryColor</li>
-        <li>Description: @Model.Description</li>
-        <img src="@Model.ImgLink" style="width:100px"/>
-        <li>Category: @Model.Category</li>
-    </ul>
+<div class="custom-card shadow">
+    <img src="@Model.ImgLink" class="custom-card-image" />
+    $@Model.Price
+    <p class="card-title">
+        @if (Model.Name.Length > 18)
+        {
+            @Model.Name.Substring(0, 18)
+            <span>...</span>
+            // Adjust the number as per your requirement
+        }
+        else
+        {
+            @Model.Name
+        }
+    </p>
+
 
     <form id=@Model.ProductId method="post" asp-page="/Cart">
         <input type="hidden" asp-for="ProductId" />
         <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-        <button type="submit" class="btn-outline-success btn-sm float-end">Add to Cart!</button>
+        <button type="submit" class="btn-sm">Add to Bag</button>
+        <br />
         <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@Model.ProductId">View Details</a>
-
     </form>
 </div>

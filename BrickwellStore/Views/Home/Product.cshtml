@@ -4,38 +4,66 @@
 
 @model ProductsListViewModel
 
-<h1>Our Products</h1>
-
-<button class="btn btn-primary">Add a Product</button>
-<div class="row m-1 p-1">
-    <div class="col-3">
-        <vc:product-colors />
-        <vc:product-categories />
+<h1>Shop</h1>
 
 
-
-
-        <!-- Product.cshtml -->
-        <form method="get" asp-page="/Product">
-            <label for="itemsPerPage">Items per Page:</label>
-            <select id="itemsPerPage" name="itemsPerPage">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-            </select>
-            <button type="submit">Apply</button>
-        </form>
-
-
+<div class="container mt-3">
+    <!-- Filter Label and Dropdown Menus -->
+    <!-- Adding the Filter by label -->
+    <div class="d-inline mx-2 align-middle">
+        <span>Filter by:</span>
     </div>
 
-    <div class="container col-9">
+    <div class="dropdown d-inline mx-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Product Colors
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <vc:product-colors />
+        </div>
+    </div>
 
-    @foreach (Product p in Model.Products)
-    {
-        <partial name="ProductSummary" model="p" />
-    }
+    <div class="dropdown d-inline mx-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+            Product Categories
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+            <vc:product-categories />
+        </div>
+    </div>
+
+
+    <heroicon-outline icon="ChevronLeftOutline" class="h-6 w-6 text-orange-500" />
+
+
+
+    <style>
+        .custom-col {
+            flex: 0 0 20%;
+            max-width: 20%;
+        }
+        /* This ensures there's no margin or padding issues */
+        .no-gutters {
+            margin-right: 0;
+            margin-left: 0;
+        }
+        .no-gutters > .col,
+        .no-gutters > [class*="col-"] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+    </style>
+
+
+    <!-- Product Cards -->
+    <div class="row no-gutters mt-3">
+        @foreach (Product p in Model.Products)
+        {
+            <div class="custom-col mb-3">
+                <partial name="ProductSummary" model="p" />
+            </div>
+        }
+    </div>
 
     <div page-model="@Model.PaginationInfo" page-action="Product" page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-productColor="@Model.CurrentProductColor" page-url-productCategory="@Model.CurrentProductCategory" class="btn-group pull-right m-1"></div>
-    </div>
 </div>
