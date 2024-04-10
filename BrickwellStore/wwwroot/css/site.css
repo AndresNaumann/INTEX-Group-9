@@ -89,11 +89,25 @@ button{
     text-align: center;
 }
 
-
-
-
 .container-fluid{
     min-width: 1000px;
     width:80vw;
     max-width: 1300px;
+}
+
+.custom-card {
+    text-align: center;
+    align-items:center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: var(--brickwell-background);
+    background-clip: border-box;
+    border: 2px solid var(--brickwell-HBT);
+    border-radius: 1rem;
+    margin: 10px;
+    width: 250px;
+    padding: 15px;
 }

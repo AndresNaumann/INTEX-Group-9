@@ -4,22 +4,38 @@
 
 @model ProductsListViewModel
 
-<h1>Our Products</h1>
+<h1>Shop</h1>
 
-<button class="btn btn-primary">Add a Product</button>
-<div class="row m-1 p-1">
-    <div class="col-3">
-        <vc:product-colors />
-        <vc:product-categories />
+
+<div class="container mt-3">
+    <!-- Dropdown Menus -->
+    <div class="dropdown d-inline mx-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Product Colors
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <vc:product-colors />
+        </div>
     </div>
 
-    <div class="container col-9">
+    <div class="dropdown d-inline mx-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+            Product Categories
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+            <vc:product-categories />
+        </div>
+    </div>
 
-    @foreach (Product p in Model.Products)
-    {
-        <partial name="ProductSummary" model="p" />
-    }
+    <!-- Product Cards -->
+    <div class="row mt-3">
+        @foreach (Product p in Model.Products)
+        {
+            <div class="col-md-3 col-sm-6 mb-3">
+                <partial name="ProductSummary" model="p" />
+            </div>
+        }
+    </div>
 
     <div page-model="@Model.PaginationInfo" page-action="Product" page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-productColor="@Model.CurrentProductColor" page-url-productCategory="@Model.CurrentProductCategory" class="btn-group pull-right m-1"></div>
-    </div>
 </div>
