@@ -44,6 +44,7 @@ a{
     color: var(--brickwell-HBT)
 }
 
+/*Nav Styles*/
 .navbar .custom-nav-link {
     color: var(--brickwell-HBT) !important;
     font-weight: 500;
@@ -54,16 +55,29 @@ a{
     font-weight: 900;
 }
 
+nav{
+    height: 8vh;
+}
+
+/*Button styles*/
 button{
     color: var(--brickwell-HBT) !important;
     background-color: var(--brickwell-yellow) !important;
 }
+
+.btn-primary{
+    color: var(--brickwell-HBT);
+    background-color: var(--brickwell-yellow);
+}
+
+
 
 .bg-primary{
     color: var(--brickwell-HBT) !important;
     background-color: var(--brickwell-yellow) !important;
     font-weight: 400;
 }
+
 
 .homeBanner img{
     width: 100%;
@@ -76,9 +90,7 @@ button{
 }
 
 
-nav{
-    height: 8vh;
-}
+
 
 .container-fluid{
     min-width: 1000px;
