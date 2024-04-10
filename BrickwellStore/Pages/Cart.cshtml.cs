@@ -15,22 +15,23 @@ namespace BrickwellStore.Pages
         }
         public Cart? Cart { get; set; }
         public string ReturnUrl { get; set; } = "/";
-        //public void OnGet(string returnUrl)
-        //{
-        //    ReturnUrl = returnUrl ?? "/";
-        //    Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
-        //}
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
-            Cart = HttpContext.Session.GetJson<Cart>("cart");
-
-            if (Cart == null || Cart.Lines == null)
-            {
-                // If Cart or its Lines collection is null, initialize a new Cart object
-                Cart = new Cart();
-            }
+            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
+
+        //public void OnGet(string returnUrl)
+        //{
+        //    ReturnUrl = returnUrl ?? "/";
+        //    Cart = HttpContext.Session.GetJson<Cart>("cart");
+
+        //    if (Cart == null || Cart.Lines == null)
+        //    {
+        //        If Cart or its Lines collection is null, initialize a new Cart object
+        //       Cart = new Cart();
+        //    }
+        //}
 
         public IActionResult OnPost(int productId, string returnUrl)
         {
