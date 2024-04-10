@@ -3,6 +3,7 @@ using System;
 using BrickwellStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BrickwellStore.Migrations.Brickwell
 {
     [DbContext(typeof(BrickwellContext))]
-    partial class BrickwellContextModelSnapshot : ModelSnapshot
+    [Migration("20240410040319_recommendationsMigration")]
+    partial class recommendationsMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -98,17 +101,14 @@ namespace BrickwellStore.Migrations.Brickwell
 
             modelBuilder.Entity("BrickwellStore.Data.CustomerRecommendation", b =>
                 {
-                    b.Property<int>("RecId")
+                    b.Property<int>("customerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CustomerId")
+                    b.Property<int>("recommendedProductId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("RecommendedProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("RecId");
+                    b.HasKey("customerId");
 
                     b.ToTable("CustomerRecommendations");
                 });
@@ -245,17 +245,14 @@ namespace BrickwellStore.Migrations.Brickwell
 
             modelBuilder.Entity("BrickwellStore.Data.ProductRecommendation", b =>
                 {
-                    b.Property<int>("RecId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("ProductID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("RecommendedProductID")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("RecId");
+                    b.HasKey("ProductID");
 
                     b.ToTable("ProductRecommendations");
                 });

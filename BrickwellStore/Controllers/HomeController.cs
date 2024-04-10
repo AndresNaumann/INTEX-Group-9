@@ -48,9 +48,18 @@ namespace BrickwellStore.Controllers
             return View();
         }
 
-        public IActionResult ProductDetail()
+        public IActionResult ProductDetail(int productId)
         {
-            return View();
+            var product = _repo.GetProductById(productId);
+            var recommendations = _repo.GetRecommendations(productId);
+
+            var viewModel = new ProductDetailViewModel
+            {
+                Product = product,
+                Recommendations = recommendations.ToList()
+            };
+
+            return View(viewModel);
         }
          
         public IActionResult ThankYou()

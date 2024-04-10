@@ -12,4 +12,5 @@ namespace BrickwellStore.Data
         public DbSet<ProductRecommendation> ProductRecommendations { get; set; }
         public DbSet<CustomerRecommendation> CustomerRecommendations { get; set; }
     }
+
 }
