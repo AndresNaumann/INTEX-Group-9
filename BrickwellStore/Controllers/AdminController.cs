@@ -1,7 +1,9 @@
 ﻿using BrickwellStore.Data;
+using BrickwellStore.Data.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BrickwellStore.Controllers
 {
@@ -9,11 +11,13 @@ namespace BrickwellStore.Controllers
     {
         private ILegoRepository _repo;
         private UserManager<IdentityUser> _userManager;
+        private RoleManager<IdentityRole> _roleManager;
 
-        public AdminController(ILegoRepository temp, UserManager<IdentityUser> userManager)
+        public AdminController(ILegoRepository temp, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _repo = temp;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
         public IActionResult Index()
         {
@@ -21,10 +25,31 @@ namespace BrickwellStore.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        //public async Task<IActionResult> AdminUsers()
+        //{
+        //    var users = _userManager.Users.ToList();
+        //    return View(users);
+        //}
         public async Task<IActionResult> AdminUsers()
         {
             var users = _userManager.Users.ToList();
-            return View(users);
+            var userRolesViewModel = new List<UserRolesViewModel>();
+
+            foreach (var user in users)
+            {
+                var thisViewModel = new UserRolesViewModel();
+                thisViewModel.UserId = user.Id;
+                thisViewModel.Email = user.Email;
+                thisViewModel.Roles = await GetUserRoles(user);
+                userRolesViewModel.Add(thisViewModel);
+            }
+
+            return View(userRolesViewModel);
+        }
+
+        private async Task<List<string>> GetUserRoles(IdentityUser user)
+        {
+            return new List<string>(await _userManager.GetRolesAsync(user));
         }
 
         // ADDING A PRODUCT ------------------------------------------

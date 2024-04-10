@@ -17,6 +17,7 @@
             <th>Id</th>
             <th>Email</th>
             <th>Username</th>
+            <th>Member</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -27,6 +28,7 @@
                 <td><a asp-controller="User" asp-action="UserDetails" asp-route-id="@user.Id">@user.Id</a></td>
                 <td>@user.Email</td>
                 <td>@user.UserName</td>
+                <td>stuff</td>
                 <td><a class="btn btn-success" asp-controller="Admin" asp-action="EditUser" asp-route-id="@user.Id">Edit</a></td>
                 <td><a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@user.Id">Delete</a></td>
             </tr>
