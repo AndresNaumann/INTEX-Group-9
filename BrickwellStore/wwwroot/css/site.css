@@ -1,6 +1,13 @@
 :root {
     --bs-font-sans-serif: "Space Grotesk", sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --bs-body-font-family: var(--bs-font-sans-serif);
+    --brickwell-yellow: #FFD43B;
+    --brickwell-HBT: #272343;
+    --brickwell-background: #FFFFFE;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 html {
@@ -24,4 +31,57 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color:var(--brickwell-background);
+  
+}
+
+.brickwell-yellow-bg {
+    background-color: var(--brickwell-yellow);
+}
+
+a{
+    text-decoration: none;
+    color: var(--brickwell-HBT)
+}
+
+.navbar .custom-nav-link {
+    color: var(--brickwell-HBT) !important;
+    font-weight: 500;
+}
+
+.navbar .custom-nav-link:hover {
+    color: var(--brickwell-HBT) !important;
+    font-weight: 900;
+}
+
+button{
+    color: var(--brickwell-HBT) !important;
+    background-color: var(--brickwell-yellow) !important;
+}
+
+.bg-primary{
+    color: var(--brickwell-HBT) !important;
+    background-color: var(--brickwell-yellow) !important;
+    font-weight: 400;
+}
+
+.homeBanner img{
+    width: 100%;
+    max-width: 1500px;
+}
+
+.homeBanner{
+   
+    text-align: center;
+}
+
+
+nav{
+    height: 8vh;
+}
+
+.container-fluid{
+    min-width: 1000px;
+    width:80vw;
+    max-width: 1300px;
 }
