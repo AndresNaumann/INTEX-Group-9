@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
+using static BrickwellStore.Data.Cart;
 
 namespace BrickwellStore.Data
 {
@@ -7,7 +8,10 @@ namespace BrickwellStore.Data
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
 
         public void AddItem(Product p, int quantity, double price)
+        //public void AddItem(CartLine cartLine)
+
         {
+
             CartLine? line = Lines
                 .Where(x => x.Product.ProductId == p.ProductId)
                 .FirstOrDefault();

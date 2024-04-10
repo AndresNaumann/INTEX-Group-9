@@ -29,6 +29,11 @@
                 <td class="text-right">@((@l.Quantity * @l.Product.Price).ToString("c"))</td>
                 <td><a class="btn btn-info" asp-controller="Home" asp-action="EditCartItem" asp-route-id="@l.CartLineId">Edit</a></td>
                 <td><a class="btn btn-danger" asp-controller="Home" asp-action="DeleteCartItem" asp-route-id="@l.CartLineId">Delete</a></td>
+@*                 <td>
+                    <a class="btn btn-danger" asp-page-handler="DeleteCartItem" asp-route-index="@l">Delete</a>
+                </td> *@
+
+
             </tr>
         }
     </tbody>

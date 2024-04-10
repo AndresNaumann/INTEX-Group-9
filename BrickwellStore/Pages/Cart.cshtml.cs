@@ -2,6 +2,7 @@ using BrickwellStore.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BrickwellStore.Data;
+using System.Diagnostics;
 
 namespace BrickwellStore.Pages
 {
@@ -34,5 +35,22 @@ namespace BrickwellStore.Pages
 
             return RedirectToPage(new { returnUrl = returnUrl });
         }
+
+
+        //    public IActionResult OnPost(int productId, string returnUrl)
+        //    {
+        //        Product p = _repo.Products.FirstOrDefault(x => x.ProductId == productId);
+
+        //        if (p != null)
+        //        {
+        //            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+        //            Cart.AddItem(new Cart.CartLine { Product = p, Quantity = 1 });
+        //            HttpContext.Session.SetJson("cart", Cart);
+        //        }
+
+        //        return RedirectToPage(new { returnUrl = returnUrl });
+        //    }
+
+        //}
     }
 }

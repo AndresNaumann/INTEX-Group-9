@@ -48,11 +48,7 @@ namespace BrickwellStore.Controllers
             return View();
         }
 
-        public IActionResult ProductDetail()
-        {
-            return View();
-        }
-         
+
         public IActionResult ThankYou()
         {
             return View();
@@ -175,69 +171,6 @@ namespace BrickwellStore.Controllers
             return View(Blah);
         }
 
-
-        //}
-        //public IActionResult Product(int pageNum, string? productColor, string? productCategory)
-        //{
-        //    int pageSize = 5;
-        //    var query = _repo.Products.AsQueryable();
-
-        //    // Apply color filter if provided
-        //    if (!string.IsNullOrEmpty(productColor))
-        //    {
-        //        query = query.Where(x => x.PrimaryColor == productColor || x.SecondaryColor == productColor);
-        //    }
-
-        //    // Apply category filter if provided
-        //    if (!string.IsNullOrEmpty(productCategory))
-        //    {
-        //        query = query.Where(x => x.Category == productCategory);
-        //    }
-
-        //    var products = query.OrderBy(x => x.Name)
-        //                        .Skip((pageNum - 1) * pageSize)
-        //                        .Take(pageSize)
-        //                        .ToList();
-
-        //    var viewModel = new ProductsListViewModel
-        //    {
-        //        Products = _repo.Products,
-        //        PaginationInfo = new PaginationInfo
-        //        {
-        //            CurrentPage = pageNum,
-        //            ItemsPerPage = pageSize,
-        //            TotalItems = query.Count() // Count total items from the filtered query
-        //        },
-        //        CurrentProductColor = productColor,
-        //        CurrentProductCategory = productCategory
-        //    };
-
-        //    return View(viewModel);
-        //}
-
-        //public IActionResult Product(int pageNum, string? productColor, string? productCateogry)
-        //{
-        //    var filteredProducts = _repo.Products
-        //        .Where(x => x.PrimaryColor == productColor || x.SecondaryColor == productColor || productColor == null)
-        //        .OrderBy(x => x.Name)
-        //        .Skip((pageNum - 1) * pageSize)
-        //        .Take(pageSize);
-
-
-        //    var viewModel = new ProductsListViewModel
-        //    {
-        //        Products = filteredProducts,
-        //        PaginationInfo = new PaginationInfo
-        //        {
-        //            CurrentPage = pageNum,
-        //            ItemsPerPage = pageSize,
-        //            TotalItems = productColor == null ? _repo.Products.Count() : _repo.Products.Count(x => x.PrimaryColor == productColor)
-        //        },
-        //        CurrentProductColor = productColor
-        //    };
-
-        //    return View(viewModel);
-        //}
 
         // ADDING A PRODUCT -------------------------------------------
 
@@ -374,7 +307,7 @@ namespace BrickwellStore.Controllers
 
 
 
-        // DELETE CART ITEM
+        //DELETE CART ITEM
         public IActionResult DeleteCartItem(int cartLineId)
         {
             var cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
@@ -393,6 +326,26 @@ namespace BrickwellStore.Controllers
 
             return RedirectToPage("/Cart");
         }
+
+
+        //public IActionResult DeleteCartItem(int index)
+        //{
+        //    var cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+
+        //    if (index >= 0 && index < cart.Lines.Count)
+        //    {
+        //        cart.Lines.RemoveAt(index);
+        //        HttpContext.Session.SetJson("cart", cart);
+        //    }
+        //    else
+        //    {
+        //        // Handle invalid index (optional).
+        //        // You can add logging or display an error message.
+        //    }
+
+        //    return RedirectToPage("/Cart");
+        //}
+
 
     }
 }
