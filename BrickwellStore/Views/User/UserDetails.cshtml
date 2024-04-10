@@ -9,6 +9,7 @@
         @Model.UserName
     </h4>
     <ul>
+        <li><a asp-controller="User" asp-action="CustomerDetails" asp-route-id="@Model.Id">See Personal Detail</a> </li>
         <li>User ID: @Model.Id</li>
         <li>Email: @Model.Email</li>
         <li>Phone Number: @Model.PhoneNumber</li>

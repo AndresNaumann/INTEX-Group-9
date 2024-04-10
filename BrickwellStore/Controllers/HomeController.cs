@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using BrickwellStore.Infrastructure;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Drawing.Printing;
+using System.Threading.Tasks;
 
 namespace BrickwellStore.Controllers
 {
@@ -105,6 +106,30 @@ namespace BrickwellStore.Controllers
             return View(AdminBlah);
         }
 
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> FinishCheckout()
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            string userId = currentUser?.Id;
+
+            var model = new Customer
+            {
+                UserId = userId
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult FinishCheckout(Customer customer)
+        {
+            _repo.AddUser(customer);
+            _repo.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
 
         //public IActionResult AdminUsers(int pageNum)
         //{
@@ -193,18 +218,47 @@ namespace BrickwellStore.Controllers
 
         // Edit a Customer/User
 
+        //[HttpGet]
+        //public IActionResult EditUser(string id)
+        //{
+        //    var userToEdit = _userManager.Users.Single(x => x.Id == id);
+        //    return View(userToEdit);
+
+        //    //var recordToEdit = _repo.GetCustomerById(id);
+        //    //return View(recordToEdit);
+        //}
+
+        //[HttpPost]
+        //public IActionResult EditUser(IdentityUser updatedInfo)
+        //{
+
+        //    _userManager.UpdateAsync(updatedInfo);
+
+        //    //_repo.UpdateUser(updatedInfo.CustomerId);
+        //    //_repo.SaveChanges();
+
+        //    return RedirectToAction("AdminUsers");
+        //}
+
         [HttpGet]
-        public IActionResult EditUser(int id)
+        public IActionResult EditCustomer(int id)
         {
-            var recordToEdit = _repo.GetCustomerById(id);
-            return View(recordToEdit);
+            var custToEdit = _repo.GetCustomerById(id);
+            return View(custToEdit);
+
+            //var recordToEdit = _repo.GetCustomerById(id);
+            //return View(recordToEdit);
         }
 
         [HttpPost]
-        public IActionResult EditUser(Customer updatedInfo)
+        public IActionResult EditUser(IdentityUser updatedInfo)
         {
-            _repo.UpdateUser(updatedInfo.CustomerId);
-            _repo.SaveChanges();
+
+            _userManager.UpdateAsync(updatedInfo);
+
+            //_repo.UpdateUser(updatedInfo.CustomerId);
+            //_repo.SaveChanges();
+
             return RedirectToAction("AdminUsers");
         }
 
