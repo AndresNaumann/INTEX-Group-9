@@ -30,6 +30,15 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
             <vc:product-categories />
         </div>
+        <form method="get" action="@Url.Action("Product", "Home")">
+            <label for="itemsPerPage">Items per page:</label>
+            <select id="itemsPerPage" name="itemsPerPage">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
+            <button type="submit">Apply</button>
+        </form>
     </div>
 
 
