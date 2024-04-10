@@ -4,7 +4,7 @@ namespace BrickwellStore.Data
 {
     public class ProductRecommendation
     {
-        [key]
+        [Key]
         public int ProductID { get; set; }
         public int RecommendedProductID { get; set; }
 
