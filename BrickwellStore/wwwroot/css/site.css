@@ -111,22 +111,12 @@ button{
     border: 2px solid var(--brickwell-HBT);
     border-radius: 1rem;
     margin: 10px;
-    width: 158px;
-    padding: 15px;      
+    width: 210px;
+    padding: 10px;      
+    height: 300px;
 }
 
-.custom-col {
-    flex: 0 0 20%; /* each card will take up 20% of the row width */
-    max-width: 20%; /* prevent the card from taking more than 20% */
-}
 
 .custom-card-image{
     width: 80%;
 }
-
-/*.card-title{
-    height: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;*/ /* ensure this is set so the overflow property works */
-/*}*/
