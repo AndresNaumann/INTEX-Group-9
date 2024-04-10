@@ -7,6 +7,8 @@
 @model Product
 
 <form method="post">
+    <input type="hidden" asp-for="ProductId" />
+
     <label asp-for="Name">Product Name</label><br />
     <input asp-for="Name" type="text" required /><br />
     <br />

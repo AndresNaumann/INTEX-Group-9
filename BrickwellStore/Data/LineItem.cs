@@ -6,7 +6,7 @@ namespace BrickwellStore.Data
     public class LineItem
     {
         [Key]
-        public int LineId { get; set; }
+        public int LineId { get; set; }  
         [ForeignKey("TransactionId")]
         public int TransactionId { get; set; }
         public Order Order {  get; set; }

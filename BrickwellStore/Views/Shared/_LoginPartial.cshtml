@@ -6,6 +6,15 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Secrets">Secrets</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminProducts">AdminProducts</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminUsers">AdminUsers</a>
+    </li>
+    <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
     </li>
     <li class="nav-item">

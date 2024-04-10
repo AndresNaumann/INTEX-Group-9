@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@* @model ProductsListViewModel *@
+
+@model IEnumerable<BrickwellStore.Data.ViewModels.UserRolesViewModel>
+
+<h1>Users (Admin Controller View)</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td><a asp-controller="User" asp-action="UserDetails" asp-route-id="@user.UserId">@user.UserId</a></td>
+                <td>@user.Email</td>
+                <td>@string.Join(", ", user.Roles)</td>
+                @* <td><a class="btn btn-success" asp-controller="Admin" asp-action="EditUser" asp-route-id="@user.UserId">Edit</a></td> *@
+                <td><a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@user.UserId">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

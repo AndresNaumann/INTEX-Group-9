@@ -1,0 +1,19 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Microsoft.AspNetCore.Identity.IdentityUser
+
+<h2>Are you sure you want to make @Model.UserName an Admin?</h2>
+
+<h3>User ID: @Model.Id</h3>
+
+
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <button class="btn btn-danger" type="submit">Make Admin</button>
+    <a class="btn btn-info" asp-controller="Admin" asp-action="AdminUsers">Cancel</a>
+</form>

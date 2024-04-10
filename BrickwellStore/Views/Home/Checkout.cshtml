@@ -1,11 +1,54 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<h1>Welcome to checkout! We will get some info from you.</h1>
+﻿@* Same stuff as cart, point out total, and then a back-to-cart button.
+   Then ask for information and a button to submit.
+   If no fraud, the page says thank you. If fraud is detected, the order is pending
+   and goes to admin for further review. *@
+  
+@* @page
 
-@* same stuff as cart, point out total and then a back to cart button. 
-then ask for information and a button to submit. 
-if no fraud, page says thank you. if fraud detected, order pending and goes to 
-admin for further review  *@
+@model BrickwellStore.Pages.CartModel
+<div class="card m-1 p-1">
+    @if (Model.Cart != null)
+    {
+        @foreach (var l in Model.Cart.Lines)
+        {
+            <div class="mb-3">
+                <h5>@l.Product.Name</h5>
+                <p>Quantity: @l.Quantity</p>
+                <p>Price: $@l.Product.Price</p>
+                <p>Subtotal: @(l.Quantity * l.Product.Price).ToString("c")</p>
+                <img src="@l.Product.ImgLink" alt="@l.Product.Name" style="width:100px" />
+            </div>
+        }
+    }
+    else
+    {
+        <p>Your cart is empty.</p>
+    }
+    <button type="submit" class="btn btn-outline-success btn-sm float-end">Place Order!</button>
+</div>
+ *@
+
+
+@page
+@model BrickwellStore.Pages.CartModel
+<div class="card m-1 p-1">
+    @if (Model.Cart != null && Model.Cart.Lines != null && Model.Cart.Lines.Any())
+    {
+        @foreach (var l in Model.Cart.Lines)
+        {
+            <div class="mb-3">
+                <h5>@l.Product.Name</h5>
+                <p>Quantity: @l.Quantity</p>
+                <p>Price: $@l.Product.Price</p>
+                <p>Subtotal: @(l.Quantity * l.Product.Price).ToString("c")</p>
+                <img src="@l.Product.ImgLink" alt="@l.Product.Name" style="width:100px" />
+            </div>
+        }
+        <button type="submit" class="btn btn-outline-success btn-sm float-end">Place Order!</button>
+    }
+    else
+    {
+        <p>Your cart is empty.</p>
+    }
+</div>
+

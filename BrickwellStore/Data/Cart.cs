@@ -1,16 +1,23 @@
 ﻿using Microsoft.CodeAnalysis;
+using static BrickwellStore.Data.Cart;
 
 namespace BrickwellStore.Data
 {
     public class Cart
     {
+
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
 
-        public void AddItem(Product p, int quantity, double price)
+
+        public virtual void AddItem(Product p, int quantity, double price)
+        //public void AddItem(CartLine cartLine)
+
         {
+
             CartLine? line = Lines
                 .Where(x => x.Product.ProductId == p.ProductId)
                 .FirstOrDefault();
+
 
             //has this item already been added to our cart
             if (line == null)
@@ -29,11 +36,11 @@ namespace BrickwellStore.Data
             }
         }
 
-        public void RemoveLine(Product p) => Lines.RemoveAll(x => x.Product.ProductId == p.ProductId);
+        public virtual void RemoveLine(Product p) => Lines.RemoveAll(x => x.Product.ProductId == p.ProductId);
 
-        public void Clear() => Lines.Clear();
+        public virtual void Clear() => Lines.Clear();
 
-        public decimal CalculateTotal() => Lines.Sum(x => (decimal)x.Price );
+        public decimal CalculateTotal() => Lines.Sum(x => (decimal)x.Price);
 
         public class CartLine
         {
@@ -45,3 +52,9 @@ namespace BrickwellStore.Data
         }
     }
 }
+
+
+
+
+
+

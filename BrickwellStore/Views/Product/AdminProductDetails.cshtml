@@ -26,6 +26,6 @@
         <a asp-controller="Home" asp-action="Product" >Back Home</a>
 
     </form>
-    <a class="btn btn-info" asp-controller="Home" asp-action="EditProduct" asp-route-id="@Model.ProductId">Edit</a>
-    <a class="btn btn-danger" asp-controller="Home" asp-action="DeleteProduct" asp-route-id="@Model.ProductId">Delete</a>
+    <a class="btn btn-info" asp-controller="Product" asp-action="EditProduct" asp-route-id="@Model.ProductId">Edit</a>
+    <a class="btn btn-danger" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@Model.ProductId">Delete</a>
 </div>

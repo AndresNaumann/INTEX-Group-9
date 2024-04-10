@@ -2,23 +2,26 @@ using BrickwellStore.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BrickwellStore.Data;
+using System.Diagnostics;
 
 namespace BrickwellStore.Pages
 {
     public class CartModel : PageModel
     {
         private ILegoRepository _repo;
-        public CartModel(ILegoRepository temp)
+        public Cart Cart { get; set; }
+
+        public CartModel(ILegoRepository temp, Cart cartService)
         {
             _repo = temp;
+            Cart = cartService;
         }
-        public Cart? Cart { get; set; }
         public string ReturnUrl { get; set; } = "/";
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
-            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
+
 
         public IActionResult OnPost(int productId, string returnUrl)
         {
@@ -27,12 +30,17 @@ namespace BrickwellStore.Pages
 
             if (p != null)
             {
-                Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
                 Cart.AddItem(p, 1, p.Price);
-                HttpContext.Session.SetJson("cart", Cart);
             }
 
             return RedirectToPage(new { returnUrl = returnUrl });
+        }
+
+        public IActionResult OnPostRemove (int productId, string returnUrl) 
+        {
+            Cart.RemoveLine(Cart.Lines.First(x => x.Product.ProductId == productId).Product);
+
+            return RedirectToPage(new {returnUrl = returnUrl});
         }
     }
 }

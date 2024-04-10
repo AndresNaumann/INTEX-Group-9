@@ -8,8 +8,8 @@
  *@
 @model IEnumerable<string>
 <div class="d-grid gap-2">
-    <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index" asp-route-productColor="" asp-route-pageNum="">Home</a>
-
+@*     <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index" asp-route-productColor="" asp-route-pageNum="">Home</a>
+ *@
     @foreach (string pc in Model ?? Enumerable.Empty<string>())
     {
         <a class="btn @(pc == ViewBag.SelectedProductColor ? "btn-primary" : "btn-outline-secondary")" asp-controller="Home" asp-action="Product" asp-route-productColor="@pc" asp-route-pageNum="1">@pc</a> 
@@ -17,52 +17,3 @@
     }
 </div>
 
-
-
-@* @model ProductFiltersViewModel
-
-<div>
-    <h4>Filters</h4>
-    <label>Product Color:</label>
-    <select>
-        <option value="">All</option>
-        @foreach (var color in Model.ProductColors)
-        {
-            <option value="@color">@color</option>
-        }
-    </select>
-
-    <br />
-
-    <label>Page Size:</label>
-    <select>
-        @foreach (var option in Model.PageSizeOptions)
-        {
-            <option value="@option" @(option == Model.SelectedPageSize ? "selected" : "")>@option</option>
-        }
-    </select>
-</div> *@
-
-@* @model BrickwellStore.Components.ProductFiltersViewComponent.ProductFiltersModel
-
-<div>
-    <h4>Filters</h4>
-    <label>Product Color:</label>
-    <select>
-        <option value="">All</option>
-        @foreach (var color in Model.ProductColors)
-        {
-            <option value="@color">@color</option>
-        }
-    </select>
-
-    <br />
-
-    <label>Page Size:</label>
-    <select>
-        @foreach (var option in Model.PaginationInfo.PageSizeOptions)
-        {
-            <option value="@option" @(option == Model.PaginationInfo.ItemsPerPage ? "selected" : "")>@option</option>
-        }
-    </select>
-</div> *@
