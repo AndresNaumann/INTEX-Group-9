@@ -69,19 +69,38 @@ namespace BrickwellStore.Controllers
             var currentUser = await _userManager.GetUserAsync(User);
             string userId = currentUser?.Id;
 
-            var model = new Customer
-            {
-                UserId = userId
-            };
+            var curCustomer = _repo.GetCustomerByUserId(userId);
 
-            return View(model);
+            if (curCustomer != null)
+            {
+                return View(curCustomer);
+            } 
+            else
+            {
+                var model = new Customer
+                {
+                    UserId = userId
+                };
+
+                return View(model);
+            }
         }
 
         [HttpPost]
         public IActionResult FinishCheckout(Customer customer)
         {
-            _repo.AddUser(customer);
-            _repo.SaveChanges();
+            var curCustomer = _repo.GetCustomerByUserId(customer.UserId);
+
+            if (curCustomer != null)
+            {
+                _repo.UpdateUser(curCustomer.CustomerId);
+                _repo.SaveChanges();
+
+            } else
+            {
+                _repo.AddUser(customer);
+                _repo.SaveChanges();
+            }
 
             return RedirectToAction("Index");
         }
@@ -134,15 +153,6 @@ namespace BrickwellStore.Controllers
         // EDITING ----------------------------------------------------
 
         // Edit a Customer/User
-
-        //[HttpGet]
-        //public IActionResult EditUser(string id)
-        //{
-        //    var userToEdit = _userManager.Users.Single(x => x.Id == id);
-        //    return View(userToEdit);
-
-        //}
-
 
         [HttpGet]
         public IActionResult EditCustomer(int id)

@@ -202,10 +202,10 @@ namespace BrickwellStore.Controllers
             var result = await _userManager.DeleteAsync(userToDelete);
             if (result.Succeeded)
             {
-                return RedirectToAction("AdminUsers", "Home");
+                return RedirectToAction("AdminUsers", "Admin");
             }
 
-            return RedirectToAction("AdminUsers", "Home");
+            return RedirectToAction("AdminUsers", "Admin");
         }
     }
 }

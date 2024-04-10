@@ -15,7 +15,6 @@ namespace BrickwellStore.Controllers
             _userManager = userManager;
             _repo = repo;
         }
-  
 
         public async Task<IActionResult> UserDetails(string id)
         {
@@ -46,23 +45,49 @@ namespace BrickwellStore.Controllers
                 Roles = await GetUserRoles(user)
             };
 
-            var infoModel = new UserInfoViewModel
+            if (info != null)
             {
-                UserId = user.Id,
-                CustomerId = info.CustomerId,
-                CustomerFirstName = info.CustomerFirstName,
-                CustomerLastName = info.CustomerFirstName,
-                Roles = await GetUserRoles(user),
-                Email = info.Email,
-                Phone = info.Phone
-            };
+                var infoModel = new UserInfoViewModel
+                {
+                    UserId = user.Id,
+                    CustomerId = info.CustomerId,
+                    CustomerFirstName = info.CustomerFirstName,
+                    CustomerLastName = info.CustomerFirstName,
+                    Roles = await GetUserRoles(user),
+                    Email = info.Email,
+                    Phone = info.Phone
+                };
 
-            return View(infoModel);
+                return View(infoModel);
+            } else
+            {
+                var tempModel = new UserInfoViewModel
+                {
+                    UserId = user.Id,
+                    CustomerId = 0,
+                    CustomerFirstName = null,
+                    CustomerLastName = null,
+                    Roles = await GetUserRoles(user),
+                    Email = null,
+                    Phone = null
+                };
+
+                return View(tempModel);
+            }
+ 
         }
 
         private async Task<List<string>> GetUserRoles(IdentityUser user)
         {
-            return new List<string>(await _userManager.GetRolesAsync(user));
+            var use = await _userManager.GetRolesAsync(user);
+            if (use == null)
+            {
+                return null;
+            } else
+            {
+                return new List<string>(await _userManager.GetRolesAsync(user));
+            }
+           
         }
 
         public IActionResult CustomerDetails(string id)
@@ -104,5 +129,43 @@ namespace BrickwellStore.Controllers
         }
 
         // Editing and Deleting User Actions are found in the Admin Controller
+
+        // FOR EVERYONE TO UPDATE THEIR INFO
+
+        [HttpGet]
+        public async Task<IActionResult> EditSelf()
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            string userId = currentUser?.Id;
+
+            var currentCustomer = _repo.GetCustomerByUserId(userId);
+       
+            return View(currentCustomer);
+        }
+
+        [HttpPost]
+        public IActionResult EditSelf(Customer customer)
+        {
+            var userToEdit = _repo.GetCustomerById(customer.CustomerId);
+
+            if (userToEdit == null)
+            {
+                return NotFound();
+            } else
+            {
+                _repo.UpdateUser(customer.CustomerId);
+                _repo.SaveChanges();
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            //var result = await _userManager.UpdateAsync(userToEdit);
+            //if (result.Succeeded)
+            //{
+            //    return RedirectToAction("AdminUsers", "Home");
+            //}
+
+            //return RedirectToAction("Index", "Home");
+        }
     }
 }

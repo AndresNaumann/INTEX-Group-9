@@ -1,0 +1,72 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Customer
+
+<h1>Edit Personal Details</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="@Model.UserId" />
+
+    <label asp-for="UserId">User ID: @Model.UserId</label><br>
+    <input type="hidden" asp-for="UserId"><br>
+    <input type="hidden" asp-for="CustomerId" />
+
+    <label asp-for="CustomerFirstName">First Name:</label><br>
+    <input asp-for="CustomerFirstName" type="text" required /><br>
+
+    <label asp-for="CustomerLastName">Last Name:</label><br>
+    <input asp-for="CustomerLastName" type="text" required /><br>
+
+    <label asp-for="BirthDate">Birth Date:</label><br>
+    <input asp-for="BirthDate" type="date" required /><br>
+
+    <label asp-for="Gender">Gender:</label><br>
+    <input asp-for="Gender" type="text" required /><br>
+
+    <label asp-for="Age">Age:</label><br>
+    <input asp-for="Age" type="number" required /><br>
+
+    <label asp-for="Address1">Address 1:</label><br>
+    <input asp-for="Address1" type="text" required /><br>
+
+    <label asp-for="Address2">Address 2:</label><br>
+    <input asp-for="Address2" type="text" required /><br>
+
+    <label asp-for="City">City:</label><br>
+    <input asp-for="City" type="text" required /><br>
+
+    <label asp-for="State">State:</label><br>
+    <input asp-for="State" type="text" required /><br>
+
+    <label asp-for="Country">Country:</label><br>
+    <input asp-for="Country" type="text" required /><br>
+
+    <label asp-for="Phone">Phone:</label><br>
+    <input asp-for="Phone" type="tel" required /><br>
+
+    <label asp-for="Email">Email:</label><br>
+    <input asp-for="Email" type="email" required /><br>
+
+    <label asp-for="Zip">Zip:</label><br>
+    <input asp-for="Zip" type="text" required /><br>
+
+    <label asp-for="CCNumber">Credit Card Number:</label><br>
+    <input asp-for="CCNumber" type="number" required /><br>
+
+    <label asp-for="CCDate">Credit Card Expiry Date:</label><br>
+    <input asp-for="CCDate" type="date" required /><br>
+
+    <label asp-for="CCCode">Credit Card CVV:</label><br>
+    <input asp-for="CCCode" type="number" required /><br>
+
+    <label asp-for="CardholderName">Cardholder Name:</label><br>
+    <input asp-for="CardholderName" type="text" required /><br>
+
+    <button type="submit">Submit</button>
+
+    <button type="submit">Save Changes</button>
+</form>

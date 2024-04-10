@@ -23,19 +23,30 @@ namespace BrickwellStore.Data
             _context.Customers.Add(customer);
         }
 
-        public Customer GetCustomerById(int id)
+        public Customer? GetCustomerById(int id)
         {
-            return _context.Customers.Single(c => c.CustomerId == id);
+            try
+            {
+                var customer = _context.Customers.Single(c => c.CustomerId == id);
+                return customer;
+            }
+            catch (InvalidOperationException)
+            {
+                // Handle the case where the customer is not found
+                return null;
+            }
         }
 
-        public Customer? GetCustomerByUserId(string  userId)
+        public Customer? GetCustomerByUserId(string userId)
         {
-            var boy = _context.Customers.Single(c => c.UserId == userId);
-            if (boy != null) {
-                return boy;
-            }
-            else
+            try
             {
+                var customer = _context.Customers.Single(c => c.UserId == userId);
+                return customer;
+            }
+            catch (InvalidOperationException)
+            {
+                // Handle the case where the customer is not found
                 return null;
             }
         }
