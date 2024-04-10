@@ -28,9 +28,16 @@ namespace BrickwellStore.Data
             return _context.Customers.Single(c => c.CustomerId == id);
         }
 
-        public Customer GetCustomerByUserId(string  userId)
+        public Customer? GetCustomerByUserId(string  userId)
         {
-            return _context.Customers.Single(c => c.UserId == userId);
+            var boy = _context.Customers.Single(c => c.UserId == userId);
+            if (boy != null) {
+                return boy;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void UpdateUser(int id)

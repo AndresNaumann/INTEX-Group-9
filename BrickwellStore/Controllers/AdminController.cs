@@ -9,6 +9,8 @@ namespace BrickwellStore.Controllers
 {
     public class AdminController : Controller
     {
+        // Bring in these tables and configure viewmodels later to combine the data into a presentable format
+
         private ILegoRepository _repo;
         private UserManager<IdentityUser> _userManager;
         private RoleManager<IdentityRole> _roleManager;
@@ -24,12 +26,9 @@ namespace BrickwellStore.Controllers
             return View();
         }
 
+        // Allows the Admin to see all users and drill into each one
+
         [Authorize(Roles = "Admin")]
-        //public async Task<IActionResult> AdminUsers()
-        //{
-        //    var users = _userManager.Users.ToList();
-        //    return View(users);
-        //}
         public async Task<IActionResult> AdminUsers()
         {
             var users = _userManager.Users.ToList();
@@ -47,26 +46,59 @@ namespace BrickwellStore.Controllers
             return View(userRolesViewModel);
         }
 
+        // See all the products
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminProducts(int pageNum)
+        {
+            int pageSize = 10;
+            var AdminBlah = new ProductsListViewModel
+            {
+                Products = _repo.Products
+                .OrderBy(x => x.Name)
+               .Skip((pageNum - 1) * pageSize)
+               .Take(pageSize),
+
+                PaginationInfo = new PaginationInfo
+                {
+                    CurrentPage = pageNum,
+                    ItemsPerPage = pageSize,
+                    TotalItems = _repo.Products.Count()
+                },
+            };
+
+            return View(AdminBlah);
+        }
+
+        // See all the orders as an admin
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminOrders(int pageNum)
+        {
+            int pageSize = 10;
+            var AdminBlah = new ProductsListViewModel
+            {
+                Orders = _repo.Orders
+                .OrderBy(x => x.Date)
+               .Skip((pageNum - 1) * pageSize)
+               .Take(pageSize),
+
+                PaginationInfo = new PaginationInfo
+                {
+                    CurrentPage = pageNum,
+                    ItemsPerPage = pageSize,
+                    TotalItems = _repo.Orders.Count()
+                },
+            };
+
+            return View(AdminBlah);
+        }
+
+        // Returns roles of all the users
+
         private async Task<List<string>> GetUserRoles(IdentityUser user)
         {
             return new List<string>(await _userManager.GetRolesAsync(user));
-        }
-
-        // ADDING A PRODUCT ------------------------------------------
-
-        [HttpGet]
-        public IActionResult AddProduct()
-        {
-            return View("AddProduct");
-        }
-
-        [HttpPost]
-        public IActionResult AddProduct(Product product)
-        {
-            _repo.AddProduct(product);
-            _repo.SaveChanges();
-
-            return RedirectToAction("AdminProducts");
         }
 
         // EDITING ----------------------------------------------------
@@ -91,21 +123,13 @@ namespace BrickwellStore.Controllers
 
         // Edit a Product
 
-        [HttpGet]
-        public IActionResult EditProduct(int id)
-        {
-            var recordToEdit = _repo.GetProductById(id);
+        //[HttpGet]
+        //public IActionResult EditProduct(int id)
+        //{
+        //    var recordToEdit = _repo.GetProductById(id);
 
-            return View(recordToEdit);
-        }
-
-        [HttpPost]
-        public IActionResult EditProduct(Product updatedInfo)
-        {
-            _repo.UpdateProduct(updatedInfo);
-            _repo.SaveChanges();
-            return RedirectToAction("AdminProducts");
-        }
+        //    return View(recordToEdit);
+        //}
 
         // DELETION ----------------------------------------------------
 
@@ -129,27 +153,8 @@ namespace BrickwellStore.Controllers
             return RedirectToAction("AdminUsers");
         }
 
-        // Delete Customers
 
-        [HttpGet]
-        public IActionResult DeleteProduct(int id)
-        {
-            var recordToDelete = _repo.GetProductById(id);
-
-            return View(recordToDelete);
-
-        }
-
-        [HttpPost]
-        public IActionResult DeleteProduct(Product product)
-        {
-            _repo.DeleteProduct(product.ProductId);
-            _repo.SaveChanges();
-
-            return RedirectToAction("AdminProducts");
-        }
-
-        // Messing with a User ----------------------------------------
+        // Editing or Deleting a User ----------------------------------------
 
         [HttpGet]
         public async Task<IActionResult> EditUser(string id)
@@ -176,8 +181,6 @@ namespace BrickwellStore.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-
-
 
         [HttpGet]
         public async Task<IActionResult> DeleteUser(string id)

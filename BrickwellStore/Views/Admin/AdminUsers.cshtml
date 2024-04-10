@@ -8,9 +8,7 @@
 
 @model IEnumerable<BrickwellStore.Data.ViewModels.UserRolesViewModel>
 
-
-
-<h1>Users (Admin View)</h1>
+<h1>Users (Admin Controller View)</h1>
 
 <table class="table">
     <thead>
@@ -28,8 +26,8 @@
             <tr>
                 <td><a asp-controller="User" asp-action="UserDetails" asp-route-id="@user.UserId">@user.UserId</a></td>
                 <td>@user.Email</td>
-                <td>@user.Roles</td>
-                <td><a class="btn btn-success" asp-controller="Admin" asp-action="EditUser" asp-route-id="@user.UserId">Edit</a></td>
+                <td>@string.Join(", ", user.Roles)</td>
+                @* <td><a class="btn btn-success" asp-controller="Admin" asp-action="EditUser" asp-route-id="@user.UserId">Edit</a></td> *@
                 <td><a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@user.UserId">Delete</a></td>
             </tr>
         }

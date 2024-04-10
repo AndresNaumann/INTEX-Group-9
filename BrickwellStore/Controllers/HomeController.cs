@@ -62,50 +62,6 @@ namespace BrickwellStore.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
-        public IActionResult AdminProducts(int pageNum)
-        {
-            int pageSize = 10;
-            var AdminBlah = new ProductsListViewModel
-            {
-                Products = _repo.Products
-                .OrderBy(x => x.Name)
-               .Skip((pageNum - 1) * pageSize)
-               .Take(pageSize),
-
-                PaginationInfo = new PaginationInfo
-                {
-                    CurrentPage = pageNum,
-                    ItemsPerPage = pageSize,
-                    TotalItems = _repo.Products.Count()
-                },
-            };
-
-            return View(AdminBlah);
-        }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult AdminOrders(int pageNum)
-        {
-            int pageSize = 10;
-            var AdminBlah = new ProductsListViewModel
-            {
-                Orders = _repo.Orders
-                .OrderBy(x => x.Date)
-               .Skip((pageNum - 1) * pageSize)
-               .Take(pageSize),
-
-                PaginationInfo = new PaginationInfo
-                {
-                    CurrentPage = pageNum,
-                    ItemsPerPage = pageSize,
-                    TotalItems = _repo.Orders.Count()
-                },
-            };
-
-            return View(AdminBlah);
-        }
-
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> FinishCheckout()
@@ -130,33 +86,7 @@ namespace BrickwellStore.Controllers
             return RedirectToAction("Index");
         }
 
-
-        //public IActionResult AdminUsers(int pageNum)
-        //{
-        //    int pageSize = 5;
-        //    var AdminUsers = new ProductsListViewModel
-        //    {
-        //        Customers = _repo.Customers
-        //         .OrderBy(x => x.CustomerFirstName)
-        //       .Skip((pageNum - 1) * pageSize)
-        //       .Take(pageSize),
-
-        //        PaginationInfo = new PaginationInfo
-        //        {
-        //            CurrentPage = pageNum,
-        //            ItemsPerPage = pageSize,
-        //            TotalItems = _repo.Customers.Count()
-        //        },
-        //    };
-
-        //    return View(AdminUsers);
-        //}
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AdminUsers()
-        {
-            var users = _userManager.Users.ToList();
-            return View(users);
-        }
+        // Product
 
         public IActionResult Product(int pageNum, string? productColor, string? productCategory, int? itemsPerPage)
         {
@@ -199,20 +129,7 @@ namespace BrickwellStore.Controllers
 
         // ADDING A PRODUCT -------------------------------------------
 
-        [HttpGet]
-        public IActionResult AddProduct()
-        {
-            return View("AddProduct");
-        }
-
-        [HttpPost]
-        public IActionResult AddProduct(Product product)
-        {
-            _repo.AddProduct(product);
-            _repo.SaveChanges();
-
-            return RedirectToAction("AdminProducts");
-        }
+    
 
         // EDITING ----------------------------------------------------
 
@@ -224,21 +141,8 @@ namespace BrickwellStore.Controllers
         //    var userToEdit = _userManager.Users.Single(x => x.Id == id);
         //    return View(userToEdit);
 
-        //    //var recordToEdit = _repo.GetCustomerById(id);
-        //    //return View(recordToEdit);
         //}
 
-        //[HttpPost]
-        //public IActionResult EditUser(IdentityUser updatedInfo)
-        //{
-
-        //    _userManager.UpdateAsync(updatedInfo);
-
-        //    //_repo.UpdateUser(updatedInfo.CustomerId);
-        //    //_repo.SaveChanges();
-
-        //    return RedirectToAction("AdminUsers");
-        //}
 
         [HttpGet]
         public IActionResult EditCustomer(int id)
@@ -256,29 +160,9 @@ namespace BrickwellStore.Controllers
 
             _userManager.UpdateAsync(updatedInfo);
 
-            //_repo.UpdateUser(updatedInfo.CustomerId);
-            //_repo.SaveChanges();
-
             return RedirectToAction("AdminUsers");
         }
 
-        // Edit a Product
-
-        [HttpGet]
-        public IActionResult EditProduct(int id)
-        {
-            var recordToEdit = _repo.GetProductById(id);
-            return View("AddProduct", recordToEdit);
-        }
-
-        [HttpPost]
-        public IActionResult EditProduct(Product updatedInfo)
-        {
-            _repo.UpdateProduct(updatedInfo);
-            _repo.SaveChanges();
-
-            return RedirectToAction("AdminProducts");
-        }
 
         // DELETION ----------------------------------------------------
 
@@ -304,23 +188,7 @@ namespace BrickwellStore.Controllers
 
         // Delete Customers
 
-        [HttpGet]
-        public IActionResult DeleteProduct(int id)
-        {
-            var recordToDelete = _repo.GetProductById(id);
-
-            return View(recordToDelete);
-
-        }
-
-        [HttpPost]
-        public IActionResult DeleteProduct(Product product)
-        {
-            _repo.DeleteProduct(product.ProductId);
-            _repo.SaveChanges();
-
-            return RedirectToAction("AdminProducts");
-        }
+       
 
         // EDIT CART ITEMS
 
