@@ -27,11 +27,30 @@
         </div>
     </div>
 
+
+    <style>
+        .custom-col {
+            flex: 0 0 20%;
+            max-width: 20%;
+        }
+        /* This ensures there's no margin or padding issues */
+        .no-gutters {
+            margin-right: 0;
+            margin-left: 0;
+        }
+        .no-gutters > .col,
+        .no-gutters > [class*="col-"] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+    </style>
+
+
     <!-- Product Cards -->
-    <div class="row mt-3">
+    <div class="row no-gutters mt-3">
         @foreach (Product p in Model.Products)
         {
-            <div class="col-md-3 col-sm-6 mb-3">
+            <div class="custom-col mb-3">
                 <partial name="ProductSummary" model="p" />
             </div>
         }

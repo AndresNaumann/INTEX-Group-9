@@ -5,9 +5,9 @@
 
 @model Product
 <div class="custom-card shadow">
-    <img src="@Model.ImgLink" style="width:200px" />
+    <img src="@Model.ImgLink" class="custom-card-image" />
     $@Model.Price
-    <p>
+    <p class="card-title">
         @Model.Name
         <!--<span class="badge rounded-pill bg-primary text-white float-end"><small>Only $@Model.Price!</small> </span> -->
     </p>
