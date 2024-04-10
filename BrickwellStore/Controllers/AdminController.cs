@@ -127,11 +127,37 @@ namespace BrickwellStore.Controllers
         // Messing with a User ----------------------------------------
 
         [HttpGet]
+        public async Task<IActionResult> EditUser(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(IdentityUser user)
+        {
+            var userToEdit = await _userManager.FindByIdAsync(user.Id);
+
+            if (userToEdit == null)
+            {
+                return NotFound();
+            }
+
+            var result = await _userManager.UpdateAsync(userToEdit);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("AdminUsers", "Home");
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
+        [HttpGet]
         public async Task<IActionResult> DeleteUser(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
-            //var result = await _userManager.DeleteAsync(user);
-
             return View(user);
         }
 

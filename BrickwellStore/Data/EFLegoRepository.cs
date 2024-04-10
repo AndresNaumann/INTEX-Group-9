@@ -18,9 +18,19 @@ namespace BrickwellStore.Data
 
         // USER METHODS
 
+        public void AddUser(Customer customer)
+        {
+            _context.Customers.Add(customer);
+        }
+
         public Customer GetCustomerById(int id)
         {
             return _context.Customers.Single(c => c.CustomerId == id);
+        }
+
+        public Customer GetCustomerByUserId(string  userId)
+        {
+            return _context.Customers.Single(c => c.UserId == userId);
         }
 
         public void UpdateUser(int id)
