@@ -1,0 +1,21 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Microsoft.AspNetCore.Identity.IdentityUser;
+
+<h2>Edit a User</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Id"><br>
+
+    <label asp-for="UserName">UserName:</label><br>
+    <input asp-for="UserName" type="text" required /><br>
+
+    <label asp-for="Email">Email:</label><br>
+    <input asp-for="Email" type="text" required /><br>
+
+    <button class="btn btn-success"type="submit">Submit</button>
+</form>

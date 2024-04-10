@@ -18,9 +18,37 @@ namespace BrickwellStore.Data
 
         // USER METHODS
 
-        public Customer GetCustomerById(int id)
+        public void AddUser(Customer customer)
         {
-            return _context.Customers.Single(c => c.CustomerId == id);
+            _context.Customers.Add(customer);
+        }
+
+        public Customer? GetCustomerById(int id)
+        {
+            try
+            {
+                var customer = _context.Customers.Single(c => c.CustomerId == id);
+                return customer;
+            }
+            catch (InvalidOperationException)
+            {
+                // Handle the case where the customer is not found
+                return null;
+            }
+        }
+
+        public Customer? GetCustomerByUserId(string userId)
+        {
+            try
+            {
+                var customer = _context.Customers.Single(c => c.UserId == userId);
+                return customer;
+            }
+            catch (InvalidOperationException)
+            {
+                // Handle the case where the customer is not found
+                return null;
+            }
         }
 
         public void UpdateUser(int id)
@@ -50,10 +78,10 @@ namespace BrickwellStore.Data
             _context.Products.Add(product);
         }
 
-        public void UpdateProduct(int id)
+        public void UpdateProduct(Product product)
         {
-            var product = GetProductById(id);
             _context.Products.Update(product);
+            _context.SaveChanges();
         }
 
         public void DeleteProduct(int id)
@@ -72,46 +100,6 @@ namespace BrickwellStore.Data
             _context.SaveChanges();
         }
 
-        //public IQueryable<CartLine> GetCartLines(string userId, string color = null, int? categoryId = null)
-        //{
-        //    var query = _context.CartLines
-        //        .Where(cl => cl.UserId == userId); // Filter by user ID
-
-        //    if (!string.IsNullOrEmpty(color))
-        //    {
-        //        // Filter by color (assuming you have a Color property in CartLine)
-        //        query = query.Where(cl => cl.Color == color);
-        //    }
-
-        //    if (categoryId.HasValue)
-        //    {
-        //        // Filter by category (assuming you have a CategoryId property in CartLine)
-        //        query = query.Where(cl => cl.CategoryId == categoryId.Value);
-        //    }
-
-        //    return query;
-        //}
-
-        //public void UpdateCartLineQuantity(int cartLineId, int quantity)
-        //{
-        //    var cartLine = GetCartLine(cartLineId);
-
-        //    if (cartLine != null)
-        //    {
-        //        // Validate the quantity (ensure it's greater than zero)
-        //        if (quantity > 0)
-        //        {
-        //            //cartLine.Quantity = quantity;
-        //            // Save changes to the database (if needed)
-        //            _context.SaveChanges();
-        //        }
-        //        else
-        //        {
-        //            // Handle invalid quantity (e.g., log an error or show a message)
-        //            // You can customize this part based on your application's requirements
-        //        }
-        //    }
-        //}
     }
 }
 

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using BrickwellStore.Infrastructure;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Drawing.Printing;
+using System.Threading.Tasks;
 
 namespace BrickwellStore.Controllers
 {
@@ -48,11 +49,7 @@ namespace BrickwellStore.Controllers
             return View();
         }
 
-        public IActionResult ProductDetail()
-        {
-            return View();
-        }
-         
+
         public IActionResult ThankYou()
         {
             return View();
@@ -65,81 +62,56 @@ namespace BrickwellStore.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
-        public IActionResult AdminProducts(int pageNum)
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> FinishCheckout()
         {
-            int pageSize = 10;
-            var AdminBlah = new ProductsListViewModel
+            var currentUser = await _userManager.GetUserAsync(User);
+            string userId = currentUser?.Id;
+
+            var curCustomer = _repo.GetCustomerByUserId(userId);
+
+            if (curCustomer != null)
             {
-                Products = _repo.Products
-                .OrderBy(x => x.Name)
-               .Skip((pageNum - 1) * pageSize)
-               .Take(pageSize),
-
-                PaginationInfo = new PaginationInfo
-                {
-                    CurrentPage = pageNum,
-                    ItemsPerPage = pageSize,
-                    TotalItems = _repo.Products.Count()
-                },
-            };
-
-            return View(AdminBlah);
-        }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult AdminOrders(int pageNum)
-        {
-            int pageSize = 10;
-            var AdminBlah = new ProductsListViewModel
+                return View(curCustomer);
+            } 
+            else
             {
-                Orders = _repo.Orders
-                .OrderBy(x => x.Date)
-               .Skip((pageNum - 1) * pageSize)
-               .Take(pageSize),
-
-                PaginationInfo = new PaginationInfo
+                var model = new Customer
                 {
-                    CurrentPage = pageNum,
-                    ItemsPerPage = pageSize,
-                    TotalItems = _repo.Orders.Count()
-                },
-            };
+                    UserId = userId
+                };
 
-            return View(AdminBlah);
+                return View(model);
+            }
         }
 
-
-        //public IActionResult AdminUsers(int pageNum)
-        //{
-        //    int pageSize = 5;
-        //    var AdminUsers = new ProductsListViewModel
-        //    {
-        //        Customers = _repo.Customers
-        //         .OrderBy(x => x.CustomerFirstName)
-        //       .Skip((pageNum - 1) * pageSize)
-        //       .Take(pageSize),
-
-        //        PaginationInfo = new PaginationInfo
-        //        {
-        //            CurrentPage = pageNum,
-        //            ItemsPerPage = pageSize,
-        //            TotalItems = _repo.Customers.Count()
-        //        },
-        //    };
-
-        //    return View(AdminUsers);
-        //}
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AdminUsers()
+        [HttpPost]
+        public IActionResult FinishCheckout(Customer customer)
         {
-            var users = _userManager.Users.ToList();
-            return View(users);
+            var curCustomer = _repo.GetCustomerByUserId(customer.UserId);
+
+            if (curCustomer != null)
+            {
+                _repo.UpdateUser(curCustomer.CustomerId);
+                _repo.SaveChanges();
+
+            } else
+            {
+                _repo.AddUser(customer);
+                _repo.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
 
-        public IActionResult Product(int pageNum, string? productColor, string? productCategory)
+        // Product
+
+        public IActionResult Product(int pageNum, string? productColor, string? productCategory, int? itemsPerPage)
         {
-            int pageSize = 5;
+            int defaultPageSize = 5;
+
+            int pageSize = itemsPerPage ?? defaultPageSize;
 
             var productsQuery = _repo.Products
                 .Where(x => (x.PrimaryColor == productColor || x.SecondaryColor == productColor) || productColor == null);
@@ -152,7 +124,8 @@ namespace BrickwellStore.Controllers
             var Blah = new ProductsListViewModel
             {
                 Products = productsQuery
-                    .OrderBy(x => x.Name)
+                    .OrderBy(x => x.PrimaryColor == productColor ? 0 : 1) // Order by primary color first
+                    .ThenBy(x => x.Name) // Then order by name
                     .Skip((pageNum - 1) * pageSize)
                     .Take(pageSize),
 
@@ -172,121 +145,34 @@ namespace BrickwellStore.Controllers
             return View(Blah);
         }
 
-        //}
-        //public IActionResult Product(int pageNum, string? productColor, string? productCategory)
-        //{
-        //    int pageSize = 5;
-        //    var query = _repo.Products.AsQueryable();
-
-        //    // Apply color filter if provided
-        //    if (!string.IsNullOrEmpty(productColor))
-        //    {
-        //        query = query.Where(x => x.PrimaryColor == productColor || x.SecondaryColor == productColor);
-        //    }
-
-        //    // Apply category filter if provided
-        //    if (!string.IsNullOrEmpty(productCategory))
-        //    {
-        //        query = query.Where(x => x.Category == productCategory);
-        //    }
-
-        //    var products = query.OrderBy(x => x.Name)
-        //                        .Skip((pageNum - 1) * pageSize)
-        //                        .Take(pageSize)
-        //                        .ToList();
-
-        //    var viewModel = new ProductsListViewModel
-        //    {
-        //        Products = _repo.Products,
-        //        PaginationInfo = new PaginationInfo
-        //        {
-        //            CurrentPage = pageNum,
-        //            ItemsPerPage = pageSize,
-        //            TotalItems = query.Count() // Count total items from the filtered query
-        //        },
-        //        CurrentProductColor = productColor,
-        //        CurrentProductCategory = productCategory
-        //    };
-
-        //    return View(viewModel);
-        //}
-
-        //public IActionResult Product(int pageNum, string? productColor, string? productCateogry)
-        //{
-        //    var filteredProducts = _repo.Products
-        //        .Where(x => x.PrimaryColor == productColor || x.SecondaryColor == productColor || productColor == null)
-        //        .OrderBy(x => x.Name)
-        //        .Skip((pageNum - 1) * pageSize)
-        //        .Take(pageSize);
-
-
-        //    var viewModel = new ProductsListViewModel
-        //    {
-        //        Products = filteredProducts,
-        //        PaginationInfo = new PaginationInfo
-        //        {
-        //            CurrentPage = pageNum,
-        //            ItemsPerPage = pageSize,
-        //            TotalItems = productColor == null ? _repo.Products.Count() : _repo.Products.Count(x => x.PrimaryColor == productColor)
-        //        },
-        //        CurrentProductColor = productColor
-        //    };
-
-        //    return View(viewModel);
-        //}
 
         // ADDING A PRODUCT -------------------------------------------
 
-        [HttpGet]
-        public IActionResult AddProduct()
-        {
-            return View("AddProduct");
-        }
 
-        [HttpPost]
-        public IActionResult AddProduct(Product product)
-        {
-            _repo.AddProduct(product);
-            _repo.SaveChanges();
-
-            return RedirectToAction("AdminProducts");
-        }
 
         // EDITING ----------------------------------------------------
 
         // Edit a Customer/User
 
         [HttpGet]
-        public IActionResult EditUser(int id)
+        public IActionResult EditCustomer(int id)
         {
-            var recordToEdit = _repo.GetCustomerById(id);
-            return View(recordToEdit);
+            var custToEdit = _repo.GetCustomerById(id);
+            return View(custToEdit);
+
+            //var recordToEdit = _repo.GetCustomerById(id);
+            //return View(recordToEdit);
         }
 
         [HttpPost]
-        public IActionResult EditUser(Customer updatedInfo)
+        public IActionResult EditUser(IdentityUser updatedInfo)
         {
-            _repo.UpdateUser(updatedInfo.CustomerId);
-            _repo.SaveChanges();
+
+            _userManager.UpdateAsync(updatedInfo);
+
             return RedirectToAction("AdminUsers");
         }
 
-        // Edit a Product
-
-        [HttpGet]
-        public IActionResult EditProduct(int id)
-        {
-            var recordToEdit = _repo.GetProductById(id);
-            return View(recordToEdit);
-        }
-
-        [HttpPost]
-        public IActionResult EditProduct(Product updatedInfo)
-        {
-            _repo.UpdateProduct(updatedInfo.ProductId);
-            _repo.SaveChanges();
-            return RedirectToAction("AdminProducts");
-        }
 
         // DELETION ----------------------------------------------------
 
@@ -312,82 +198,8 @@ namespace BrickwellStore.Controllers
 
         // Delete Customers
 
-        [HttpGet]
-        public IActionResult DeleteProduct(int id)
-        {
-            var recordToDelete = _repo.GetProductById(id);
-
-            return View(recordToDelete);
-
-        }
-
-        [HttpPost]
-        public IActionResult DeleteProduct(Product product)
-        {
-            _repo.DeleteProduct(product.ProductId);
-            _repo.SaveChanges();
-
-            return RedirectToAction("AdminProducts");
-        }
-
-        // EDIT CART ITEMS
-
-        public IActionResult EditCartItem(int cartLineId, int quantity)
-        {
-            // Retrieve the cart from the session or create a new one
-            var cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
-
-            // Find the cart line with the specified CartLineId
-            var cartLine = cart.Lines.FirstOrDefault(x => x.CartLineId == cartLineId);
-
-            if (cartLine != null)
-            {
-                // Validate the quantity (ensure it's greater than zero)
-                if (quantity > 0)
-                {
-                    cartLine.Quantity = quantity;
-                    HttpContext.Session.SetJson("cart", cart);
-                }
-                else
-                {
-                    // Handle invalid quantity (e.g., display an error message)
-                    // You can customize this part based on your application's requirements
-                    // For now, let's assume you log an error or show a user-friendly message
-                    // indicating that the quantity must be a positive value.
-                }
-            }
-            else
-            {
-                // Handle case when cart line is not found (e.g., log an error)
-                // You can customize this part based on your application's requirements
-                // For example, you might want to redirect the user to an error page.
-            }
-
-            // Redirect to the "/Cart" page
-            return RedirectToPage("/Cart");
-        }
 
 
-
-        // DELETE CART ITEM
-        public IActionResult DeleteCartItem(int cartLineId)
-        {
-            var cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
-            var cartLine = cart.Lines.FirstOrDefault(x => x.CartLineId == cartLineId);
-
-            if (cartLine != null)
-            {
-                cart.Lines.Remove(cartLine);
-                HttpContext.Session.SetJson("cart", cart);
-            }
-            else
-            {
-                // Handle the case where the specified cartLineId is not found (optional).
-                // You can add logging or display an error message.
-            }
-
-            return RedirectToPage("/Cart");
-        }
 
     }
 }

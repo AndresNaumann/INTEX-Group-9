@@ -6,9 +6,11 @@
         public IQueryable<Customer> Customers { get; }
         public IQueryable<Order> Orders { get; }    
         Customer? GetCustomerById(int id);
+        Customer? GetCustomerByUserId(string userId);
         Product? GetProductById(int id);
         void AddProduct(Product product);
-        void UpdateProduct(int id);
+        void AddUser(Customer customer);
+        void UpdateProduct(Product product);
         void DeleteProduct(int id);
         void UpdateUser(int id);
         void DeleteUser(int id);

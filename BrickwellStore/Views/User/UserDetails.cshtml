@@ -3,17 +3,23 @@
 *@
 @{
 }
-@model Microsoft.AspNetCore.Identity.IdentityUser
+@model BrickwellStore.Data.ViewModels.UserInfoViewModel
+
 <div class="card m-1 p-1">
     <h4>
-        @Model.UserName
+        @Model.UserId
     </h4>
     <ul>
-        <li>User ID: @Model.Id</li>
+        <li><a asp-controller="User" asp-action="CustomerDetails" asp-route-id="@Model.UserId">See Personal Detail</a> </li>
+        <li>User ID: @Model.UserId</li>
+        <li>Customer ID: @Model.CustomerId</li>
+        <li>Name: @Model.CustomerFirstName @Model.CustomerLastName</li>
         <li>Email: @Model.Email</li>
-        <li>Phone Number: @Model.PhoneNumber</li>
+        <li>Phone: @Model.Phone</li>
+        <li>Role: @string.Join(", ", Model.Roles)</li>
+        <li><a class="btn btn-info" asp-controller="User" asp-action="MakeAdmin" asp-route-id="@Model.UserId">Make Admin?</a></li>
     </ul>
 
     @* <a class="btn btn-info" asp-controller="Home" asp-action="EditProduct" asp-route-id="@Model.ProductId">Edit</a> *@
-    <a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@Model.Id">Delete</a>
+    <a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@Model.UserId">Delete</a>
 </div>

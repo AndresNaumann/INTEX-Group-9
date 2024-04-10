@@ -4,6 +4,7 @@
 
 @{
 }
+@await Component.InvokeAsync("CartSummary")
 
 
 <h2>Your Cart</h2>
@@ -16,8 +17,8 @@
             <th>Quantity:</th>
             <th class="text-right">Amount:</th>
             <th class="text-right">Subtotal:</th>
-            <th>Edit Quantity:</th>
-            <th>Remove Item:</th>
+@*             <th>Edit Quantity:</th>
+ *@            <th>Remove Item:</th>
         </tr>
     </thead>
 
@@ -29,8 +30,13 @@
                 <td class="text-center">@l.Quantity</td>
                 <td class="text-right">$@l.Product.Price</td>
                 <td class="text-right">@((@l.Quantity * @l.Product.Price).ToString("c"))</td>
-                <td><a class="btn btn-info" asp-controller="Home" asp-action="EditCartItem" asp-route-id="@l.CartLineId">Edit</a></td>
-                <td><a class="btn btn-danger" asp-controller="Home" asp-action="DeleteCartItem" asp-route-id="@l.CartLineId">Delete</a></td>
+                <td class="text-center">
+                    <form asp-page-handler="Remove" method="post">
+                        <input type="hidden" name="ProductId" value="@l.Product.ProductId" />
+                        <input type="hidden" name="returnUrl" value="@Model?.ReturnUrl" />
+                        <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>
