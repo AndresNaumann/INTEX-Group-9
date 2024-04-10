@@ -19,6 +19,7 @@
             <p>@product.Description</p>
             <img src="@product.ImgLink" style="width:100px" />
             <p>@product.Name - $@product.Price</p>
+            <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@product.ProductId">View Details</a>
             <!-- Include more details as needed, like an image or a link to the product page -->
         </div>
     }

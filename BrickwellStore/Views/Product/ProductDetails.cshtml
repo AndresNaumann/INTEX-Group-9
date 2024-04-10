@@ -28,7 +28,7 @@
                 <img src="@rec.ImgLink" style="width:100px" />
                 <p>@rec.Name - $@rec.Price</p>
                 @* <a asp-controller="Product" asp-action="ProductDetails" asp-route-productId="@rec.ProductId">View Details</a> *@
-                <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@Model.Product.ProductId">View Details</a>
+                <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@rec.ProductId">View Details</a>
             </div>
         }
     </div>
