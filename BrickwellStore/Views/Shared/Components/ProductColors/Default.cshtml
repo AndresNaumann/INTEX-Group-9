@@ -8,7 +8,7 @@
  *@
 @model IEnumerable<string>
 <div class="d-grid gap-2">
-    <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index" asp-route-productColor="" asp-route-pageNum="">Home</a>
+    <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Product" asp-route-productColor="" asp-route-pageNum="">Home</a>
 
     @foreach (string pc in Model ?? Enumerable.Empty<string>())
     {
