@@ -8,19 +8,83 @@ using Microsoft.AspNetCore.Identity;
 using BrickwellStore.Infrastructure;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Drawing.Printing;
+using Microsoft.ML.OnnxRuntime;
+using Microsoft.ML.OnnxRuntime.Tensors;
+using SQLitePCL;
 
 namespace BrickwellStore.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly InferenceSession _session;
+        private readonly ILogger<HomeController> _logger;
         private ILegoRepository _repo;
         private UserManager<IdentityUser> _userManager;
 
-        public HomeController(ILegoRepository temp, UserManager<IdentityUser> userManager)
+        public HomeController(ILegoRepository temp, UserManager<IdentityUser> userManager, ILogger<HomeController> logger)
         {
             _repo = temp;
             _userManager = userManager;
+            _logger = logger;
+
+            try
+            {
+                _session = new InferenceSession("\\\\Mac\\Home\\Documents\\GitHub\\INTEX-Group-9\\BrickwellStore\\fraud_model.onnx");
+                _logger.LogInformation("NNX model loaded successfully.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error loading the ONNX model: {ex.Message}");
+            }
         }
+
+        [HttpPost]
+        public IActionResult Predict(int time, float amount, int country_of_transaction_United_Kingdom, int shipping_address_United_Kingdom)
+        {
+            // Mapping of class type to a readable format
+            var class_type_dict = new Dictionary<int, string>
+            {
+                {0, "Not Fraud" },
+                {1, "Fraud" }
+            };
+
+            try
+            {
+                // Prepare input data for the ONNX model
+                var input = new List<float> { time, amount, country_of_transaction_United_Kingdom, shipping_address_United_Kingdom };
+                var inputTensor = new DenseTensor<float>(input.ToArray(), new[] { 1, input.Count });
+                var inputs = new List<NamedOnnxValue>
+                {
+                    NamedOnnxValue.CreateFromTensor("float_input", inputTensor)
+                };
+
+                // Run the model with the input data
+                using (var results = _session.Run(inputs))
+                {
+                    // Retrieve the prediction result
+                    var prediction = results.FirstOrDefault(item => item.Name == "output_label")?.AsTensor<long>().ToArray();
+                    if (prediction != null && prediction.Length > 0)
+                    {
+                        // Map the numerical result to a meaningful string
+                        var fraudType = class_type_dict.GetValueOrDefault((int)prediction[0], "Unknown");
+                        TempData["Prediction"] = fraudType;
+                    }
+                    else
+                    {
+                        TempData["Prediction"] = "Error: Unable to make a prediction";
+                    }
+                }
+
+                // Return the view with the prediction result
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions and return error message
+                return BadRequest($"Error: {ex.Message}");
+            }
+        }
+
 
         public IActionResult Index()
         {
