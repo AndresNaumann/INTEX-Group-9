@@ -3,31 +3,39 @@
 *@
 @{
 }
-
-
-<!--THIS IS THE VIEW THAT CUSTOMERS WILL SEE. NOT FOR ADMINS-->
-
-@model Product
+@model BrickwellStore.Data.ProductDetailViewModel
 <div class="card m-1 p-1">
-    <center><img src="@Model.ImgLink" style="width:500px" /></center>
+    <center><img src="@Model.Product.ImgLink" style="width:500px" /></center>
     <h4>
-        @Model.Name
-        <span class="badge rounded-pill bg-primary text-white float-end"><small>Only $@Model.Price!</small> </span>
+        @Model.Product.Name
+        <span class="badge rounded-pill bg-primary text-white float-end"><small>Only $@Model.Product.Price!</small></span>
     </h4>
     <ul>
-        <li>Year: @Model.Year</li>
-        <li>Number of Parts: @Model.NumParts</li>
-        <li>Primary Color: @Model.PrimaryColor</li>
-        <li>Secondary Color: @Model.SecondaryColor</li>
-        <li>Description: @Model.Description</li>
-        <li>Category: @Model.Category</li>
+        <li>Year: @Model.Product.Year</li>
+        <li>Number of Parts: @Model.Product.NumParts</li>
+        <li>Primary Color: @Model.Product.PrimaryColor</li>
+        <li>Secondary Color: @Model.Product.SecondaryColor</li>
+        <li>Description: @Model.Product.Description</li>
+        <li>Category: @Model.Product.Category</li>
     </ul>
+    <h4>
+        Because You Clicked On @Model.Product.Name, You Might Also Like...
+    </h4>
+    <div>
+        @foreach (var rec in Model.Recommendations)
+        {
+            <div class="recommendation-item">
+                <img src="@rec.ImgLink" style="width:100px" />
+                <p>@rec.Name - $@rec.Price</p>
+                @* <a asp-controller="Product" asp-action="ProductDetails" asp-route-productId="@rec.ProductId">View Details</a> *@
+                <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@rec.ProductId">View Details</a>
+            </div>
+        }
+    </div>
 
-    <form id=@Model.ProductId method="post" asp-page="/Cart">
-        <input type="hidden" asp-for="ProductId" />
-         <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-       <button type="submit" class="btn-outline-success btn-sm float-end">Add to Cart!</button>
-        <a asp-controller="Home" asp-action="Product" >Back Home</a>
-
+    <form id="form-@Model.Product.ProductId" method="post" asp-page="/Cart">
+        <input type="hidden" asp-for="Product.ProductId" />
+        <button type="submit" class="btn-outline-success btn-sm float-end">Add to Cart!</button>
+        <a asp-controller="Home" asp-action="Index">Back Home</a>
     </form>
 </div>

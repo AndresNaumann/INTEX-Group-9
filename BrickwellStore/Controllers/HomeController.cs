@@ -25,7 +25,33 @@ namespace BrickwellStore.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            int defaultCustomerId = 10;
+            int customerId = defaultCustomerId;
+
+            // Assuming that if the user is logged in, User.Identity will have the details.
+            // Logging for debugging purposes.
+            if (User.Identity.IsAuthenticated)
+            {
+                // Log the identity name for debugging
+                Debug.WriteLine($"User.Identity.Name: {User.Identity.Name}");
+
+                if (User.Identity.Name == "naumannadn@gmail.com") // Ensure this matches exactly
+                {
+                    customerId = 1;
+                }
+            }
+            else
+            {
+                // If we're here, the user is not authenticated. Log this information.
+                Debug.WriteLine("User is not authenticated.");
+            }
+
+            var recommendations = _repo.GetCustomerRecommendations(customerId);
+
+            // Log the number of recommendations for debugging
+            Debug.WriteLine($"Number of recommendations: {recommendations.Count()}");
+
+            return View(recommendations);
         }
 
         public IActionResult Privacy()

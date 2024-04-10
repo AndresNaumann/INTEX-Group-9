@@ -8,6 +8,8 @@
         Customer? GetCustomerById(int id);
         Customer? GetCustomerByUserId(string userId);
         Product? GetProductById(int id);
+        IQueryable<Product> GetRecommendations(int productId);
+        IEnumerable<Product> GetCustomerRecommendations(int customerId);
         void AddProduct(Product product);
         void AddUser(Customer customer);
         void UpdateProduct(Product product);

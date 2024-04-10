@@ -20,7 +20,15 @@ namespace BrickwellStore.Controllers
                 return NotFound(); // Or handle accordingly
             }
 
-            return View(product);
+            var recommendations = _repo.GetRecommendations(id).ToList();
+
+            var viewModel = new ProductDetailViewModel
+            {
+                Product = product,
+                Recommendations = recommendations
+            };
+
+            return View(viewModel);
         }
 
         [Authorize(Roles = "Admin")]
