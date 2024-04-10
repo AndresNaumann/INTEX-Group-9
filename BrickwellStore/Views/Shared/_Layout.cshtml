@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BrickwellStore.styles.css" asp-append-version="true" />
-</head>
+@*     <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css" />
+ *@</head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -51,10 +52,14 @@
         </nav>
     </header>
     <div class="row m-1 p-1">
-        @* <div class="col-3">
-            <vc:product-filters />
-        </div> *@
-       
+<div class="container-fluid">
+    <div class="row">
+        <div class="col navbar-brand">Brickwell</div>
+        <div class="col-6 navbar-text text-end">
+            <vc:cart-summary />
+        </div>
+    </div>
+</div>
 
         <div class="container col-9">
             <main role="main" class="pb-3">
