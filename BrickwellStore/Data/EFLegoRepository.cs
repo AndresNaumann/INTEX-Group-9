@@ -100,46 +100,6 @@ namespace BrickwellStore.Data
             _context.SaveChanges();
         }
 
-        //public IQueryable<CartLine> GetCartLines(string userId, string color = null, int? categoryId = null)
-        //{
-        //    var query = _context.CartLines
-        //        .Where(cl => cl.UserId == userId); // Filter by user ID
-
-        //    if (!string.IsNullOrEmpty(color))
-        //    {
-        //        // Filter by color (assuming you have a Color property in CartLine)
-        //        query = query.Where(cl => cl.Color == color);
-        //    }
-
-        //    if (categoryId.HasValue)
-        //    {
-        //        // Filter by category (assuming you have a CategoryId property in CartLine)
-        //        query = query.Where(cl => cl.CategoryId == categoryId.Value);
-        //    }
-
-        //    return query;
-        //}
-
-        //public void UpdateCartLineQuantity(int cartLineId, int quantity)
-        //{
-        //    var cartLine = GetCartLine(cartLineId);
-
-        //    if (cartLine != null)
-        //    {
-        //        // Validate the quantity (ensure it's greater than zero)
-        //        if (quantity > 0)
-        //        {
-        //            //cartLine.Quantity = quantity;
-        //            // Save changes to the database (if needed)
-        //            _context.SaveChanges();
-        //        }
-        //        else
-        //        {
-        //            // Handle invalid quantity (e.g., log an error or show a message)
-        //            // You can customize this part based on your application's requirements
-        //        }
-        //    }
-        //}
     }
 }
 
