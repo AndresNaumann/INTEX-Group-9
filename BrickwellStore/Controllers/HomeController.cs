@@ -328,24 +328,6 @@ namespace BrickwellStore.Controllers
         }
 
 
-        //public IActionResult DeleteCartItem(int index)
-        //{
-        //    var cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
-
-        //    if (index >= 0 && index < cart.Lines.Count)
-        //    {
-        //        cart.Lines.RemoveAt(index);
-        //        HttpContext.Session.SetJson("cart", cart);
-        //    }
-        //    else
-        //    {
-        //        // Handle invalid index (optional).
-        //        // You can add logging or display an error message.
-        //    }
-
-        //    return RedirectToPage("/Cart");
-        //}
-
 
     }
 }
