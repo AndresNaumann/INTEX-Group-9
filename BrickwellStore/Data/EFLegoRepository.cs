@@ -1,4 +1,6 @@
-﻿namespace BrickwellStore.Data
+﻿using System.Diagnostics;
+
+namespace BrickwellStore.Data
 {
     public class EFLegoRepository : ILegoRepository
     {
@@ -58,6 +60,31 @@
 
             return recommendedProducts;
         }
+
+        public IEnumerable<Product> GetCustomerRecommendations(int customerId)
+        {
+            var recommendedProductIds = _context.CustomerRecommendations
+                .Where(cr => cr.CustomerId == customerId)
+                .Select(cr => cr.RecommendedProductId)
+                .ToList();
+
+            // Debugging: check the count and the actual IDs being retrieved
+            Debug.WriteLine($"Total recommended product IDs: {recommendedProductIds.Count}");
+            foreach (var id in recommendedProductIds)
+            {
+                Debug.WriteLine($"Recommended Product ID: {id}");
+            }
+
+            var recommendedProducts = _context.Products
+                .Where(p => recommendedProductIds.Contains(p.ProductId))
+                .ToList();
+
+            // Debugging: check the count of the products returned
+            Debug.WriteLine($"Total recommended products found: {recommendedProducts.Count}");
+
+            return recommendedProducts;
+        }
+
     }
 }
 

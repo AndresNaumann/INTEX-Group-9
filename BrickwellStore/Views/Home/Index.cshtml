@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<BrickwellStore.Data.Product> // Adjust the namespace if necessary
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,4 +8,18 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
-<!--stuff-->
+
+<!-- Recommendations Section -->
+<div class="recommendations">
+    <h2>Recommendations for You</h2>
+    @foreach (var product in Model)
+    {
+        <div class="product">
+            <h3>@product.Name</h3>
+            <p>@product.Description</p>
+            <img src="@product.ImgLink" style="width:100px" />
+            <p>@product.Name - $@product.Price</p>
+            <!-- Include more details as needed, like an image or a link to the product page -->
+        </div>
+    }
+</div>

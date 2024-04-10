@@ -9,6 +9,7 @@
         Customer? GetCustomerById(int id);
         Product? GetProductById(int id);
         IQueryable<Product> GetRecommendations(int productId);
+        IEnumerable<Product> GetCustomerRecommendations(int customerId);
         void AddProduct(Product product);
         void DeleteCustomer(int id);
         void DeleteProduct(int id);
