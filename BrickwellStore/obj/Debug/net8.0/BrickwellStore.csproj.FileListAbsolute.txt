@@ -868,6 +868,7 @@ C:\Users\nauma\OneDrive\Desktop\INTEX-Group-9\BrickwellStore\obj\Debug\net8.0\re
 \\Mac\Home\Documents\GitHub\INTEX-Group-9\BrickwellStore\obj\Debug\net8.0\BrickwellStore.pdb
 \\Mac\Home\Documents\GitHub\INTEX-Group-9\BrickwellStore\obj\Debug\net8.0\BrickwellStore.genruntimeconfig.cache
 \\Mac\Home\Documents\GitHub\INTEX-Group-9\BrickwellStore\obj\Debug\net8.0\ref\BrickwellStore.dll
+<<<<<<< Updated upstream
 \\Mac\Home\Documents\GitHub\INTEX-Group-9\BrickwellStore\bin\Debug\net8.0\Microsoft.ML.Core.dll
 \\Mac\Home\Documents\GitHub\INTEX-Group-9\BrickwellStore\bin\Debug\net8.0\Microsoft.ML.Data.dll
 \\Mac\Home\Documents\GitHub\INTEX-Group-9\BrickwellStore\bin\Debug\net8.0\Microsoft.ML.KMeansClustering.dll
@@ -925,3 +926,5 @@ C:\Users\nauma\OneDrive\Desktop\INTEX-Group-9\BrickwellStore\obj\Debug\net8.0\re
 \\Mac\Home\Documents\GitHub\INTEX-Group-9\BrickwellStore\bin\Debug\net8.0\runtimes\win-x86\native\onnxruntime.lib
 \\Mac\Home\Documents\GitHub\INTEX-Group-9\BrickwellStore\bin\Debug\net8.0\runtimes\win-x86\native\onnxruntime_providers_shared.dll
 \\Mac\Home\Documents\GitHub\INTEX-Group-9\BrickwellStore\bin\Debug\net8.0\runtimes\win-x86\native\onnxruntime_providers_shared.lib
+=======
+>>>>>>> Stashed changes

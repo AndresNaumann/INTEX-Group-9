@@ -3,6 +3,7 @@ using System;
 using BrickwellStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,12 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BrickwellStore.Migrations.Brickwell
 {
     [DbContext(typeof(BrickwellContext))]
-    partial class BrickwellContextModelSnapshot : ModelSnapshot
+    [Migration("20240410032522_recommendationsMigration")]
+    partial class recommendationsMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
 
             modelBuilder.Entity("BrickwellStore.Data.Customer", b =>
                 {
@@ -98,19 +101,6 @@ namespace BrickwellStore.Migrations.Brickwell
 
             modelBuilder.Entity("BrickwellStore.Data.CustomerRecommendation", b =>
                 {
-<<<<<<< Updated upstream
-                    b.Property<int>("RecId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("RecommendedProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("RecId");
-=======
                     b.Property<int>("customerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
@@ -119,7 +109,6 @@ namespace BrickwellStore.Migrations.Brickwell
                         .HasColumnType("INTEGER");
 
                     b.HasKey("customerId");
->>>>>>> Stashed changes
 
                     b.ToTable("CustomerRecommendations");
                 });
@@ -256,26 +245,14 @@ namespace BrickwellStore.Migrations.Brickwell
 
             modelBuilder.Entity("BrickwellStore.Data.ProductRecommendation", b =>
                 {
-<<<<<<< Updated upstream
-                    b.Property<int>("RecId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ProductID")
-=======
                     b.Property<int>("ProductID")
                         .ValueGeneratedOnAdd()
->>>>>>> Stashed changes
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("RecommendedProductID")
                         .HasColumnType("INTEGER");
 
-<<<<<<< Updated upstream
-                    b.HasKey("RecId");
-=======
                     b.HasKey("ProductID");
->>>>>>> Stashed changes
 
                     b.ToTable("ProductRecommendations");
                 });
