@@ -195,10 +195,9 @@ namespace BrickwellStore.Controllers
         public IActionResult EditCartItem(int cartLineId, int quantity)
         {
             // Retrieve the cart from the session or create a new one
-            var cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
 
             // Find the cart line with the specified CartLineId
-            var cartLine = cart.Lines.FirstOrDefault(x => x.CartLineId == cartLineId);
+            var cartLine = (HttpContext.Session.GetJson<Cart>("cart") ?? new Cart()).Lines.FirstOrDefault(x => x.CartLineId == cartLineId);
 
             if (cartLine != null)
             {
@@ -206,7 +205,7 @@ namespace BrickwellStore.Controllers
                 if (quantity > 0)
                 {
                     cartLine.Quantity = quantity;
-                    HttpContext.Session.SetJson("cart", cart);
+                    HttpContext.Session.SetJson("cart", HttpContext.Session.GetJson<Cart>("cart") ?? new Cart());
                 }
                 else
                 {
@@ -229,7 +228,26 @@ namespace BrickwellStore.Controllers
 
 
 
-        //DELETE CART ITEM
+        ////DELETE CART ITEM
+        //public IActionResult DeleteCartItem(int cartLineId)
+        //{
+        //    var cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+        //    var cartLine = cart.Lines.FirstOrDefault(x => x.CartLineId == cartLineId);
+
+        //    if (cartLine != null)
+        //    {
+        //        cart.Lines.Remove(cartLine);
+        //        HttpContext.Session.SetJson("cart", cart);
+        //    }
+        //    else
+        //    {
+        //        // Handle the case where the specified cartLineId is not found (optional).
+        //        // You can add logging or display an error message.
+        //    }
+
+        //    return RedirectToPage("/Cart");
+        //}
+
         public IActionResult DeleteCartItem(int cartLineId)
         {
             var cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
@@ -248,7 +266,6 @@ namespace BrickwellStore.Controllers
 
             return RedirectToPage("/Cart");
         }
-
 
 
     }
