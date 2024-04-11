@@ -1,13 +1,16 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.CodeAnalysis;
 using static BrickwellStore.Data.Cart;
 
 namespace BrickwellStore.Data
 {
     public class Cart
     {
-
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
 
+        private UserManager<IdentityUser> _userManager;
+
+        public Cart() { }
 
         public virtual void AddItem(Product p, int quantity, double price)
         //public void AddItem(CartLine cartLine)

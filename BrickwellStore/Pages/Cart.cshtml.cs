@@ -3,24 +3,35 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BrickwellStore.Data;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 
 namespace BrickwellStore.Pages
 {
     public class CartModel : PageModel
     {
         private ILegoRepository _repo;
+        private UserManager<IdentityUser> _userManager;
         public Cart Cart { get; set; }
 
-        public CartModel(ILegoRepository temp, Cart cartService)
+        public CartModel(ILegoRepository temp, Cart cartService, UserManager<IdentityUser> user)
         {
             _repo = temp;
+            _userManager = user;
             Cart = cartService;
         }
+
         public string ReturnUrl { get; set; } = "/";
-        public void OnGet(string returnUrl)
+
+        public async Task OnGetAsync(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
+            var user = await _userManager.GetUserAsync(User);
+            ViewData["UserId"] = user?.Id;
         }
+        //public void OnGet(string returnUrl)
+        //{
+        //    ReturnUrl = returnUrl ?? "/";
+        //}
 
 
         public IActionResult OnPost(int productId, string returnUrl)

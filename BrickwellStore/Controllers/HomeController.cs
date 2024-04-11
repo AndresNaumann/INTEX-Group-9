@@ -160,15 +160,23 @@ namespace BrickwellStore.Controllers
             return View();
         }
 
+        public int GenerateTransactionId()
+        {
+            Random random = new Random();
+            int min = 100000000; // The smallest 9-digit number
+            int max = 999999999; // The largest 9-digit number
+            return random.Next(min, max);
+        }
+
         [Authorize]
 
         [HttpGet]
-        public async Task<IActionResult> FinishCheckout()
+        public async Task<IActionResult> FinishCheckout(string id)
         {
-            var currentUser = await _userManager.GetUserAsync(User);
-            string userId = currentUser?.Id;
+            //var currentUser = await _userManager.GetUserAsync(User);
+            //string userId = currentUser?.Id;
 
-            var curCustomer = _repo.GetCustomerByUserId(userId);
+            var curCustomer = _repo.GetCustomerByUserId(id);
 
             if (curCustomer != null)
             {
@@ -178,7 +186,7 @@ namespace BrickwellStore.Controllers
             {
                 var model = new Customer
                 {
-                    UserId = userId
+                    UserId = id
                 };
 
                 _repo.AddUser(model);
@@ -190,11 +198,12 @@ namespace BrickwellStore.Controllers
 
         [HttpPost]
         public async Task<IActionResult> FinishCheckout(Customer customer, Order order)
-        {
-            var curCustomer = _repo.GetCustomerByUserId(customer.UserId);
+        { 
 
             _repo.UpdateUser(customer.CustomerId);
             _repo.SaveChanges();
+
+            var curCustomer = _repo.GetCustomerByUserId(customer.UserId);
 
             if (curCustomer == null)
             {
@@ -223,8 +232,11 @@ namespace BrickwellStore.Controllers
 
             var updatedCustomer = await _repo.GetCustomerByIdAsync(customer.CustomerId);
 
+            int newTransId = GenerateTransactionId();
+
             var newOrder = new Order
             {
+                TransactionId = newTransId,
                 CustomerId = curCustomer.CustomerId,
                 Amount = (float)amount,
                 Date = formattedDate,
@@ -234,6 +246,23 @@ namespace BrickwellStore.Controllers
                 Fraud = isFraud,
                 IsCompleted = false,
             };
+
+            var cartItems = _cart.Lines;
+
+            foreach(var i in cartItems)
+            {
+                var lineItem = new LineItem
+                {
+                    TransactionId = newTransId,
+                    ProductId = i.Product.ProductId,
+                    Quantity = i.Quantity,
+                    Rating = 5,
+                };
+
+                _repo.AddLineItem(lineItem);
+            }
+
+            _repo.SaveChanges();
 
             _cart.Clear();
 
