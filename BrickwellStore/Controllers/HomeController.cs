@@ -11,6 +11,7 @@ using System.Drawing.Printing;
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
 using SQLitePCL;
+using Microsoft.AspNetCore.Hosting;
 
 namespace BrickwellStore.Controllers
 {
@@ -20,16 +21,21 @@ namespace BrickwellStore.Controllers
         private readonly ILogger<HomeController> _logger;
         private ILegoRepository _repo;
         private UserManager<IdentityUser> _userManager;
+        private readonly IWebHostEnvironment _environment;
 
-        public HomeController(ILegoRepository temp, UserManager<IdentityUser> userManager, ILogger<HomeController> logger)
+        public HomeController(ILegoRepository temp, UserManager<IdentityUser> userManager, ILogger<HomeController> logger, IWebHostEnvironment environment)
         {
             _repo = temp;
             _userManager = userManager;
             _logger = logger;
+            _environment = environment;
+
+            string modelPath = Path.Combine(_environment.ContentRootPath, "fraud_model.onnx");
+
 
             try
             {
-                _session = new InferenceSession("\\\\Mac\\Home\\Documents\\GitHub\\INTEX-Group-9\\BrickwellStore\\fraud_model.onnx");
+                _session = new InferenceSession(modelPath);
                 _logger.LogInformation("NNX model loaded successfully.");
             }
             catch (Exception ex)
