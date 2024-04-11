@@ -309,13 +309,14 @@ namespace BrickwellStore.Controllers
             int defaultPageSize = 5;
 
             int pageSize = itemsPerPage ?? defaultPageSize;
-
+            var productFiler = productColor;
             var productsQuery = _repo.Products
                 .Where(x => (x.PrimaryColor == productColor || x.SecondaryColor == productColor) || productColor == null);
 
             if (!string.IsNullOrEmpty(productCategory))
             {
                 productsQuery = productsQuery.Where(x => x.Category == productCategory);
+                productFiler = productCategory;
             }
 
             var Blah = new ProductsListViewModel
@@ -330,19 +331,71 @@ namespace BrickwellStore.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = productColor == null
-                        ? _repo.Products.Count()
-                        : productsQuery.Count()
-                },
+                    TotalItems = productFiler == null
+                    ? _repo.Products.Count()
+                    : productsQuery.Count()
+                    
+        },
 
                 CurrentProductColor = productColor,
                 CurrentProductCategory = productCategory
-            };
+    };
 
             return View(Blah);
-        }
+}
 
-        public async Task<IActionResult> OrderHistory(int pageNum)
+
+//public IActionResult Product(int pageNum, string? productColor, string? productCategory, int? itemsPerPage)
+//{
+//    int defaultPageSize = 5;
+//    int pageSize = itemsPerPage ?? defaultPageSize;
+
+//    var productsQuery = _repo.Products
+//        .Where(x => (x.PrimaryColor == productColor || x.SecondaryColor == productColor) || productColor == null);
+
+//    if (!string.IsNullOrEmpty(productCategory))
+//    {
+//        productsQuery = productsQuery.Where(x => x.Category == productCategory);
+//    }
+
+//    int totalItems;
+
+//    if (!string.IsNullOrEmpty(productCategory))
+//    {
+//        totalItems = productColor == null
+//            ? _repo.Products.Count()
+//            : productsQuery.Count();
+//    }
+//    else
+//    {
+//        totalItems = productCategory == null
+//            ? _repo.Products.Count()
+//            : productsQuery.Count();
+//    }
+
+//    var Blah = new ProductsListViewModel
+//    {
+//        Products = productsQuery
+//            .OrderBy(x => x.PrimaryColor == productColor ? 0 : 1) // Order by primary color first
+//            .ThenBy(x => x.Name) // Then order by name
+//            .Skip((pageNum - 1) * pageSize)
+//            .Take(pageSize),
+
+//        PaginationInfo = new PaginationInfo
+//        {
+//            CurrentPage = pageNum,
+//            ItemsPerPage = pageSize,
+//            TotalItems = totalItems
+//        },
+
+//        CurrentProductColor = productColor,
+//        CurrentProductCategory = productCategory
+//    };
+
+//    return View(Blah);
+//}
+
+public async Task<IActionResult> OrderHistory(int pageNum)
         {
             var currentUser = await _userManager.GetUserAsync(User);
             string userId = currentUser?.Id;
