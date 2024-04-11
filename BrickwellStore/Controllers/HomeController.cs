@@ -160,7 +160,6 @@ namespace BrickwellStore.Controllers
             return View();
         }
 
-        [Authorize]
 
         [HttpGet]
         public async Task<IActionResult> FinishCheckout()
@@ -191,9 +190,9 @@ namespace BrickwellStore.Controllers
         [HttpPost]
         public async Task<IActionResult> FinishCheckout(Customer customer, Order order)
         {
-            var curCustomer = _repo.GetCustomerByUserId(customer.UserId);
+            var curCustomer = _repo.GetCustomerById(customer.CustomerId);
 
-            _repo.UpdateUser(customer.CustomerId);
+            _repo.UpdateUser(curCustomer.CustomerId);
             _repo.SaveChanges();
 
             if (curCustomer == null)
@@ -227,7 +226,7 @@ namespace BrickwellStore.Controllers
             {
                 CustomerId = curCustomer.CustomerId,
                 Amount = (float)amount,
-                Date = formattedDate,
+                Date = date,
                 TransactionType = "Credit Card",
                 TransactionCountry = updatedCustomer.Country,
                 ShippingAddress = updatedCustomer.Address1 + " " + updatedCustomer.Address2 + ", " + updatedCustomer.City + ", " + updatedCustomer.State + " " + updatedCustomer.Zip,
@@ -235,18 +234,36 @@ namespace BrickwellStore.Controllers
                 IsCompleted = false,
             };
 
+            _repo.AddOrder(newOrder);
+            _repo.SaveChanges();
+
+            var cartItems = _cart.Lines;
+
+            Order mostRecentOrder = _repo.GetMostRecentOrder();
+
+            foreach (var i in  cartItems)
+            {
+                var newLine = new LineItem
+                {
+                    TransactionId = mostRecentOrder.TransactionId,
+                    ProductId = i.Product.ProductId,
+                    Quantity = i.Quantity,
+                    Rating = 5,
+                };
+
+                _repo.AddLineItem(newLine);
+            }
+
+            _repo.SaveChanges();
+
             _cart.Clear();
 
             if (fraudPrediction == "Fraud")
             {
-                _repo.AddOrder(newOrder);
-                _repo.SaveChanges();
                 return View("PendingTransaction", newOrder);
             }
             else if (fraudPrediction == "Not Fraud")
             {
-                _repo.AddOrder(newOrder);
-                _repo.SaveChanges();
                 return View("ThankYou", newOrder);
             }
             else

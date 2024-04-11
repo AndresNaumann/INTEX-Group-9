@@ -11,6 +11,7 @@
         Customer? GetCustomerByUserId(string userId);
         Product? GetProductById(int id);
         Order? GetOrderById(int id);
+        Order? GetMostRecentOrder();
         LineItem? GetLineItemById(int id);
         IQueryable<Product> GetRecommendations(int productId);
         IEnumerable<Product> GetCustomerRecommendations(int customerId);

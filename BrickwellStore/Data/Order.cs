@@ -11,7 +11,7 @@ namespace BrickwellStore.Data
         [ForeignKey("CustomerId")]
         public int? CustomerId { get; set; }
         public Customer? Customer { get; set; }
-        public string? Date { get; set; }
+        public DateTime? Date { get; set; }
         public string? DayOfWeek { get; set; }
         public string? Time { get; set; }
         public string? EntryMode { get; set; }

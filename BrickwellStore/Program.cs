@@ -65,6 +65,17 @@ app.UseStaticFiles();
 
 app.UseSession();
 
+//app.Use(async (ctx, next) =>
+//{
+//    ctx.Response.Headers.Append("Content-Security-Policy", // TODO: Keep this updated!
+//                                "default-src 'self';" +
+//                                "connect-src 'self';" +
+//                                "script-src 'self' 'sha256-m1igTNlg9PL5o60ru2HIIK6OPQet2z9UgiEAhCyg/RU=';" +
+//                                "img-src 'self' https://m.media-amazon.com/ https://www.lego.com/ https://images.brickset.com/ https://www.brickeconomy.com/;" +
+//                                "style-src 'self' 'unsafe-inline';");
+//    await next();
+//});
+
 app.UseRouting();
 
 app.UseAuthentication();

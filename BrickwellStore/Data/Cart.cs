@@ -50,6 +50,27 @@ namespace BrickwellStore.Data
             public double Price { get; set; }
 
         }
+
+        // New Method Here
+
+        public List<LineItem> CreateLineItems()
+        {
+            List<LineItem> lineItems = new List<LineItem>(); 
+
+            foreach (var line in Lines)
+            {
+                LineItem item = new LineItem
+                {
+                    ProductId = line.Product.ProductId,
+                    Quantity = line.Quantity,
+                    Rating = 5,
+                };
+
+                lineItems.Add(item);
+            }
+
+            return lineItems;
+        }
     }
 }
 

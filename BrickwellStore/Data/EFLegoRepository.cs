@@ -136,6 +136,12 @@ namespace BrickwellStore.Data
             }
         }
 
+        public Order? GetMostRecentOrder()
+        {
+            Order mostRecentOrder = _context.Orders.OrderByDescending(t => t.Date).FirstOrDefault();
+            return mostRecentOrder;
+        }
+
         public void AddOrder(Order order)
         {
             _context.Orders.Add(order);

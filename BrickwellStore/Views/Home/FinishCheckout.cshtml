@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-6">
 
-            <form asp-action="FinishCheckout" method="post">
+            <form method="post">
                 <label asp-for="UserId">User ID: @Model.UserId</label><br>
                 <input type="hidden" asp-for="UserId"><br>
                 <input type="hidden" asp-for="CustomerId" />
@@ -93,7 +93,7 @@
                 <label asp-for="CardholderName">Cardholder Name:</label><br>
                 <input asp-for="CardholderName" type="text" required /><br>
 
-                <button type="submit">Submit</button>
+                <button class="btn btn-primary" type="submit">Submit</button>
              </form>
         </div>
         <div class="col-md-6">
