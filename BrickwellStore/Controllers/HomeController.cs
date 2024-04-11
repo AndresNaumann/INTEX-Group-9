@@ -12,6 +12,7 @@ using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
 using SQLitePCL;
 using Microsoft.AspNetCore.Hosting;
+using System.Linq;
 
 namespace BrickwellStore.Controllers
 {
