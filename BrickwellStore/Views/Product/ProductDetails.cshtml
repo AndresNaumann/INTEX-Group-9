@@ -4,7 +4,55 @@
 @{
 }
 @model BrickwellStore.Data.ProductDetailViewModel
+
+<div class="container mt-3">
+    <div class="row">
+        <!-- Product Photo Column -->
+        <div class="col-md-4">
+            <img src="@Model.Product.ImgLink" class="img-fluid" alt="Product Image" />
+        </div>
+
+        <div class="col-md-4 text-align-center">
+            <h2>@Model.Product.Name</h2>
+            <h3>$@Model.Product.Price</h3>
+            <form id="form-@Model.Product.ProductId" method="post" asp-page="/Cart">
+                <input type="hidden" asp-for="Product.ProductId" />
+                <button type="submit" class="eighty-width" id="descriptionCartButton">Add to Bag</button>
+            </form>
+            <br />
+            <h4>Description</h4>
+            <ul>
+                <li>Year: @Model.Product.Year</li>
+                <li>Number of Parts: @Model.Product.NumParts</li>
+                <li>Primary Color: @Model.Product.PrimaryColor</li>
+                <li>Secondary Color: @Model.Product.SecondaryColor</li>
+                <li>Description: @Model.Product.Description</li>
+                <li>Category: @Model.Product.Category</li>
+            </ul>
+
+            
+    </div>
+
+        <div class="col-md-4">
+            <h4>Similar Sets</h4>
+            @foreach (var rec in Model.Recommendations)
+            {
+                <div class="custom-col mb-3">
+                    <partial name="ProductSummary" model="rec" />
+                </div>
+            }
+        </div>
+
+
+
+</div>
+
+
+
+@* 
 <div class="card m-1 p-1">
+
+
     <center><img src="@Model.Product.ImgLink" style="width:500px" /></center>
     <h4>
         @Model.Product.Name
@@ -27,7 +75,7 @@
             <div class="recommendation-item">
                 <img src="@rec.ImgLink" style="width:100px" />
                 <p>@rec.Name - $@rec.Price</p>
-                @* <a asp-controller="Product" asp-action="ProductDetails" asp-route-productId="@rec.ProductId">View Details</a> *@
+                <a asp-controller="Product" asp-action="ProductDetails" asp-route-productId="@rec.ProductId">View Details</a>
                 <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@rec.ProductId">View Details</a>
             </div>
         }
@@ -39,3 +87,4 @@
         <a asp-controller="Home" asp-action="Index">Back Home</a>
     </form>
 </div>
+ *@

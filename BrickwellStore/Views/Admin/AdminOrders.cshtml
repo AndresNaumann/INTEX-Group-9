@@ -21,8 +21,8 @@
             <th>Product ID</th>
             <th>Customer ID</th>
             <th>Date</th>
-            <th>View</th>
-            <th>Delete</th>
+@*             <th>View</th>
+            <th>Delete</th>  *@
         </tr>
     </thead>
     <tbody>
@@ -31,10 +31,12 @@
             <tr>
                 <td>@order.TransactionId</td>
                 <td>@order.CustomerId</td>
-                <td>@order.Date</td>
-                <td><button class="btn btn-primary">View</button></td>
-                <td><button class="btn btn-danger">Delete</button></td>
+                <td><a asp-route-id="@order.Date">@order.Date</a></td>
+@*                 <td><button class="btn btn-primary">View</button></td>
+                <td><button class="btn btn-danger">Delete</button></td> *@
             </tr>
         }
     </tbody>
 </table>
+
+
