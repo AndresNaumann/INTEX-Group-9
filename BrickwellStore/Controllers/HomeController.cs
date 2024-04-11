@@ -198,7 +198,7 @@ namespace BrickwellStore.Controllers
 
             int time = DateTime.Now.Hour;
             float amount = (float)customer.CCNumber;
-            int country_of_transaction_United_Kingdom = customer.Country == "England" ? 1 : 0;
+            int country_of_transaction_United_Kingdom = customer.Country == "The United Kingdom" ? 1 : 0;
             int shipping_address_United_Kingdom = country_of_transaction_United_Kingdom;
 
             string fraudPrediction = PredictFraud(time, amount, country_of_transaction_United_Kingdom, shipping_address_United_Kingdom);
