@@ -82,7 +82,19 @@ button{
     height: 50px;
     border-radius: .5em;
     font-weight: 600;
+}
 
+#productSummaryBagButton{
+    width: 180px;
+    height: 40px;
+    border: none;
+    border-radius: .5em;
+    font-weight: 400;
+}
+
+#productSummaryBagButton:hover{
+    font-weight: 600;
+    border: solid var(--brickwell-HBT)
 }
 
 .btn-primary{
@@ -127,7 +139,7 @@ button{
     border: 2px solid var(--brickwell-HBT);
     border-radius: 1rem;
     margin: 10px;
-    width: 210px;
+    width: 229px;
     padding: 10px;      
     height: 300px;
 }
@@ -136,3 +148,4 @@ button{
 .custom-card-image{
     width: 80%;
 }
+
