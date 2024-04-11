@@ -69,6 +69,22 @@ button{
     background-color: var(--brickwell-yellow) !important;
 }
 
+.full-wdith{
+    width: 100%;
+}
+
+.eighty-width{
+    width: 80%;
+
+}
+
+#descriptionCartButton{
+    height: 50px;
+    border-radius: .5em;
+    font-weight: 600;
+
+}
+
 .btn-primary{
     color: var(--brickwell-HBT);
     background-color: var(--brickwell-yellow);
