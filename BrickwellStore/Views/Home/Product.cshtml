@@ -30,21 +30,20 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
             <vc:product-categories />
         </div>
-        <form method="get" action="@Url.Action("Product", "Home")">
-            <label for="itemsPerPage">Items per page:</label>
-            <select id="itemsPerPage" name="itemsPerPage">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-            </select>
-            <button type="submit">Apply</button>
-        </form>
     </div>
+
+
+
+
+    </div>
+
+
+
     <div>
         <button id="clearFiltersBtn">Clear Filters</button>
     </div>
 
-    <heroicon-outline icon="ChevronLeftOutline" class="h-6 w-6 text-orange-500" />
+
 
 
 
@@ -76,8 +75,21 @@
         }
     </div>
 
+
     <div page-model="@Model.PaginationInfo" page-action="Product" page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-productColor="@Model.CurrentProductColor" page-url-productCategory="@Model.CurrentProductCategory" class="btn-group pull-right m-1"></div>
+    <form method="get" action="@Url.Action("Product", "Home")">
+        <label for="itemsPerPage">Items per page:</label>
+        <select id="itemsPerPage" name="itemsPerPage">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+        </select>
+        <button type="submit">Apply</button>
+    </form>
+
+
 </div>
+
 
 
 <script>
