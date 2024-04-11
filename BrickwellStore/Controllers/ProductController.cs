@@ -98,7 +98,11 @@ namespace BrickwellStore.Controllers
             return RedirectToAction("AdminProducts", "Admin");
         }
 
-
+        public IActionResult ViewLineItems(int transactionId)
+        {
+            var items = _repo.LineItems.Where(i => i.TransactionId == transactionId).ToList();
+            return View(items);
+        }
 
     }
 }
