@@ -7,18 +7,37 @@
 <div class="homeBanner"><img src="~/img/Home Banner.png" alt="home banner"/></div>
 <!--stuff-->
 
-<div class="recommendations">
-    <h2>Recommendations for You</h2>
-    @foreach (var product in Model)
-    {
-        <div class="product">
-            <h3>@product.Name</h3>
-            <p>@product.Description</p>
-            <img src="@product.ImgLink" style="width:100px" />
-            <p>@product.Name - $@product.Price</p>
-            <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@product.ProductId">View Details</a>
-            <!-- Include more details as needed, like an image or a link to the product page -->
-        </div>
-    }
+
+
+<div class="container mt-3">
+
+    <style>
+        .custom-col {
+            flex: 0 0 20%;
+            max-width: 20%;
+        }
+        /* This ensures there's no margin or padding issues */
+        .no-gutters {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+            .no-gutters > .col,
+            .no-gutters > [class*="col-"] {
+                padding-right: 0;
+                padding-left: 0;
+            }
+    </style>
+
+    <div class="row no-gutters mt-3">
+        <h2>Recommendations for You</h2>
+        @foreach (var product in Model)
+        {
+            <div class="custom-col mb-3">
+                <partial name="ProductSummary" model="product" />
+            </div>
+        }
+    </div>
 </div>
+
 

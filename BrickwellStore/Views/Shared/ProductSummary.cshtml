@@ -4,7 +4,9 @@
 
 
 @model Product
+<a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@Model.ProductId">
 <div class="custom-card shadow">
+    
     <img src="@Model.ImgLink" class="custom-card-image" />
     $@Model.Price
     <p class="card-title">
@@ -28,6 +30,8 @@
         <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
         <button type="submit" class="btn-sm">Add to Bag</button>
         <br />
-        <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@Model.ProductId">View Details</a>
-    </form>
-</div>
+
+        </form>
+
+    </div>
+</a>
