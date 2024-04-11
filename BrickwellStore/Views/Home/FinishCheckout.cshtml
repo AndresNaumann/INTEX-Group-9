@@ -99,8 +99,9 @@
         </div>
     </div>
 </div>
-
-<button type="submit">Submit</button>
+<form asp-page-handler="SubmitOrder" method="post">
+    <button type="submit">Submit</button>
+</form>
 
 <div class="text-center" id="predictionResult">
     @if (TempData["Prediction"] != null)
