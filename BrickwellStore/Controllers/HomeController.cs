@@ -322,14 +322,13 @@ namespace BrickwellStore.Controllers
             int defaultPageSize = 5;
 
             int pageSize = itemsPerPage ?? defaultPageSize;
-            var productFilters = productColor;
+
             var productsQuery = _repo.Products
                 .Where(x => (x.PrimaryColor == productColor || x.SecondaryColor == productColor) || productColor == null);
 
             if (!string.IsNullOrEmpty(productCategory))
             {
                 productsQuery = productsQuery.Where(x => x.Category == productCategory);
-                productFilters = productCategory;
             }
 
             var Blah = new ProductsListViewModel
@@ -344,7 +343,7 @@ namespace BrickwellStore.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = productFilters == null
+                    TotalItems = productColor == null
                         ? _repo.Products.Count()
                         : productsQuery.Count()
                 },
