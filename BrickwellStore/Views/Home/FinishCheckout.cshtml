@@ -10,7 +10,7 @@
 
 <h2>Fill out your other information</h2>
 
-<form method="post">
+<form asp-action="FinishCheckout" method="post">
 
     <label asp-for="UserId">User ID: @Model.UserId</label><br>
     <input type="hidden" asp-for="UserId"><br>
@@ -69,3 +69,10 @@
 
     <button type="submit">Submit</button>
 </form>
+
+<div class="text-center" id="predictionResult">
+    @if (TempData["Prediction"] != null)
+    {
+        @* <h2>Prediction: @TempData["Prediction"]</h2> *@
+    }
+</div>
