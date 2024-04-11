@@ -22,5 +22,6 @@ namespace BrickwellStore.Data
         public string? Bank { get; set; }
         public string? CardType { get; set; }
         public bool? Fraud { get; set; }
+        public bool? IsCompleted { get; set; }
     }
 }
