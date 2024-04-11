@@ -70,11 +70,9 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-//app.MapControllerRoute("pagenumandcolor", "{productColor}/{pageNum}", new { Controller = "Home", action = "Product" });
 app.MapControllerRoute("productPagination", "Product/{pageNum}", new { Controller = "Home", action = "Product", pageNum = 1 });
-app.MapControllerRoute("productPagination", "Product/{pageNum}", new { Controller = "Home", action = "Product", pageNum = 1 });
-
-//app.MapControllerRoute("productColor", "{productColor}", new { Controller = "Home", action = "Product", pageNum = 1 });
+app.MapControllerRoute("pagenumandcolor", "{productColor}/{pageNum}", new { Controller = "Home", action = "Product" });
+app.MapControllerRoute("pagenumandcategory", "{productCategory}/{pageNum}", new { Controller = "Home", action = "Product" });
 
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
