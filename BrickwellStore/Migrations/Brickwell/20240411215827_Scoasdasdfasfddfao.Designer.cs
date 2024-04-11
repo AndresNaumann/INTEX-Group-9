@@ -3,6 +3,7 @@ using System;
 using BrickwellStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BrickwellStore.Migrations.Brickwell
 {
     [DbContext(typeof(BrickwellContext))]
-    partial class BrickwellContextModelSnapshot : ModelSnapshot
+    [Migration("20240411215827_Scoasdasdfasfddfao")]
+    partial class Scoasdasdfasfddfao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -105,6 +108,9 @@ namespace BrickwellStore.Migrations.Brickwell
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("OrderTransactionId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("INTEGER");
 
@@ -118,6 +124,8 @@ namespace BrickwellStore.Migrations.Brickwell
                         .HasColumnType("INTEGER");
 
                     b.HasKey("LineId");
+
+                    b.HasIndex("OrderTransactionId");
 
                     b.HasIndex("ProductId");
 
@@ -238,11 +246,19 @@ namespace BrickwellStore.Migrations.Brickwell
 
             modelBuilder.Entity("BrickwellStore.Data.LineItem", b =>
                 {
+                    b.HasOne("BrickwellStore.Data.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderTransactionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BrickwellStore.Data.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Order");
 
                     b.Navigation("Product");
                 });

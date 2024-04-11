@@ -7,6 +7,7 @@ namespace BrickwellStore.Data
     public class Order
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int TransactionId { get; set; }
         [ForeignKey("CustomerId")]
         public int? CustomerId { get; set; }

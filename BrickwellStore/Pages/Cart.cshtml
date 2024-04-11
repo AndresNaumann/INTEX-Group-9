@@ -9,6 +9,8 @@
 
 <h2>Your Cart</h2>
 
+<h4>ID: @{var userId = ViewData["UserId"];} @userId</h4>
+
 <table class="table table-boardered table-striped">
 
     <thead>
@@ -52,5 +54,5 @@
 
 <div class="text-center">
     <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
-    <a class="btn btn-primary" asp-controller="Home" asp-action="FinishCheckout">Checkout</a>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="FinishCheckout" asp-route-id="@userId">Checkout</a>
 </div>

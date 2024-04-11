@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-6">
 
-            <form asp-action="FinishCheckout" method="post">
+            <form method="post">
                 <label asp-for="UserId">User ID: @Model.UserId</label><br>
                 <input type="hidden" asp-for="UserId"><br>
                 <input type="hidden" asp-for="CustomerId" />
