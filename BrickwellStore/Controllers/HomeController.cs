@@ -137,12 +137,12 @@ namespace BrickwellStore.Controllers
             return View(); 
         }
 
-        [Authorize(Roles = "Admin")]
         public IActionResult AboutUs()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult Checkout()
         {
             return View();
