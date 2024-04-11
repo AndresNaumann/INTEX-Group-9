@@ -155,12 +155,12 @@ namespace BrickwellStore.Controllers
             return View();
         }
 
-
-        [Authorize]
         public IActionResult Secrets()
         {
             return View();
         }
+
+        [Authorize]
 
         [HttpGet]
         public async Task<IActionResult> FinishCheckout()
@@ -189,9 +189,12 @@ namespace BrickwellStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult FinishCheckout(Customer customer, Order order)
+        public async Task<IActionResult> FinishCheckout(Customer customer, Order order)
         {
             var curCustomer = _repo.GetCustomerByUserId(customer.UserId);
+
+            _repo.UpdateUser(customer.CustomerId);
+            _repo.SaveChanges();
 
             if (curCustomer == null)
             {
@@ -218,14 +221,18 @@ namespace BrickwellStore.Controllers
                 isFraud = true;
             }
 
+            var updatedCustomer = await _repo.GetCustomerByIdAsync(customer.CustomerId);
+
             var newOrder = new Order
             {
                 CustomerId = curCustomer.CustomerId,
                 Amount = (float)amount,
                 Date = formattedDate,
                 TransactionType = "Credit Card",
-                ShippingAddress = curCustomer.Address1,
+                TransactionCountry = updatedCustomer.Country,
+                ShippingAddress = updatedCustomer.Address1 + " " + updatedCustomer.Address2 + ", " + updatedCustomer.City + ", " + updatedCustomer.State + " " + updatedCustomer.Zip,
                 Fraud = isFraud,
+                IsCompleted = false,
             };
 
             _cart.Clear();
@@ -318,9 +325,32 @@ namespace BrickwellStore.Controllers
             return View(Blah);
         }
 
+        public async Task<IActionResult> OrderHistory(int pageNum)
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            string userId = currentUser?.Id;
+            var currentCustomer = _repo.GetCustomerByUserId(userId);
 
-        // ADDING A PRODUCT -------------------------------------------
 
+            int pageSize = 10;
+            var MyOrders = new ProductsListViewModel
+            {
+                Orders = _repo.Orders
+                .Where(u => u.CustomerId == currentCustomer.CustomerId)
+                .OrderBy(x => x.Date)
+               .Skip((pageNum - 1) * pageSize)
+               .Take(pageSize),
+
+                PaginationInfo = new PaginationInfo
+                {
+                    CurrentPage = pageNum,
+                    ItemsPerPage = pageSize,
+                    TotalItems = _repo.Orders.Count(u => u.CustomerId == currentCustomer.CustomerId)
+                },
+            };
+
+            return View(MyOrders);
+        }
 
 
         // EDITING ----------------------------------------------------

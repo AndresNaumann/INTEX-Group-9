@@ -54,10 +54,25 @@ namespace BrickwellStore.Data
             }
         }
 
+        public async Task<Customer> GetCustomerByIdAsync(int id)
+        {
+            try
+            {
+                var customer = _context.Customers.Single(c => c.CustomerId == id);
+                return customer;
+            }
+            catch (InvalidOperationException)
+            {
+                // Handle the case where the customer is not found
+                return null;
+            }
+        }
+
         public void UpdateUser(int id)
         {
             var customer = GetCustomerById(id);
             _context.Customers.Update(customer);
+            _context.SaveChanges();
         }
 
         public void DeleteUser(int id)
@@ -138,6 +153,24 @@ namespace BrickwellStore.Data
             if (order != null)
             {
                 _context.Orders.Remove(order);
+            }
+        }
+
+        public void ApproveOrder(int id)
+        {
+            var order = GetOrderById(id);
+            if (order != null)
+            {
+                order.Fraud = false;
+            }
+
+        }
+        public void CompleteOrder(int id)
+        {
+            var order = GetOrderById(id);
+            if (order != null)
+            {
+                order.IsCompleted = true;
             }
         }
 

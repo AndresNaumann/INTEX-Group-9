@@ -3,17 +3,10 @@
 *@
 @{
 }
+
 @model ProductsListViewModel
 
-<h1>Orders (Admin View)</h1>
-
-@* @foreach (Product p in Model.Products)
-{
-    <partial name="ProductSummary" model="p" />
-}
-
-<div page-model="@Model.PaginationInfo" page-action="Product" page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-productColor="@Model.CurrentProductColor" class="btn-group pull-right m-1"></div>
- *@
+<h2>My Order History</h2>
 
 <table class="table">
     <thead>
@@ -21,7 +14,6 @@
             <th>Order ID</th>
             <th>Customer ID</th>
             <th>Date</th>
-            <th>Fraud?</th>
             <th>Completion Status</th>
             <th>View Order</th>
         </tr>
@@ -33,12 +25,23 @@
                 <td>@order.TransactionId</td>
                 <td>@order.CustomerId</td>
                 <td><a asp-route-id="@order.Date">@order.Date</a></td>
-                <td>@order.Fraud</td>
+                @if (order.Fraud == true)
+                {
+                    <td>Pending</td>
+                } else
+                {
+                    if (order.IsCompleted == false)
+                    {
+                        <td>Not Completed Yet</td>
+                    } else
+                    {
+                        <td>Complete</td>
+                    }
+                }
                 <td>@order.IsCompleted</td>
-                <td><a class="btn btn-primary" asp-controller="Order" asp-action="OrderDetails" asp-route-id="@order.TransactionId">View</a></td>
+                <td><a class="btn btn-primary" asp-controller="Order" asp-action="ViewOrder" asp-route-id="@order.TransactionId">View</a></td>
             </tr>
         }
     </tbody>
 </table>
-
 
