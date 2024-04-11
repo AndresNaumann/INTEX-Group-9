@@ -40,7 +40,9 @@
             <button type="submit">Apply</button>
         </form>
     </div>
-
+    <div>
+        <button id="clearFiltersBtn">Clear Filters</button>
+    </div>
 
     <heroicon-outline icon="ChevronLeftOutline" class="h-6 w-6 text-orange-500" />
 
@@ -76,3 +78,11 @@
 
     <div page-model="@Model.PaginationInfo" page-action="Product" page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-productColor="@Model.CurrentProductColor" page-url-productCategory="@Model.CurrentProductCategory" class="btn-group pull-right m-1"></div>
 </div>
+
+
+<script>
+    document.getElementById('clearFiltersBtn').addEventListener('click', function () {
+        // Redirect to the same page without any query parameters
+        window.location.href = window.location.pathname;
+    });
+</script>
