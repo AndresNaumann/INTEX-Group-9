@@ -6,6 +6,8 @@
 
 @model Product
 
+<h2>Edit Product Details</h2>
+
 <form method="post">
     <input type="hidden" asp-for="ProductId" />
 
@@ -46,6 +48,6 @@
         <option value="Other">Other</option>
     </select><br><br><br>
 
-    <button type="submit">Submit</button>
+    <button class="btn btn-success" type="submit">Save Changes</button>
 </form>
 

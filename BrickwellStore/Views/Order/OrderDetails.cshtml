@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Order
+
+<a class="btn btn-primary" asp-controller="Admin" asp-action="AdminOrders">Back</a>
+
+<div class="card m-1 p-1">
+    <h4>
+        @Model.TransactionId
+    </h4>
+    <ul>
+        <li>User ID: @Model.TransactionId</li>
+        <li>Customer ID: @Model.CustomerId</li>
+        <li>Amount: @Model.Amount</li>
+        <li>Email: @Model.TransactionCountry</li>
+        <li>Phone: @Model.ShippingAddress</li>
+        <li>Fraud?: @Model.Fraud</li>
+
+        @if (@Model.Fraud == false)
+        {
+            <a class="btn btn-success" asp-controller="Order" asp-action="CompleteOrder" asp-route-id="@Model.TransactionId">Complete Order</a>
+        } else
+        {
+            <a class="btn btn-success" asp-controller="Order" asp-action="ApproveOrder" asp-route-id="@Model.TransactionId">Not Fraud</a>
+        }
+
+        <a class="btn btn-danger" asp-controller="Order" asp-action="DeleteOrder" asp-route-id="@Model.TransactionId">Delete</a>
+    </ul>
+</div>

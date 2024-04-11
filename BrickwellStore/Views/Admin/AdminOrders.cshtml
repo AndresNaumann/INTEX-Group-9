@@ -18,11 +18,11 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Product ID</th>
+            <th>Order ID</th>
             <th>Customer ID</th>
             <th>Date</th>
-@*             <th>View</th>
-            <th>Delete</th>  *@
+            <th>Fraud?</th>
+            <th>View Order</th>
         </tr>
     </thead>
     <tbody>
@@ -32,8 +32,8 @@
                 <td>@order.TransactionId</td>
                 <td>@order.CustomerId</td>
                 <td><a asp-route-id="@order.Date">@order.Date</a></td>
-@*                 <td><button class="btn btn-primary">View</button></td>
-                <td><button class="btn btn-danger">Delete</button></td> *@
+                <td>@order.Fraud</td>
+                <td><a class="btn btn-primary" asp-controller="Order" asp-action="OrderDetails" asp-route-id="@order.TransactionId">View</a></td>
             </tr>
         }
     </tbody>

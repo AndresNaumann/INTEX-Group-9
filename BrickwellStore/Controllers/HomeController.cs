@@ -161,7 +161,6 @@ namespace BrickwellStore.Controllers
             return View();
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> FinishCheckout()
         {
@@ -193,11 +192,11 @@ namespace BrickwellStore.Controllers
         {
             var curCustomer = _repo.GetCustomerByUserId(customer.UserId);
 
-            //if (curCustomer == null)
-            //{
-            //    _repo.AddUser(customer);
-            //    _repo.SaveChanges();
-            //}
+            if (curCustomer == null)
+            {
+                _repo.AddUser(customer);
+                _repo.SaveChanges();
+            }
 
             int time = DateTime.Now.Hour;
             // put cart total amount right here
@@ -208,13 +207,27 @@ namespace BrickwellStore.Controllers
             string fraudPrediction = PredictFraud(time, amount, country_of_transaction_United_Kingdom, shipping_address_United_Kingdom);
             TempData["Prediction"] = fraudPrediction;
 
+            DateTime date = DateTime.Now;
+            string formattedDate = date.ToString("MM/dd/yyyy");
+
+            bool isFraud = false;
+
+            if (fraudPrediction == "Fraud")
+            {
+                isFraud = true;
+            }
+
             var newOrder = new Order
             {
                 CustomerId = curCustomer.CustomerId,
                 Amount = (float)amount,
+                Date = formattedDate,
                 TransactionType = "Credit Card",
                 ShippingAddress = curCustomer.Address1,
+                Fraud = isFraud,
             };
+
+            _cart.Clear();
 
             if (fraudPrediction == "Fraud")
             {
