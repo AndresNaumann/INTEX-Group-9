@@ -22,13 +22,9 @@
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
             </li>
+
             <li class="nav-item">
-                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                </form>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link custom-nav-link" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fa-shopping-bag"></i></a>
+                <a class="nav-link custom-nav-link" asp-area="" asp-controller="Cart" asp-action="Index"><img style="height: 25px" src="~/img/bagVector.svg" alt="bag icon" /></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link custom-nav-link" asp-area="" asp-controller="Home" asp-action="OrderHistory">Order History</a>
@@ -39,13 +35,9 @@
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
             </li>
+
             <li class="nav-item">
-                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                </form>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link custom-nav-link" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fa-shopping-bag"></i></a>
+                <a class="nav-link custom-nav-link" asp-area="" asp-controller="Cart" asp-action="Index"><img style="height: 25px" src="~/img/bagVector.svg" alt="bag icon" /></a>
             </li>
 
             @if (Context.Customers.Any(c => c.UserId == user.Id)) {
@@ -65,7 +57,7 @@ else
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
     <li class="nav-item">
-            <a class="nav-link custom-nav-link" asp-area="" asp-controller="Cart" asp-action="Index"><img style="height: 16px" src="~/img/bagVector.svg" alt="bag icon" /></a>
+            <a class="nav-link custom-nav-link" asp-area="" asp-controller="Cart" asp-action="Index"><img style="height: 25px" src="~/img/bagVector.svg" alt="bag icon" /></a>
      </li>
 }
 </ul>
