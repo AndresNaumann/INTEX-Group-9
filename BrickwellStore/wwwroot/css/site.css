@@ -38,6 +38,9 @@ body {
   background-color:var(--brickwell-background);
   
 }
+h1{
+    padding-top:10px;
+}
 
 .brickwell-yellow-bg {
     background-color: var(--brickwell-yellow);
@@ -149,3 +152,6 @@ button{
     width: 80%;
 }
 
+.p-bold{
+    font-weight: 900;
+}

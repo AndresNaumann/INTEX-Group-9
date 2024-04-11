@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sadieeyre\\source\\repos\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj": {}
+    "C:\\Users\\Alexander\\Desktop\\Program\\Repos\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sadieeyre\\source\\repos\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj": {
+    "C:\\Users\\Alexander\\Desktop\\Program\\Repos\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sadieeyre\\source\\repos\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
+        "projectUniqueName": "C:\\Users\\Alexander\\Desktop\\Program\\Repos\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
         "projectName": "BrickwellStore",
-        "projectPath": "C:\\Users\\sadieeyre\\source\\repos\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
-        "packagesPath": "C:\\Users\\sadieeyre\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sadieeyre\\source\\repos\\INTEX-Group-9\\BrickwellStore\\obj\\",
+        "projectPath": "C:\\Users\\Alexander\\Desktop\\Program\\Repos\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
+        "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alexander\\Desktop\\Program\\Repos\\INTEX-Group-9\\BrickwellStore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sadieeyre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -122,7 +127,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
