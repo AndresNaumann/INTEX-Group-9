@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Order
+
+<a class="btn btn-primary" asp-controller="Home" asp-action="OrderHistory">Back</a>
+
+<div class="card m-1 p-1">
+    <h4>
+        @Model.TransactionId
+    </h4>
+    <ul>
+        <li>User ID: @Model.TransactionId</li>
+        <li>Customer ID: @Model.CustomerId</li>
+        <li>Amount: @Model.Amount</li>
+        <li>Phone: @Model.ShippingAddress</li>
+        <li>Email: @Model.TransactionCountry</li>
+        <li>Pending?: @Model.!Fraud</li>
+        <li>Completed?: @Model.IsCompleted</li>
+    </ul>
+</div>

@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@inject BrickwellContext Context;
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
@@ -29,6 +30,9 @@
             <li class="nav-item">
                 <a class="nav-link custom-nav-link" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link custom-nav-link" asp-area="" asp-controller="Home" asp-action="OrderHistory">Order History</a>
+            </li>
         } else
         {
 
@@ -43,6 +47,12 @@
             <li class="nav-item">
                 <a class="nav-link custom-nav-link" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
             </li>
+
+            @if (Context.Customers.Any(c => c.UserId == user.Id)) {
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" asp-area="" asp-controller="Home" asp-action="OrderHistory">Order History</a>
+                </li>
+            }
         }
 
 }

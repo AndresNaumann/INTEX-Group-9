@@ -7,6 +7,7 @@
         public IQueryable<Order> Orders { get; }
         public IQueryable<LineItem> LineItems { get; }
         Customer? GetCustomerById(int id);
+        Task<Customer> GetCustomerByIdAsync(int id);      
         Customer? GetCustomerByUserId(string userId);
         Product? GetProductById(int id);
         Order? GetOrderById(int id);
@@ -22,6 +23,8 @@
         void AddOrder(Order order);
         void UpdateOrder(Order order);
         void DeleteOrder(int id);
+        void ApproveOrder(int id);
+        void CompleteOrder(int id);
         void AddLineItem(LineItem lineItem);
         void UpdateLineItem(LineItem lineItem);
         void DeleteLineItem(int id);

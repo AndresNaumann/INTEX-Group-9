@@ -27,7 +27,6 @@ namespace BrickwellStore.Controllers
 
         // View/Approve/Delete Orders
 
-        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult ViewOrder(int id)
         {
@@ -40,9 +39,38 @@ namespace BrickwellStore.Controllers
         public IActionResult ApproveOrder(int id)
         {
             var order = _repo.GetOrderById(id);
-            order.Fraud = false;
-
             return View(order);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public IActionResult ApproveOrder(Order order)
+        {
+            var orderToApprove = _repo.GetCustomerById(order.TransactionId);
+            _repo.ApproveOrder(order.TransactionId);
+            _repo.SaveChanges();
+            
+            return RedirectToAction("AdminOrders", "Admin");
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public IActionResult CompleteOrder(int id)
+        {
+            var order = _repo.GetOrderById(id);
+            return View(order);
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public IActionResult CompleteOrder(Order order)
+        {
+            var orderToComplete = _repo.GetOrderById(order.TransactionId);
+            _repo.CompleteOrder(order.TransactionId);
+            _repo.SaveChanges();
+
+            return RedirectToAction("AdminOrders", "Admin");
         }
 
         [Authorize(Roles = "Admin")]
@@ -50,8 +78,6 @@ namespace BrickwellStore.Controllers
         public IActionResult DeleteOrder(int id)
         {
             var orderToDelete = _repo.GetOrderById(id);
-            orderToDelete.Fraud = false;
-
             return View(orderToDelete);
         }
 

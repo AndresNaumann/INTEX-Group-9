@@ -16,13 +16,17 @@
         <li>User ID: @Model.TransactionId</li>
         <li>Customer ID: @Model.CustomerId</li>
         <li>Amount: @Model.Amount</li>
-        <li>Email: @Model.TransactionCountry</li>
         <li>Phone: @Model.ShippingAddress</li>
+        <li>Email: @Model.TransactionCountry</li>
         <li>Fraud?: @Model.Fraud</li>
+        <li>Completed?: @Model.IsCompleted</li>
 
-        @if (@Model.Fraud == false)
+        @if (Model.Fraud == false)
         {
-            <a class="btn btn-success" asp-controller="Order" asp-action="CompleteOrder" asp-route-id="@Model.TransactionId">Complete Order</a>
+            if (Model.IsCompleted == false)
+            {
+                <a class="btn btn-success" asp-controller="Order" asp-action="CompleteOrder" asp-route-id="@Model.TransactionId">Complete Order</a>
+            }
         } else
         {
             <a class="btn btn-success" asp-controller="Order" asp-action="ApproveOrder" asp-route-id="@Model.TransactionId">Not Fraud</a>
