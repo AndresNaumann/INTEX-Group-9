@@ -101,6 +101,8 @@ namespace BrickwellStore.Controllers
             return View(user);
         }
 
+        // Grant Admin Privileges
+
         [HttpGet]
         public async Task<IActionResult> MakeAdmin(string id)
         {
@@ -128,12 +130,41 @@ namespace BrickwellStore.Controllers
             return RedirectToAction("AdminUsers", "Admin");
         }
 
+        // Remove Admin Privileges
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveAdmin(string id)
+        {
+            var toBePLeb = await _userManager.FindByIdAsync(id);
+
+            return View(toBePLeb);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveAdmin(IdentityUser user)
+        {
+            var toBePLeb = await _userManager.FindByIdAsync(user.Id);
+
+            if (toBePLeb == null)
+            {
+                return NotFound();
+            }
+
+            var result = await _userManager.RemoveFromRoleAsync(toBePLeb, "Admin"); ;
+            if (result.Succeeded)
+            {
+                return RedirectToAction("AdminUsers", "Admin");
+            }
+
+            return RedirectToAction("AdminUsers", "Admin");
+        }
+
         // Editing and Deleting User Actions are found in the Admin Controller
 
         // FOR EVERYONE TO UPDATE THEIR INFO
 
         [HttpGet]
-        public async Task<IActionResult> EditSelf()
+        public async Task<IActionResult> EditUser()
         {
             var currentUser = await _userManager.GetUserAsync(User);
             string userId = currentUser?.Id;
@@ -150,12 +181,12 @@ namespace BrickwellStore.Controllers
                 return View(model);
             }
 
-            return View(currentCustomer);
+            return View("EditUser", currentCustomer);
 
         }
 
         [HttpPost]
-        public IActionResult EditSelf(Customer customer)
+        public IActionResult EditUser(Customer customer)
         {
             var userToEdit = _repo.GetCustomerById(customer.CustomerId);
 

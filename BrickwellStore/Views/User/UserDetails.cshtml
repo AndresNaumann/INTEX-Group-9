@@ -17,9 +17,20 @@
         <li>Email: @Model.Email</li>
         <li>Phone: @Model.Phone</li>
         <li>Role: @string.Join(", ", Model.Roles)</li>
-        <li><a class="btn btn-info" asp-controller="User" asp-action="MakeAdmin" asp-route-id="@Model.UserId">Make Admin?</a></li>
+
+        <!--Only show this button if the user is not an admin-->
+        @if (!Model.Roles.Contains("Admin"))
+        {
+            <a class="btn btn-info" asp-controller="User" asp-action="MakeAdmin" asp-route-id="@Model.UserId">Make Admin?</a>
+        }
+        else
+        {
+            <a class="btn btn-warning" asp-controller="User" asp-action="RemoveAdmin" asp-route-id="@Model.UserId">Remove Admin Privileges?</a>
+        }
+
+        <a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@Model.UserId">Delete</a>
     </ul>
 
-    @* <a class="btn btn-info" asp-controller="Home" asp-action="EditProduct" asp-route-id="@Model.ProductId">Edit</a> *@
+    @*<a class="btn btn-info" asp-controller="Home" asp-action="EditProduct" asp-route-id="@Model.ProductId">Edit</a> *@
     <a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@Model.UserId">Delete</a>
 </div>

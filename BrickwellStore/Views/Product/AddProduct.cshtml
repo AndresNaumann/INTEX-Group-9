@@ -14,13 +14,13 @@
     <br />
 
     <label asp-for="Year">Year</label><br />
-    <input asp-for="Year" type="number" required /><br /><br />
+    <input asp-for="Year" type="number" min="1900" max="2024" required /><br /><br />
 
     <label asp-for="NumParts">Number of Parts</label><br />
-    <input asp-for="NumParts" type="number" required /><br /><br />
+    <input asp-for="NumParts" min="0" type="number" required /><br /><br />
 
     <label asp-for="Price">Price</label><br />
-    <input asp-for="Price" type="number" step="0.01" required /><br /><br />
+    $<input asp-for="Price" type="number" step="0.01" required /><br /><br />
 
     <label asp-for="ImgLink">Image Link</label><br />
     <input asp-for="ImgLink" type="text" required /><br /><br />
@@ -34,8 +34,17 @@
     <label asp-for="Description">Description</label><br />
     <textarea asp-for="Description" required></textarea><br /><br />
 
-    <label asp-for="Category">Category</label><br />
-    <input asp-for="Category" type="text" required /><br /><br /><br />
+    <label asp-for="Category">Category:</label><br>
+    <select asp-for="Category" required>
+        <option value="">Select...</option>
+        <option value="Harry Potter">Harry Potter</option>
+        <option value="Star Wars">Star Wars</option>
+        <option value="Car">Car</option>
+        <option value="Animal">Animal</option>
+        <option value="Minifig">Minifig</option>
+        <option value="Part">Part</option>
+        <option value="Other">Other</option>
+    </select><br><br><br>
 
     <button type="submit">Submit</button>
 </form>
