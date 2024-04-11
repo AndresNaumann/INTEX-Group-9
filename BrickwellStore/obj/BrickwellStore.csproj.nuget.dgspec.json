@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "\\\\Mac\\Home\\Documents\\GitHub\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj": {}
+    "C:\\Users\\sadieeyre\\source\\repos\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj": {}
   },
   "projects": {
-    "\\\\Mac\\Home\\Documents\\GitHub\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj": {
+    "C:\\Users\\sadieeyre\\source\\repos\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\Mac\\Home\\Documents\\GitHub\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
+        "projectUniqueName": "C:\\Users\\sadieeyre\\source\\repos\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
         "projectName": "BrickwellStore",
-        "projectPath": "\\\\Mac\\Home\\Documents\\GitHub\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
-        "packagesPath": "C:\\Users\\jackcarpenter\\.nuget\\packages\\",
-        "outputPath": "\\\\Mac\\Home\\Documents\\GitHub\\INTEX-Group-9\\BrickwellStore\\obj\\",
+        "projectPath": "C:\\Users\\sadieeyre\\source\\repos\\INTEX-Group-9\\BrickwellStore\\BrickwellStore.csproj",
+        "packagesPath": "C:\\Users\\sadieeyre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sadieeyre\\source\\repos\\INTEX-Group-9\\BrickwellStore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jackcarpenter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sadieeyre\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
