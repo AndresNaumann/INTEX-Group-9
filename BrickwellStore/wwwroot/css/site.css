@@ -4,6 +4,7 @@
     --brickwell-yellow: #FFD43B;
     --brickwell-HBT: #272343;
     --brickwell-background: #FFFFFE;
+    --greyedOut: #F0F0F0;
 }
 
 ::-webkit-scrollbar {
@@ -50,7 +51,10 @@ a{
     text-decoration: none;
     color: var(--brickwell-HBT)
 }
-
+a:hover{
+    font-weight:700;
+    color:var(--brickwell-HBT);
+}
 /*Nav Styles*/
 .navbar .custom-nav-link {
     color: var(--brickwell-HBT) !important;
@@ -71,9 +75,33 @@ button{
     color: var(--brickwell-HBT) !important;
     background-color: var(--brickwell-yellow) !important;
 }
+.btn-primary{
+    color: var(--brickwell-HBT);
+    background-color: var(--brickwell-yellow);
+    border-color: var(--brickwell-HBT);
+}
+
+.btn-primary:hover{
+    font-weight:700;
+    outline: 1px solid var(--brickwell-HBT);
+}
 
 .full-wdith{
-    width: 100%;
+    width: 100% !important;
+}
+
+#loginButtons {
+    width: 100% !important;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: .5em;
+    border: 2px solid var(--greyedOut);
+    background-color: var(--greyedOut) !important;
+}
+
+#loginButtons:hover{
+    font-weight: 900;
+    border: 2px solid var(--brickwell-HBT);
 }
 
 .eighty-width{
@@ -99,12 +127,6 @@ button{
     font-weight: 600;
     border: solid var(--brickwell-HBT)
 }
-
-.btn-primary{
-    color: var(--brickwell-HBT);
-    background-color: var(--brickwell-yellow);
-}
-
 
 
 .bg-primary{
@@ -154,4 +176,28 @@ button{
 
 .p-bold{
     font-weight: 900;
+}
+
+.login-outline{
+    outline: 2px solid var(--brickwell-HBT);
+    padding: 20px;
+    border-radius: .8em;
+    text-align: center;
+
+}
+
+.centered-container {
+    display: flex; /* Enable Flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 80vh;
+}
+
+.close-icon {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 20px; /* Adjust the size as needed */
+    color: #000; /* Adjust the color as needed */
+    cursor: pointer;
 }

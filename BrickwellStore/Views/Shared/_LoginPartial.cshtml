@@ -28,7 +28,7 @@
                 </form>
             </li>
             <li class="nav-item">
-                <a class="nav-link custom-nav-link" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+                <a class="nav-link custom-nav-link" asp-area="" asp-controller="Cart" asp-action="Index">Bag</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link custom-nav-link" asp-area="" asp-controller="Home" asp-action="OrderHistory">Order History</a>
@@ -45,7 +45,7 @@
                 </form>
             </li>
             <li class="nav-item">
-                <a class="nav-link custom-nav-link" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+                <a class="nav-link custom-nav-link" asp-area="" asp-controller="Cart" asp-action="Index">Bag</a>
             </li>
 
             @if (Context.Customers.Any(c => c.UserId == user.Id)) {
@@ -58,14 +58,14 @@
 }
 else
 {
-    <li class="nav-item">
+@*     <li class="nav-item">
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
+    </li> *@
     <li class="nav-item">
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link custom-nav-link" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+        <a class="nav-link custom-nav-link" asp-area="" asp-controller="Cart" asp-action="Index">Bag</a>
      </li>
 }
 </ul>
