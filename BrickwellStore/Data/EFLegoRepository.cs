@@ -1,4 +1,5 @@
 ﻿using static BrickwellStore.Data.Cart;
+using System.Diagnostics;
 
 namespace BrickwellStore.Data
 {
@@ -98,6 +99,39 @@ namespace BrickwellStore.Data
         public void SaveChanges()
         {
             _context.SaveChanges();
+        }
+
+        public IQueryable<Product> GetRecommendations(int productId)
+        {
+            var recommendedProductIds = _context.ProductRecommendations.Where(pr => pr.ProductID == productId).Select(pr => pr.RecommendedProductID);
+
+            var recommendedProducts = _context.Products.Where(p => recommendedProductIds.Contains(p.ProductId)).AsQueryable();
+
+            return recommendedProducts;
+        }
+
+        public IEnumerable<Product> GetCustomerRecommendations(int customerId)
+        {
+            var recommendedProductIds = _context.CustomerRecommendations
+                .Where(cr => cr.CustomerId == customerId)
+                .Select(cr => cr.RecommendedProductId)
+                .ToList();
+
+            // Debugging: check the count and the actual IDs being retrieved
+            Debug.WriteLine($"Total recommended product IDs: {recommendedProductIds.Count}");
+            foreach (var id in recommendedProductIds)
+            {
+                Debug.WriteLine($"Recommended Product ID: {id}");
+            }
+
+            var recommendedProducts = _context.Products
+                .Where(p => recommendedProductIds.Contains(p.ProductId))
+                .ToList();
+
+            // Debugging: check the count of the products returned
+            Debug.WriteLine($"Total recommended products found: {recommendedProducts.Count}");
+
+            return recommendedProducts;
         }
 
     }

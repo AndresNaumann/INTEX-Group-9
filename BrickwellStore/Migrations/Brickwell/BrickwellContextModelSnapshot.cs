@@ -15,7 +15,7 @@ namespace BrickwellStore.Migrations.Brickwell
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
 
             modelBuilder.Entity("BrickwellStore.Data.Customer", b =>
                 {
@@ -24,76 +24,79 @@ namespace BrickwellStore.Migrations.Brickwell
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Address1")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Address2")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Age")
+                    b.Property<int?>("Age")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("BirthDate")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("CCCode")
+                    b.Property<int?>("CCCode")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CCDate")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("CCNumber")
+                    b.Property<int?>("CCNumber")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CardholderName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CustomerFirstName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CustomerLastName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Gender")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("State")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Zip")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("CustomerId");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("BrickwellStore.Data.CustomerRecommendation", b =>
+                {
+                    b.Property<int>("RecId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RecommendedProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("RecId");
+
+                    b.ToTable("CustomerRecommendations");
                 });
 
             modelBuilder.Entity("BrickwellStore.Data.LineItem", b =>
@@ -224,6 +227,23 @@ namespace BrickwellStore.Migrations.Brickwell
                     b.HasKey("ProductId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("BrickwellStore.Data.ProductRecommendation", b =>
+                {
+                    b.Property<int>("RecId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RecommendedProductID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("RecId");
+
+                    b.ToTable("ProductRecommendations");
                 });
 
             modelBuilder.Entity("BrickwellStore.Data.LineItem", b =>
