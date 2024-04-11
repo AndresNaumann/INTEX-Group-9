@@ -12,12 +12,12 @@
             <img src="@Model.Product.ImgLink" class="img-fluid" alt="Product Image" />
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 text-align-center">
             <h2>@Model.Product.Name</h2>
             <h3>$@Model.Product.Price</h3>
             <form id="form-@Model.Product.ProductId" method="post" asp-page="/Cart">
                 <input type="hidden" asp-for="Product.ProductId" />
-                <button type="submit" class="eighty-width" id="descriptionCartButton">Add to Cart!</button>
+                <button type="submit" class="eighty-width" id="descriptionCartButton">Add to Bag</button>
             </form>
             <br />
             <h4>Description</h4>
