@@ -139,8 +139,19 @@ namespace BrickwellStore.Controllers
             string userId = currentUser?.Id;
 
             var currentCustomer = _repo.GetCustomerByUserId(userId);
-       
+            if (currentCustomer == null)
+            {
+                var model = new Customer
+                {
+                    UserId = currentUser.Id
+                };
+
+                _repo.AddUser(model);
+                return View(model);
+            }
+
             return View(currentCustomer);
+
         }
 
         [HttpPost]
@@ -153,19 +164,11 @@ namespace BrickwellStore.Controllers
                 return NotFound();
             } else
             {
-                _repo.UpdateUser(customer.CustomerId);
+                _repo.UpdateUser(userToEdit.CustomerId);
                 _repo.SaveChanges();
 
                 return RedirectToAction("Index", "Home");
             }
-
-            //var result = await _userManager.UpdateAsync(userToEdit);
-            //if (result.Succeeded)
-            //{
-            //    return RedirectToAction("AdminUsers", "Home");
-            //}
-
-            //return RedirectToAction("Index", "Home");
         }
     }
 }
