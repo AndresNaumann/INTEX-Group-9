@@ -237,12 +237,12 @@ namespace BrickwellStore.Controllers
             var newOrder = new Order
             {
                 TransactionId = newTransId,
-                CustomerId = curCustomer.CustomerId,
+                CustomerId = customer.CustomerId,
                 Amount = (float)amount,
                 Date = formattedDate,
                 TransactionType = "Credit Card",
-                TransactionCountry = updatedCustomer.Country,
-                ShippingAddress = updatedCustomer.Address1 + " " + updatedCustomer.Address2 + ", " + updatedCustomer.City + ", " + updatedCustomer.State + " " + updatedCustomer.Zip,
+                TransactionCountry = customer.Country,
+                ShippingAddress = customer.Address1 + " " + customer.Address2 + ", " + customer.City + ", " + customer.State + " " + customer.Zip,
                 Fraud = isFraud,
                 IsCompleted = false,
             };
@@ -255,6 +255,7 @@ namespace BrickwellStore.Controllers
                 {
                     TransactionId = newTransId,
                     ProductId = i.Product.ProductId,
+                    ProductName = i.Product.Name,
                     Quantity = i.Quantity,
                     Rating = 5,
                 };

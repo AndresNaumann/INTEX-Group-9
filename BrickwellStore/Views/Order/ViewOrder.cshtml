@@ -18,7 +18,8 @@
         <li>Amount: @Model.Amount</li>
         <li>Phone: @Model.ShippingAddress</li>
         <li>Email: @Model.TransactionCountry</li>
-        <li>Pending?: @Model.!Fraud</li>
+        <li>Fraudulent?: @Model.Fraud</li>
         <li>Completed?: @Model.IsCompleted</li>
+        <a asp-controller="Product" asp-action="ViewLineItems" asp-route-id="@Model.TransactionId">See Items</a>
     </ul>
 </div>

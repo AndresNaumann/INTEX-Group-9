@@ -27,9 +27,9 @@
         void CompleteOrder(int id);
         void AddLineItem(LineItem lineItem);
         void UpdateLineItem(LineItem lineItem);
+        List<LineItem> GetLineItems(int id);
         void DeleteLineItem(int id);
         void SaveChanges();
-        //Cart? GetCartLine(int cartLineId);
         
     }
 }

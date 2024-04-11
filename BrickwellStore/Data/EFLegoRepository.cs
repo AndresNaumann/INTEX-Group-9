@@ -211,6 +211,11 @@ namespace BrickwellStore.Data
             }
         }
 
+        public List<LineItem> GetLineItems(int id)
+        {
+            return _context.LineItems.Where(i => i.TransactionId == id).ToList();
+        }
+
         // METHOD TO SAVE CHANGES
 
         public void SaveChanges()
