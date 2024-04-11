@@ -196,7 +196,57 @@ namespace BrickwellStore.Controllers
                 _repo.SaveChanges();
             }
 
-            return RedirectToAction("Index");
+            int time = DateTime.Now.Hour;
+            float amount = (float)customer.CCNumber;
+            int country_of_transaction_United_Kingdom = customer.Country == "England" ? 1 : 0;
+            int shipping_address_United_Kingdom = country_of_transaction_United_Kingdom;
+
+            string fraudPrediction = PredictFraud(time, amount, country_of_transaction_United_Kingdom, shipping_address_United_Kingdom);
+            TempData["Prediction"] = fraudPrediction;
+
+            if (fraudPrediction == "Fraud")
+            {
+                return View("PendingTransaction");
+            }
+            else if (fraudPrediction == "Not Fraud")
+            {
+                return View("ThankYou");
+            }
+            else
+            { return View("Index"); }
+
+            
+        }
+
+        private string PredictFraud(int time, float amount, int countryOfTransactionUK, int shippingAddressUK)
+        {
+            var class_type_dict = new Dictionary<int, string>
+            {
+                {0, "Not Fraud" },
+                {1, "Fraud" }
+            };
+
+            // Prepare input data for the ONNX model
+            var input = new List<float> { time, amount, countryOfTransactionUK, shippingAddressUK };
+            var inputTensor = new DenseTensor<float>(input.ToArray(), new[] { 1, input.Count });
+            var inputs = new List<NamedOnnxValue>
+            {
+                NamedOnnxValue.CreateFromTensor("float_input", inputTensor)
+            };
+
+            // Run the model with the input data
+            using (var results = _session.Run(inputs))
+            {
+                var prediction = results.FirstOrDefault(item => item.Name == "output_label")?.AsTensor<long>().ToArray();
+                if (prediction != null && prediction.Length > 0)
+                {
+                    return class_type_dict.GetValueOrDefault((int)prediction[0], "Unknown");
+                }
+                else
+                {
+                    return "Error: Unable to make a prediction";
+                }
+            }
         }
 
         // Product
