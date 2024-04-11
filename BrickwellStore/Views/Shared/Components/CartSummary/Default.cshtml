@@ -11,12 +11,24 @@
             <b><h2>Cart Summary:</h2><br /></b>
             @foreach (var i in @Model.Lines)
             {
-                @i.Product.Name
+                <div>@i.Product.Name (@i.Quantity)</div>
                 <br />
             }
-            <b>Your Cart:</b>@Model.Lines.Sum(x => x.Quantity) item(s)
-            @Model.CalculateTotal().ToString("c")
+            <b>Your Cart: </b>@Model.Lines.Sum(x => x.Quantity) item(s)
+            <br />
+            @{
+                decimal taxRate = 0.05M;
+                decimal subtotal = Model.CalculateTotal();
+                decimal taxAmount = subtotal * taxRate;// 5% tax rate
+                decimal shippingCost = 10.00M; // Fixed shipping cost
+                decimal totalWithTaxAndShipping = subtotal + (subtotal * taxRate) + shippingCost;
 
+
+            }
+            <b>Subtotal:</b>@Model.CalculateTotal().ToString("c")<br />
+            <b>Tax:</b> @taxAmount.ToString("c") <br />
+            <b>Shipping:</b> @shippingCost.ToString("c") <br />
+            <b>Total </b>(including tax and shipping): @totalWithTaxAndShipping.ToString("c")
         </div>
     }
  
