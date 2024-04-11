@@ -7,10 +7,17 @@
 <div class="">
     @if (Model.Lines.Count() > 0 )
     {
-        <small class="navbar-text">
+        <div>
+            <b><h2>Cart Summary:</h2><br /></b>
+            @foreach (var i in @Model.Lines)
+            {
+                @i.Product.Name
+                <br />
+            }
             <b>Your Cart:</b>@Model.Lines.Sum(x => x.Quantity) item(s)
             @Model.CalculateTotal().ToString("c")
-        </small>
+
+        </div>
     }
-    <a class="btn btn-sm btn-secondary navbar-btn" asp-page="/Cart" asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()"><i class="fa fa-shopping-cart"</a>
+ 
 </div>
