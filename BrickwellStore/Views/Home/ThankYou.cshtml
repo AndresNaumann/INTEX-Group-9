@@ -3,6 +3,17 @@
 *@
 @{
 }
+
+@model Order
+
 <h2>Thank you!</h2>
 <p>Please shop with us again!</p>
+
+<h3>Your Order lowkey</h3>
+<ul>
+    <li>Address: @Model.ShippingAddress</li>
+    <li>Total: @Model.Amount</li>
+    <li>Bought by: @Model.CustomerId</li>
+</ul>
+
 <a href="/Home/Index">Return to Home</a>

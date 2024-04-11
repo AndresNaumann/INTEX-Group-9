@@ -22,16 +22,20 @@ namespace BrickwellStore.Controllers
         private ILegoRepository _repo;
         private UserManager<IdentityUser> _userManager;
         private readonly IWebHostEnvironment _environment;
+        private readonly Cart _cart;
+        
 
-        public HomeController(ILegoRepository temp, UserManager<IdentityUser> userManager, ILogger<HomeController> logger, IWebHostEnvironment environment)
+
+        public HomeController(ILegoRepository temp, UserManager<IdentityUser> userManager, ILogger<HomeController> logger, IWebHostEnvironment environment, Cart cart)
         {
             _repo = temp;
             _userManager = userManager;
             _logger = logger;
             _environment = environment;
+            _cart = cart;
+
 
             string modelPath = Path.Combine(_environment.ContentRootPath, "fraud_model.onnx");
-
 
             try
             {
@@ -42,6 +46,7 @@ namespace BrickwellStore.Controllers
             {
                 _logger.LogError($"Error loading the ONNX model: {ex.Message}");
             }
+
         }
 
         [HttpPost]
@@ -176,46 +181,56 @@ namespace BrickwellStore.Controllers
                     UserId = userId
                 };
 
+                _repo.AddUser(model);
+                _repo.SaveChanges();
+
                 return View(model);
             }
         }
 
         [HttpPost]
-        public IActionResult FinishCheckout(Customer customer)
+        public IActionResult FinishCheckout(Customer customer, Order order)
         {
             var curCustomer = _repo.GetCustomerByUserId(customer.UserId);
 
-            if (curCustomer != null)
-            {
-                _repo.UpdateUser(curCustomer.CustomerId);
-                _repo.SaveChanges();
-
-            } else
-            {
-                _repo.AddUser(customer);
-                _repo.SaveChanges();
-            }
+            //if (curCustomer == null)
+            //{
+            //    _repo.AddUser(customer);
+            //    _repo.SaveChanges();
+            //}
 
             int time = DateTime.Now.Hour;
-            float amount = (float)customer.CCNumber;
+            // put cart total amount right here
+            float amount = (float)_cart.CalculateTotal();
             int country_of_transaction_United_Kingdom = customer.Country == "England" ? 1 : 0;
             int shipping_address_United_Kingdom = country_of_transaction_United_Kingdom;
 
             string fraudPrediction = PredictFraud(time, amount, country_of_transaction_United_Kingdom, shipping_address_United_Kingdom);
             TempData["Prediction"] = fraudPrediction;
 
+            var newOrder = new Order
+            {
+                CustomerId = curCustomer.CustomerId,
+                Amount = (float)amount,
+                TransactionType = "Credit Card",
+                ShippingAddress = curCustomer.Address1,
+            };
+
             if (fraudPrediction == "Fraud")
             {
-                return View("PendingTransaction");
+                _repo.AddOrder(newOrder);
+                _repo.SaveChanges();
+                return View("PendingTransaction", newOrder);
             }
             else if (fraudPrediction == "Not Fraud")
             {
-                return View("ThankYou");
+                _repo.AddOrder(newOrder);
+                _repo.SaveChanges();
+                return View("ThankYou", newOrder);
             }
             else
             { return View("Index"); }
 
-            
         }
 
         private string PredictFraud(int time, float amount, int countryOfTransactionUK, int shippingAddressUK)

@@ -3,7 +3,18 @@
 *@
 @{
 }
+@model Order
+
 <h2>Transaction is Pending...</h2>
 <p>It is currently being reviewed by a supervisor.</p>
 <p>Feel free to keep browsing our wide range of products!</p>
+
+<h3>Your Order lowkey</h3>
+<ul>
+    <li>Address: @Model.ShippingAddress</li>
+    <li>Total: @Model.Amount</li>
+    <li>Bought by: @Model.CustomerId</li>
+</ul>
+
+<a href="/Home/Index">Return to Home</a>
 <a href="/Home/Product">Browse Products</a>

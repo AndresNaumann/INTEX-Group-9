@@ -17,6 +17,8 @@ namespace BrickwellStore.Data
         public IQueryable<Customer> Customers => _context.Customers;
         public IQueryable<Order> Orders => _context.Orders;
 
+        public IQueryable<LineItem> LineItems => _context.LineItems;
+
         // USER METHODS
 
         public void AddUser(Customer customer)
@@ -69,9 +71,18 @@ namespace BrickwellStore.Data
 
         // PRODUCT METHODS
 
-        public Product GetProductById(int id)
+        public Product? GetProductById(int id)
         {
-            return _context.Products.Single(c => c.ProductId == id);
+            try
+            {
+                var product = _context.Products.Single(c => c.ProductId == id);
+                return product;
+            }
+            catch (InvalidOperationException)
+            {
+                // Handle the case where the customer is not found
+                return null;
+            }
         }
 
         public void AddProduct(Product product)
@@ -91,6 +102,79 @@ namespace BrickwellStore.Data
             if (product != null)
             {
                 _context.Products.Remove(product);
+            }
+        }
+
+        // ORDER METHODS
+
+        public Order? GetOrderById(int id)
+        {
+            try
+            {
+                var order = _context.Orders.Single(c => c.TransactionId == id);
+                return order;
+            }
+            catch (InvalidOperationException)
+            {
+                // Handle the case where the customer is not found
+                return null;
+            }
+        }
+
+        public void AddOrder(Order order)
+        {
+            _context.Orders.Add(order);
+        }
+           
+        public void UpdateOrder(Order order)
+        {
+            _context.Orders.Update(order);
+            _context.SaveChanges();
+        }
+
+        public void DeleteOrder(int id)
+        {
+            var order = GetOrderById(id);
+            if (order != null)
+            {
+                _context.Orders.Remove(order);
+            }
+        }
+
+        // LINEITEM METHODS
+
+        public LineItem? GetLineItemById(int id)
+        {
+            try
+            {
+                var lineItem = _context.LineItems.Single(c => c.LineId == id);
+                return lineItem;
+            }
+            catch (InvalidOperationException)
+            {
+                // Handle the case where the customer is not found
+                return null;
+            }
+        }
+
+        public void AddLineItem(LineItem lineItem)
+        {
+            _context.LineItems.Add(lineItem);
+            _context.SaveChanges();
+        }
+        public void UpdateLineItem(LineItem lineItem)
+        {
+            _context.LineItems.Update(lineItem);
+            _context.SaveChanges();
+        }
+
+        public void DeleteLineItem(int id)
+        {
+            var item = GetLineItemById(id);
+
+            if (item != null)
+            {
+                _context.LineItems.Remove(item);
             }
         }
 

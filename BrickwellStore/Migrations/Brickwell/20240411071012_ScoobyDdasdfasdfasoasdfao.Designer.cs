@@ -3,6 +3,7 @@ using System;
 using BrickwellStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BrickwellStore.Migrations.Brickwell
 {
     [DbContext(typeof(BrickwellContext))]
-    partial class BrickwellContextModelSnapshot : ModelSnapshot
+    [Migration("20240411071012_ScoobyDdasdfasdfasoasdfao")]
+    partial class ScoobyDdasdfasdfasoasdfao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -135,8 +138,8 @@ namespace BrickwellStore.Migrations.Brickwell
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<double?>("Amount")
-                        .HasColumnType("REAL");
+                    b.Property<int?>("Amount")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Bank")
                         .HasColumnType("TEXT");
