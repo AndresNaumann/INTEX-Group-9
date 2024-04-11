@@ -8,7 +8,7 @@
 
 <h1>Edit Personal Details</h1>
 
-<form asp-controller="User" asp-action="EditSelf" method="post">
+<form asp-controller="User" asp-action="EditUser" method="post">
     <input type="hidden" asp-for="@Model.UserId" />
 
     <label asp-for="UserId">User ID: @Model.UserId</label><br>
@@ -25,16 +25,23 @@
     <input asp-for="BirthDate" type="date" required /><br>
 
     <label asp-for="Gender">Gender:</label><br>
-    <input asp-for="Gender" type="text" required /><br>
+    <select asp-for="Gender" required>
+        <option value="">Select...</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select><br>
 
     <label asp-for="Age">Age:</label><br>
-    <input asp-for="Age" type="number" required /><br>
+    <input asp-for="Age" type="number" min="0" max="150" required /><br>
+
+    <h2>Shipping Information</h2>
 
     <label asp-for="Address1">Address 1:</label><br>
     <input asp-for="Address1" type="text" required /><br>
 
     <label asp-for="Address2">Address 2:</label><br>
-    <input asp-for="Address2" type="text" required /><br>
+    <input asp-for="Address2" type="text" /><br>
 
     <label asp-for="City">City:</label><br>
     <input asp-for="City" type="text" required /><br>
@@ -43,7 +50,19 @@
     <input asp-for="State" type="text" required /><br>
 
     <label asp-for="Country">Country:</label><br>
-    <input asp-for="Country" type="text" required /><br>
+    <select asp-for="Country" required>
+        <option value="">Select...</option>
+        <option value="United States">United States</option>
+        <option value="China">China</option>
+        <option value="Japan">Japan</option>
+        <option value="Germany">Germany</option>
+        <option value="India">India</option>
+        <option value="The United Kingdom">The United Kingdom</option>
+        <option value="France">France</option>
+        <option value="Russia">Russia</option>
+        <option value="Canada">Canada</option>
+        <option value="Italy">Italy</option>
+    </select><br>
 
     <label asp-for="Phone">Phone:</label><br>
     <input asp-for="Phone" type="tel" required /><br>
@@ -53,6 +72,8 @@
 
     <label asp-for="Zip">Zip:</label><br>
     <input asp-for="Zip" type="text" required /><br>
+
+    <h2>Payment Information</h2>
 
     <label asp-for="CCNumber">Credit Card Number:</label><br>
     <input asp-for="CCNumber" type="number" required /><br>

@@ -17,15 +17,17 @@
         <li>Secondary Color: @Model.SecondaryColor</li>
         <li>Description: @Model.Description</li>
         <li>Category: @Model.Category</li>
+        <li>
+            <a class="btn btn-info" asp-controller="Product" asp-action="EditProduct" asp-route-id="@Model.ProductId">Edit</a>
+            <a class="btn btn-danger" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@Model.ProductId">Delete</a>
+        </li>
     </ul>
 
-    <form id=@Model.ProductId method="post" asp-page="/Cart">
+    @* <form id=@Model.ProductId method="post" asp-page="/Cart">
         <input type="hidden" asp-for="ProductId" />
-@*         <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
- *@        <button type="submit" class="btn-outline-success btn-sm float-end">Add to Cart!</button>
+       <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+       <button type="submit" class="btn-outline-success btn-sm float-end">Add to Cart!</button>
         <a asp-controller="Home" asp-action="Product" >Back Home</a>
+    </form> *@
 
-    </form>
-    <a class="btn btn-info" asp-controller="Product" asp-action="EditProduct" asp-route-id="@Model.ProductId">Edit</a>
-    <a class="btn btn-danger" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@Model.ProductId">Delete</a>
 </div>

@@ -105,6 +105,7 @@ namespace BrickwellStore.Controllers
 
         // Edit a Customer/User
 
+
         [HttpGet]
         public IActionResult EditCustomer(int id)
         {
@@ -120,16 +121,6 @@ namespace BrickwellStore.Controllers
             _repo.SaveChanges();
             return RedirectToAction("AdminUsers");
         }
-
-        // Edit a Product
-
-        //[HttpGet]
-        //public IActionResult EditProduct(int id)
-        //{
-        //    var recordToEdit = _repo.GetProductById(id);
-
-        //    return View(recordToEdit);
-        //}
 
         // DELETION ----------------------------------------------------
 
@@ -186,18 +177,27 @@ namespace BrickwellStore.Controllers
         public async Task<IActionResult> DeleteUser(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
+
             return View(user);
         }
 
         [HttpPost]
         public async Task<IActionResult> DeleteUser(IdentityUser user)
         {
+            // Delete from the user table as well as the customer table
+
             var userToDelete = await _userManager.FindByIdAsync(user.Id);
+            var customerToDelete = _repo.GetCustomerByUserId(user.Id);
 
             if (userToDelete == null)
             {
                 return NotFound();
             }
+
+            if (customerToDelete != null) {
+                _repo.DeleteUser(customerToDelete.CustomerId);
+            }
+
 
             var result = await _userManager.DeleteAsync(userToDelete);
             if (result.Succeeded)
