@@ -235,3 +235,13 @@ button{
     color:var(--brickwell-HBT) !important;
     font-weight:700;
 }
+
+.our-custom-button-sm{
+    background-color:var(--brickwell-yellow);
+    padding: 5px;
+    border-radius:.2em;
+}
+
+input, textarea, select{
+    border-radius: .2em;
+}
