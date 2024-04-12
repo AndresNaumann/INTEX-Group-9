@@ -15,14 +15,14 @@
     </div>
 
     <div class="dropdown d-inline mx-2">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" >
+        <button class="btn btn-secondary dropdown-toggle" style="width: 200px" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             @if (@Model.CurrentProductColor != null)
             {
-                <p>@Model.CurrentProductColor </p>
+                <span>@Model.CurrentProductColor </span>
             }
             else
             {
-                <p>Product Color</p>
+                <span>Product Color</span>
             }
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -31,14 +31,14 @@
     </div>
 
     <div class="dropdown d-inline mx-2">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" style="width: 200px" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
             @if (@Model.CurrentProductCategory != null)
             {
-                <p>@Model.CurrentProductCategory </p>
+                <span>@Model.CurrentProductCategory </span>
             }
             else
             {
-                <p>Product Category</p>
+                <span>Product Category</span>
             }
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
@@ -47,7 +47,37 @@
     </div>
 
 
+    <form class="d-inline" method="get" action="@Url.Action("Product", "Home")">
+        <label for="itemsPerPage">Items per page:</label>
+        <select id="itemsPerPage" name="itemsPerPage" onchange="this.form.submit()">
+            @if (Model.PaginationInfo.ItemsPerPage == 5)
+            {
+                <option value="5" selected="selected">5</option>
+            }
+            else
+            {
+                <option value="5">5</option>
+            }
 
+            @if (Model.PaginationInfo.ItemsPerPage == 10)
+            {
+                <option value="10" selected="selected">10</option>
+            }
+            else
+            {
+                <option value="10">10</option>
+            }
+
+            @if (Model.PaginationInfo.ItemsPerPage == 20)
+            {
+                <option value="20" selected="selected">20</option>
+            }
+            else
+            {
+                <option value="20">20</option>
+            }
+        </select>
+    </form>
 
 
     </div>
@@ -92,20 +122,10 @@
 
 
     <div page-model="@Model.PaginationInfo" page-action="Product" page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-productColor="@Model.CurrentProductColor" page-url-productCategory="@Model.CurrentProductCategory" class="btn-group pull-right m-1"></div>
-    <form method="get" action="@Url.Action("Product", "Home")">
-        <label for="itemsPerPage">Items per page:</label>
-        <select id="itemsPerPage" name="itemsPerPage">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-        </select>
-        <button type="submit">Apply</button>
-    </form>
+
 
 
 </div>
-
-
 
 <script>
     document.getElementById('clearFiltersBtn').addEventListener('click', function () {
