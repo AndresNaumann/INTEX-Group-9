@@ -15,14 +15,14 @@
     </div>
 
     <div class="dropdown d-inline mx-2">
-        <button class="btn btn-secondary dropdown-toggle" style="width: 200px" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" >
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" >
             @if (@Model.CurrentProductColor != null)
             {
-                <span>@Model.CurrentProductColor </span>
+                <p>@Model.CurrentProductColor </p>
             }
             else
             {
-                <span>Product Color</span>
+                <p>Product Color</p>
             }
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -31,14 +31,14 @@
     </div>
 
     <div class="dropdown d-inline mx-2">
-        <button class="btn btn-secondary dropdown-toggle" style="width:200px" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
             @if (@Model.CurrentProductCategory != null)
             {
-                <span>@Model.CurrentProductCategory </span>
+                <p>@Model.CurrentProductCategory </p>
             }
             else
             {
-                <span>Product Category</span>
+                <p>Product Category</p>
             }
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
