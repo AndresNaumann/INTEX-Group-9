@@ -45,21 +45,6 @@ namespace BrickwellStore.Controllers
 
         // ADDING A PRODUCT TO THE DATABASE
 
-        [HttpGet]
-        public IActionResult AddProduct()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult AddProduct(Product product)
-        {
-            _repo.AddProduct(product);
-            _repo.SaveChanges();
-
-            return RedirectToAction("AdminProducts", "Admin");
-        }
-
         // EDITING A PRODUCT
 
         [HttpGet]

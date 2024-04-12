@@ -193,5 +193,21 @@ namespace BrickwellStore.Controllers
             return RedirectToAction("AdminUsers", "Admin");
         }
 
+
+        [HttpGet]
+        public IActionResult AddProduct()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddProduct(Product product)
+        {
+            _repo.AddProduct(product);
+            _repo.SaveChanges();
+
+            return RedirectToAction("AdminProducts", "Admin");
+        }
+
     }
 }
