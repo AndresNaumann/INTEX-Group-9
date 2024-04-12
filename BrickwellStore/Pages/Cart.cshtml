@@ -36,7 +36,7 @@
                     <form asp-page-handler="Remove" method="post">
                         <input type="hidden" name="ProductId" value="@l.Product.ProductId" />
                         <input type="hidden" name="returnUrl" value="@Model?.ReturnUrl" />
-                        <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                        <input type="image" src="~/img/trash-icon.svg" class="trash-icon" alt="Remove" />
                     </form>
                 </td>
             </tr>
@@ -53,6 +53,6 @@
 
 
 <div class="text-center">
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
-    <a class="btn btn-primary" asp-controller="Home" asp-action="FinishCheckout" asp-route-id="@userId">Checkout</a>
+    <a class="our-custom-button" href="@Model.ReturnUrl">Continue Shopping</a>
+    <a class="our-custom-button" asp-controller="Home" asp-action="FinishCheckout" asp-route-id="@userId">Checkout</a>
 </div>

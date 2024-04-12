@@ -75,6 +75,7 @@ button{
     color: var(--brickwell-HBT) !important;
     background-color: var(--brickwell-yellow) !important;
 }
+
 .btn-primary{
     color: var(--brickwell-HBT);
     background-color: var(--brickwell-yellow);
@@ -201,4 +202,18 @@ button{
     color: #000; /* Adjust the color as needed */
     cursor: pointer;
 }
+
+.our-custom-button {
+    background-color: var(--brickwell-yellow) !important;
+    color: var(--brickwell-HBT);
+    padding: 10px;
+    border-radius: .5em;
+}
+
+.our-custom-button:hover{
+    outline: 2px solid var(--brickwell-HBT);
+}
+
+
+
 
