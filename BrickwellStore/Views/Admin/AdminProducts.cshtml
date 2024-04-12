@@ -9,11 +9,12 @@
 
 @model IEnumerable<Product>
 
-<h1>Products (Admin View)</h1>
+<h1>Products</h1>
 
 <table class="table">
     <thead>
         <tr>
+            <th></th>
             <th>Product ID</th>
             <th>Name</th>
             <th>Price</th>
@@ -25,11 +26,12 @@
         @foreach (var product in Model)
         {
             <tr>
-                <td>@product.ProductId</td>
+                <td><a asp-controller="Product" asp-action="AdminProductDetails" asp-route-id="@product.ProductId"><img src="@product.ImgLink" style="width:40px" /></a></td>
+                <td><a asp-controller="Product" asp-action="AdminProductDetails" asp-route-id="@product.ProductId">@product.ProductId</a></td>
                 <td><a asp-controller="Product" asp-action="AdminProductDetails" asp-route-id="@product.ProductId">@product.Name</a></td>
                 <td>@product.Price.ToString("C")</td>
-                <td><a class="btn btn-primary" asp-controller="Product" asp-action="EditProduct" asp-route-id="@product.ProductId"><img src="~/img/Edit-Icon.svg"/></a></td>
-                <td><a class="btn btn-danger" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@product.ProductId"><img src="~/img/trash-icon.svg"/></a></td>
+                <td><a  asp-controller="Product" asp-action="EditProduct" asp-route-id="@product.ProductId"><img src="~/img/Edit-Icon.svg"/></a></td>
+                <td><a  asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@product.ProductId"><img src="~/img/trash-icon.svg"/></a></td>
             </tr>
         }
     </tbody>

@@ -5,7 +5,7 @@
 }
 @model ProductsListViewModel
 
-<h1>Orders (Admin View)</h1>
+<h1>Orders</h1>
 
 @* @foreach (Product p in Model.Products)
 {
@@ -32,10 +32,10 @@
             <tr>
                 <td>@order.TransactionId</td>
                 <td>@order.CustomerId</td>
-                <td><a asp-route-id="@order.Date">@order.Date</a></td>
+                <td>@order.Date</td>
                 <td>@order.Fraud</td>
                 <td>@order.IsCompleted</td>
-                <td><a class="btn btn-primary" asp-controller="Order" asp-action="OrderDetails" asp-route-id="@order.TransactionId">View</a></td>
+                <td><a class="our-custom-button-sm" asp-controller="Order" asp-action="OrderDetails" asp-route-id="@order.TransactionId">View</a></td>
             </tr>
         }
     </tbody>
