@@ -7,7 +7,7 @@
 @model Order
 
 <br />
-<a class="btn btn-primary" asp-controller="Home" asp-action="OrderHistory">Back</a>
+<a class="our-custom-button" asp-controller="Home" asp-action="OrderHistory">Back</a>
 <br /><br />
 <h4>
     Order #: @Model.TransactionId
@@ -34,5 +34,5 @@
     }
 }
 <br />
-<a class="btn btn-outline-primary" asp-controller="Product" asp-action="ViewLineItems" asp-route-id="@Model.TransactionId">See Order Items</a>
+<a class="our-custom-button" asp-controller="Product" asp-action="ViewLineItems" asp-route-id="@Model.TransactionId">See Order Items</a>
 
