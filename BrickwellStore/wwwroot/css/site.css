@@ -79,6 +79,7 @@ button{
     color: var(--brickwell-HBT);
     background-color: var(--brickwell-yellow);
     border-color: var(--brickwell-HBT);
+    margin: 5px;
 }
 
 .btn-primary:hover{
@@ -202,3 +203,27 @@ button{
     cursor: pointer;
 }
 
+.nav-link{
+    text-align:center;
+    color:var(--brickwell-HBT)
+}
+
+.nav-link:hover{
+    color:var(--brickwell-HBT);
+}
+
+.nav-pills .nav-link.active {
+    color: var(--brickwell-HBT);
+    background-color: var(--brickwell-yellow)
+}
+.twofa-button{
+    background-color: var(--brickwell-yellow);
+    padding:10px;
+    border-radius: .5em;
+    outline: 1px solid var(--brickwell-HBT);
+    margin:5px;
+}
+
+.twofa-button:hover{
+    font-weight: 700;
+}
