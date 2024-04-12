@@ -170,10 +170,8 @@ namespace BrickwellStore.Controllers
         [Authorize]
 
         [HttpGet]
-        public async Task<IActionResult> FinishCheckout(string id)
+        public IActionResult FinishCheckout(string id)
         {
-            //var currentUser = await _userManager.GetUserAsync(User);
-            //string userId = currentUser?.Id;
 
             var curCustomer = _repo.GetCustomerByUserId(id);
 
@@ -196,19 +194,8 @@ namespace BrickwellStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult FinishCheckout(Customer customer, Order order)
+        public IActionResult FinishCheckout(Customer customer)
         { 
-
-            _repo.UpdateUser(customer);
-            _repo.SaveChanges();
-
-            var curCustomer = _repo.GetCustomerByUserId(customer.UserId);
-
-            if (curCustomer == null)
-            {
-                _repo.AddUser(customer);
-                _repo.SaveChanges();
-            }
 
             int time = DateTime.Now.Hour;
             // put cart total amount right here
@@ -219,17 +206,12 @@ namespace BrickwellStore.Controllers
             string fraudPrediction = PredictFraud(time, amount, country_of_transaction_United_Kingdom, shipping_address_United_Kingdom);
             TempData["Prediction"] = fraudPrediction;
 
-            DateTime date = DateTime.Now;
-            string formattedDate = date.ToString("MM/dd/yyyy");
-
             bool isFraud = false;
 
             if (fraudPrediction == "Fraud")
             {
                 isFraud = true;
             }
-
-            var updatedCustomer = _repo.GetCustomerById(customer.CustomerId);
 
             int newTransId = GenerateTransactionId();
 
@@ -238,9 +220,9 @@ namespace BrickwellStore.Controllers
                 TransactionId = newTransId,
                 CustomerId = customer.CustomerId,
                 Amount = (float)amount,
-                Date = date.ToString(),
-                DayOfWeek = date.DayOfWeek.ToString(),
-                Time = date.TimeOfDay.ToString(),
+                Date = DateTime.Now.ToString(),
+                DayOfWeek = DateTime.Now.DayOfWeek.ToString(),
+                Time = DateTime.Now.TimeOfDay.ToString(),
                 EntryMode = "Online",
                 TransactionType = "Credit Card",
                 CardType = "Visa",

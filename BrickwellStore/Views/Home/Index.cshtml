@@ -7,6 +7,12 @@
 <div class="homeBanner"><img src="~/img/Home Banner.png" alt="home banner"/></div>
 <!--stuff-->
 
+@* <div id="cookieConsentBanner" class="cookie-consent-banner">
+    <p>This website uses cookies to ensure you get the best experience on our website. <a asp-asp-controller="Home" asp-action="Privacy">Learn more</a></p>
+    <button id="acceptCookiesBtn" class="btn btn-primary">Accept</button>
+    <button id="declineCookiesBtn" class="btn btn-secondary">Decline</button>
+</div> *@
+
 
 
 <div class="container mt-3">
@@ -41,3 +47,39 @@
 </div>
 
 
+<script>// main.js
+document.addEventListener('DOMContentLoaded', function () {
+    const acceptBtn = document.getElementById('acceptCookiesBtn');
+    const declineBtn = document.getElementById('declineCookiesBtn');
+
+    // Function to set a cookie
+    function setCookie(name, value, days) {
+        const expires = new Date();
+        expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+        document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
+    }
+
+    // Event listeners for buttons
+    acceptBtn.addEventListener('click', function () {
+        setCookie('cookieConsent', 'accepted', 30); // Set the cookie for 30 days
+        hideCookieBanner();
+    });
+
+    declineBtn.addEventListener('click', function () {
+        setCookie('cookieConsent', 'declined', 30);
+        hideCookieBanner();
+    });
+
+    // Function to hide the cookie banner
+    function hideCookieBanner() {
+        const banner = document.querySelector('.cookie-banner');
+        banner.style.display = 'none';
+    }
+
+    // Check if the user has previously accepted or declined the cookie
+    const cookieConsent = document.cookie.includes('cookieConsent=accepted');
+    if (cookieConsent) {
+        hideCookieBanner();
+    }
+});
+</script>

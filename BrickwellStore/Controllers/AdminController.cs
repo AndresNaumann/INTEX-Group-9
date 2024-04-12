@@ -90,8 +90,7 @@ namespace BrickwellStore.Controllers
 
         // Edit a Customer/User
 
-
-        [HttpGet]
+        [Authorize(Roles = "Admin"), HttpGet]
         public IActionResult EditCustomer(int id)
         {
             var recordToEdit = _repo.GetCustomerById(id);
@@ -99,7 +98,7 @@ namespace BrickwellStore.Controllers
             return View(recordToEdit);
         }
 
-        [HttpPost]
+        [Authorize(Roles = "Admin"), HttpPost]
         public IActionResult EditCustomer(Customer updatedInfo)
         {
             _repo.UpdateUser(updatedInfo);
@@ -110,8 +109,7 @@ namespace BrickwellStore.Controllers
         // DELETION ----------------------------------------------------
 
         // Delete Customers
-
-        [HttpGet]
+        [Authorize(Roles = "Admin"), HttpGet]
         public IActionResult DeleteCustomer(int id)
         {
             var recordToDelete = _repo.GetCustomerById(id);
@@ -119,8 +117,7 @@ namespace BrickwellStore.Controllers
             return View(recordToDelete);
 
         }
-
-        [HttpPost]
+        [Authorize(Roles = "Admin"), HttpPost]
         public IActionResult DeleteCustomer(Customer customer)
         {
             _repo.DeleteUser(customer.CustomerId);
@@ -131,15 +128,14 @@ namespace BrickwellStore.Controllers
 
 
         // Editing or Deleting a User ----------------------------------------
-
-        [HttpGet]
+        [Authorize(Roles = "Admin"), HttpGet]
         public async Task<IActionResult> EditUser(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
             return View(user);
         }
 
-        [HttpPost]
+        [Authorize(Roles = "Admin"), HttpPost]
         public async Task<IActionResult> EditUser(IdentityUser user)
         {
             var userToEdit = await _userManager.FindByIdAsync(user.Id);
@@ -158,7 +154,7 @@ namespace BrickwellStore.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpGet]
+        [Authorize(Roles = "Admin"), HttpGet]
         public async Task<IActionResult> DeleteUser(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
@@ -166,7 +162,7 @@ namespace BrickwellStore.Controllers
             return View(user);
         }
 
-        [HttpPost]
+        [Authorize(Roles = "Admin"), HttpPost]
         public async Task<IActionResult> DeleteUser(IdentityUser user)
         {
             // Delete from the user table as well as the customer table
@@ -193,14 +189,13 @@ namespace BrickwellStore.Controllers
             return RedirectToAction("AdminUsers", "Admin");
         }
 
-
-        [HttpGet]
+        [Authorize(Roles = "Admin"), HttpGet]
         public IActionResult AddProduct()
         {
             return View();
         }
 
-        [HttpPost]
+        [Authorize(Roles = "Admin"), HttpPost]
         public IActionResult AddProduct(Product product)
         {
             _repo.AddProduct(product);
