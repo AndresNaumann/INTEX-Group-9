@@ -49,25 +49,10 @@ namespace BrickwellStore.Controllers
         // See all the products
 
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminProducts(int pageNum)
+        public IActionResult AdminProducts()
         {
-            int pageSize = 40;
-            var AdminBlah = new ProductsListViewModel
-            {
-                Products = _repo.Products
-                .OrderBy(x => x.ProductId)
-               .Skip((pageNum - 1) * pageSize)
-               .Take(pageSize),
-
-                PaginationInfo = new PaginationInfo
-                {
-                    CurrentPage = pageNum,
-                    ItemsPerPage = pageSize,
-                    TotalItems = _repo.Products.Count()
-                },
-            };
-
-            return View(AdminBlah);
+            var products = _repo.Products.OrderBy(p => p.Name).ToList();
+            return View(products);
         }
 
         // See all the orders as an admin
