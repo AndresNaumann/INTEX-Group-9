@@ -33,8 +33,6 @@ var configuration = builder.Configuration;
 
 services.AddAuthentication().AddGoogle(googleOptions =>
 {
-    //googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-    //googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
     googleOptions.ClientId = "246075900303-55r8n0gt13g82j59h4nu9i0qvnlk0m0a.apps.googleusercontent.com";
     googleOptions.ClientSecret = "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";
 }).AddFacebook(facebookOptions =>
@@ -61,11 +59,21 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
-
 app.UseSession();
-
 app.UseRouting();
+
+app.Use(async (ctx, next) =>
+{
+    var csp = "default-src 'self'; " +
+         "script-src 'self' https://kit.fontawesome.com 'unsafe-inline' https://apis.google.com; " +
+         "connect-src 'self' http://localhost:5255/ https://ka-f.fontawesome.com; " +
+         "style-src 'self' https://cdnjs.cloudflare.com/ https://fonts.gstatic.com https://fonts.googleapis.com/ 'unsafe-inline'; " +
+         "font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com/ https://ka-f.fontawesome.com; " +
+         "img-src 'self' https://m.media-amazon.com https://www.lego.com/ https://images.brickset.com/ https://www.brickeconomy.com/ https://live.staticflickr.com  data:; ";
+    ctx.Response.Headers.Append("Content-Security-Policy", csp);
+    ctx.Response.Headers.Append("X-Content-Type-Options", "nosniff");
+    await next();
+});
 
 app.UseAuthentication();
 app.UseAuthorization();
