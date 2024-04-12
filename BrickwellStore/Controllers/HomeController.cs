@@ -196,7 +196,7 @@ namespace BrickwellStore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> FinishCheckout(Customer customer, Order order)
+        public IActionResult FinishCheckout(Customer customer, Order order)
         { 
 
             _repo.UpdateUser(customer);
@@ -229,7 +229,7 @@ namespace BrickwellStore.Controllers
                 isFraud = true;
             }
 
-            var updatedCustomer = await _repo.GetCustomerByIdAsync(customer.CustomerId);
+            var updatedCustomer = _repo.GetCustomerById(customer.CustomerId);
 
             int newTransId = GenerateTransactionId();
 

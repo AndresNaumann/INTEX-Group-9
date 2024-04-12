@@ -31,6 +31,8 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 var services = builder.Services;
 var configuration = builder.Configuration;
 
+// Add Google And Facebook authentication
+
 services.AddAuthentication().AddGoogle(googleOptions =>
 {
     googleOptions.ClientId = "246075900303-55r8n0gt13g82j59h4nu9i0qvnlk0m0a.apps.googleusercontent.com";
@@ -62,6 +64,8 @@ app.UseStaticFiles();
 app.UseSession();
 app.UseRouting();
 
+// Implement Content Security Header
+
 app.Use(async (ctx, next) =>
 {
     var csp = "default-src 'self'; " +
@@ -86,6 +90,8 @@ app.MapControllerRoute("productPagination", "Product/{pageNum}", new { Controlle
 
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
+
+// Implement an admin username and password and Roles
 
 using (var scope = app.Services.CreateScope())
 {
