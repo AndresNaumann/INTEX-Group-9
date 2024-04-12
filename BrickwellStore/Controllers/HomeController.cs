@@ -195,7 +195,7 @@ namespace BrickwellStore.Controllers
 
         [HttpPost]
         public IActionResult FinishCheckout(Customer customer)
-        { 
+        {
 
             int time = DateTime.Now.Hour;
             // put cart total amount right here
@@ -205,6 +205,9 @@ namespace BrickwellStore.Controllers
 
             string fraudPrediction = PredictFraud(time, amount, country_of_transaction_United_Kingdom, shipping_address_United_Kingdom);
             TempData["Prediction"] = fraudPrediction;
+
+            DateTime date = DateTime.Now;
+            string stringDate = date.ToString("MM/dd/yy hh/mm");
 
             bool isFraud = false;
 
@@ -220,9 +223,7 @@ namespace BrickwellStore.Controllers
                 TransactionId = newTransId,
                 CustomerId = customer.CustomerId,
                 Amount = (float)amount,
-                Date = DateTime.Now.ToString(),
-                DayOfWeek = DateTime.Now.DayOfWeek.ToString(),
-                Time = DateTime.Now.TimeOfDay.ToString(),
+                Date = stringDate,
                 EntryMode = "Online",
                 TransactionType = "Credit Card",
                 CardType = "Visa",

@@ -1042,4 +1042,4 @@ C:\Users\sadieeyre\source\repos\INTEX-Group-9\BrickwellStore\obj\Debug\net8.0\Br
 C:\Users\sadieeyre\source\repos\INTEX-Group-9\BrickwellStore\obj\Debug\net8.0\BrickwellStore.genruntimeconfig.cache
 C:\Users\sadieeyre\source\repos\INTEX-Group-9\BrickwellStore\obj\Debug\net8.0\ref\BrickwellStore.dll
 C:\Users\sadieeyre\source\repos\INTEX-Group-9\BrickwellStore\bin\Debug\net8.0\BrickwellDB.sqlite
-C:\Users\sadieeyre\source\repos\INTEX-Group-9\BrickwellStore\obj\Debug\net8.0\Brickwel.4949598E.Up2Date
+C:\Users\sadieeyre\source\repos\INTEX-Group-9\BrickwellStore\obj\Debug\net8.0\BrickwellStore.csproj.CopyComplete
