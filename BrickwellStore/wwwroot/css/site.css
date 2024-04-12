@@ -221,4 +221,18 @@ button{
 }
 
 
+.nav-link{
+    color:var(--brickwell-HBT);
+}
+
+.nav-link:hover{
+    color:var(--brickwell-HBT);
+    font-weight:700;
+}
+
+.nav-link.active{
+    background-color:var(--brickwell-yellow)!important;
+    color:var(--brickwell-HBT) !important;
+    font-weight:700;
+}
 
