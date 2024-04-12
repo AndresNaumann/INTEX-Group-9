@@ -7,11 +7,11 @@
     <div class="custom-card shadow">
     
         <img src="@Model.ImgLink" class="custom-card-image" />
-        $@Model.Price
-        <p class="card-title">
-            @if (Model.Name.Length > 18)
+        
+        <p class="card-title left-justify">
+            @if (Model.Name.Length > 16)
             {
-                @Model.Name.Substring(0, 18)
+                @Model.Name.Substring(0, 16)
                 <span>
     ...
                 </span>
@@ -22,7 +22,7 @@
                 @Model.Name
             }
         </p>
-
+        <p class="left-justify" style="margin-bottom:10px; font-size: 20px">$@Model.Price</p>
 
         <form id=@Model.ProductId method="post" asp-page="/Cart">
             <input type="hidden" asp-for="ProductId" />

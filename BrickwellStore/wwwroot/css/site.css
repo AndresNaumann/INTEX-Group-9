@@ -214,6 +214,11 @@ button{
     outline: 2px solid var(--brickwell-HBT);
 }
 
+.left-justify{
+    text-align:left;
+    width: 80%;
+    margin-bottom: 0;
+}
 
 
 
