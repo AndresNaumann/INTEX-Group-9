@@ -245,3 +245,7 @@ button{
 input, textarea, select{
     border-radius: .2em;
 }
+
+.fraud-row {
+    background-color: #FF8A8A;
+}

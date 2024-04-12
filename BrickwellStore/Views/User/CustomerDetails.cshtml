@@ -5,7 +5,9 @@
 }
 @model Customer
 
-
+<a href="javascript:history.back()">
+    <img src="~/img/back-icon.svg" />
+</a>
 <h4>
     @Model.CustomerFirstName @Model.CustomerLastName
 </h4>
@@ -15,4 +17,4 @@
     <li>Phone Number: @Model.Phone</li>
 </ul>
 
-<a class="btn btn-info" asp-controller="Home" asp-action="EditUser" asp-route-id="@Model.CustomerId">Edit</a>
+<a class="our-custom-button" asp-controller="Home" asp-action="EditUser" asp-route-id="@Model.CustomerId">Edit</a>

@@ -29,7 +29,7 @@
     <tbody>
         @foreach (Order order in Model.Orders)
         {
-            <tr>
+            <tr class="@((order.Fraud ?? false) ? "fraud-row" : "")">
                 <td>@order.TransactionId</td>
                 <td>@order.CustomerId</td>
                 <td>@order.Date</td>
@@ -40,5 +40,6 @@
         }
     </tbody>
 </table>
+
 
 

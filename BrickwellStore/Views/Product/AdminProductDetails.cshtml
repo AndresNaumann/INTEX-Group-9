@@ -5,21 +5,21 @@
 }
 @model Product
 <div class="card m-1 p-1">
-    <center><img src="@Model.ImgLink" style="width:500px" /></center>
     <h4>
         @Model.Name
-        <span class="badge rounded-pill bg-primary text-white float-end"><small>Only $@Model.Price!</small> </span>
     </h4>
+    <center><img src="@Model.ImgLink" style="width:400px" /></center>
     <ul>
+        <li>Price: $@Model.Price</li>
         <li>Year: @Model.Year</li>
         <li>Number of Parts: @Model.NumParts</li>
         <li>Primary Color: @Model.PrimaryColor</li>
         <li>Secondary Color: @Model.SecondaryColor</li>
         <li>Description: @Model.Description</li>
         <li>Category: @Model.Category</li>
-        <li>
-            <a class="btn btn-info" asp-controller="Product" asp-action="EditProduct" asp-route-id="@Model.ProductId"><img src="~/img/Edit-Icon.svg"/></a>
-            <a class="btn btn-danger" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@Model.ProductId"><img src="~/img/trash-icon.svg"/></a>
+        <li style="list-style-type:none">
+            <a  asp-controller="Product" asp-action="EditProduct" asp-route-id="@Model.ProductId"><img src="~/img/Edit-Icon.svg"/></a>
+            <a  asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@Model.ProductId"><img src="~/img/trash-icon.svg"/></a>
         </li>
     </ul>
 
