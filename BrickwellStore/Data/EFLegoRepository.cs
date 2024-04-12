@@ -68,9 +68,8 @@ namespace BrickwellStore.Data
             }
         }
 
-        public void UpdateUser(int id)
+        public void UpdateUser(Customer customer)
         {
-            var customer = GetCustomerById(id);
             _context.Customers.Update(customer);
             _context.SaveChanges();
         }

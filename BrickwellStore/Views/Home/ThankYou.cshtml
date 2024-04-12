@@ -4,16 +4,21 @@
 @{
 }
 
+<!-- RETURN THANK YOU If the order is not fraudulent-->
+
 @model BrickwellStore.Data.Order
 
+<br />
 <h2>Thank you!</h2>
 <p>Please shop with us again!</p>
 
-<h3>Your Order lowkey</h3>
+<br />
+<h3>Your Order</h3>
 <ul>
     <li>Address: @Model.ShippingAddress</li>
-    <li>Inventory Purchased: @Model.Amount</li>
-    <li>Bought by: @Model.CustomerId</li>
+    <li>Order Total: $@Model.Amount</li>
+    <li>Date: @Model.Date</li>
 </ul>
 
-<a href="/Home/Index">Return to Home</a>
+<a class="btn btn-primary" href="/Home/Index">Return to Home</a>
+<a class="btn btn-outline-primary" href="/Home/Product">Browse Products</a>

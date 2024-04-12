@@ -5,13 +5,13 @@
 }
 
 @model Order
-
+<br />
 <a class="btn btn-primary" asp-controller="Admin" asp-action="AdminOrders">Back</a>
-
+<br />
 <h2>Confirm Order Completion?</h2>
 <p>Only confirm if you know that the customer has recieved their legos.</p>
 <h3>@Model.TransactionId</h3>
-
+<br />
 <form method="post">
     <input type="hidden" asp-for="TransactionId" />
 

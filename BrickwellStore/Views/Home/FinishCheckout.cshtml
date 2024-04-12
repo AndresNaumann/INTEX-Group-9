@@ -10,6 +10,8 @@
 
 <h1>Checkout</h1>
 
+<!-- Form to collect information necessary to process an order-->
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -23,23 +25,9 @@
                 <input asp-for="CustomerFirstName" type="text" required /><br>
 
                 <label asp-for="CustomerLastName">Last Name:</label><br>
-                <input asp-for="CustomerLastName" type="text" required /><br>
+                <input asp-for="CustomerLastName" type="text" required /><br><br />
 
-                <!--Super Sus to Ask for birthdate and age and gender here-->
-
-                @* <label asp-for="BirthDate">Birth Date:</label><br>
-                <input asp-for="BirthDate" type="date" required /><br>
-
-                <label asp-for="Gender">Gender:</label><br>
-                <select asp-for="Gender" required>
-                    <option value="">Select...</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select><br>
-
-                <label asp-for="Age">Age:</label><br>
-                <input asp-for="Age" type="number" min="0" max="150" required /><br> *@
+                <!--Super Suspicious to Ask for birthdate and age and gender here-->
 
                 <h2>Shipping Information</h2>
 
@@ -77,23 +65,23 @@
                 <input asp-for="Email" type="email" required /><br>
 
                 <label asp-for="Zip">Zip:</label><br>
-                <input asp-for="Zip" type="text" required /><br>
+                <input asp-for="Zip" type="text" required /><br><br />
 
                 <h2>Payment Information</h2>
 
                 <label asp-for="CCNumber">Credit Card Number:</label><br>
-                <input asp-for="CCNumber" type="number" required /><br>
+                <input asp-for="CCNumber" type="text" minlength="16" maxlength="16" pattern="\d{16}" required /><br>
 
                 <label asp-for="CCDate">Credit Card Expiry Date:</label><br>
-                <input asp-for="CCDate" type="date" required /><br>
+                <input asp-for="CCDate" type="text" pattern="(0[1-9]|1[0-2])\/\d{2}" placeholder="mm/yy" required /><br>
 
                 <label asp-for="CCCode">Credit Card CVV:</label><br>
-                <input asp-for="CCCode" type="number" required /><br>
+                <input asp-for="CCCode" type="text" minlength="3" maxlength="3" pattern="\d{3}" required /><br>
 
                 <label asp-for="CardholderName">Cardholder Name:</label><br>
-                <input asp-for="CardholderName" type="text" required /><br>
+                <input asp-for="CardholderName" type="text" required /><br><br />
 
-                <button type="submit">Submit</button>
+                <button class="btn btn-primary" type="submit">Submit</button>
              </form>
         </div>
         <div class="col-md-6">
@@ -101,9 +89,8 @@
         </div>
     </div>
 </div>
-@* <form asp-page-handler="SubmitOrder" method="post">
-    <button type="submit">Submit</button>
-</form> *@
+
+<!--Before Order is processed, it is assessed for fraudulent behavior-->
 
 <div class="text-center" id="predictionResult">
     @if (TempData["Prediction"] != null)

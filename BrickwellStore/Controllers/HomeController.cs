@@ -199,7 +199,7 @@ namespace BrickwellStore.Controllers
         public async Task<IActionResult> FinishCheckout(Customer customer, Order order)
         { 
 
-            _repo.UpdateUser(customer.CustomerId);
+            _repo.UpdateUser(customer);
             _repo.SaveChanges();
 
             var curCustomer = _repo.GetCustomerByUserId(customer.UserId);
@@ -238,8 +238,12 @@ namespace BrickwellStore.Controllers
                 TransactionId = newTransId,
                 CustomerId = customer.CustomerId,
                 Amount = (float)amount,
-                Date = formattedDate,
+                Date = date.ToString(),
+                DayOfWeek = date.DayOfWeek.ToString(),
+                Time = date.TimeOfDay.ToString(),
+                EntryMode = "Online",
                 TransactionType = "Credit Card",
+                CardType = "Visa",
                 TransactionCountry = customer.Country,
                 ShippingAddress = customer.Address1 + " " + customer.Address2 + ", " + customer.City + ", " + customer.State + " " + customer.Zip,
                 Fraud = isFraud,
@@ -255,6 +259,7 @@ namespace BrickwellStore.Controllers
                     TransactionId = newTransId,
                     ProductId = i.Product.ProductId,
                     ProductName = i.Product.Name,
+                    ProductPrice = (decimal?)i.Product.Price,
                     Quantity = i.Quantity,
                     Rating = 5,
                 };
@@ -314,8 +319,7 @@ namespace BrickwellStore.Controllers
             }
         }
 
-        // Product
-
+        // Show the products page! The user can see any product that is currently available on the site
         public IActionResult Product(int pageNum, string? productColor, string? productCategory, int? itemsPerPage)
         {
             int defaultPageSize = 5;
@@ -355,6 +359,7 @@ namespace BrickwellStore.Controllers
             return View(Blah);
         }
 
+        //Allow ANY USER to see their own order history
         public async Task<IActionResult> OrderHistory(int pageNum)
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -395,6 +400,16 @@ namespace BrickwellStore.Controllers
 
             //var recordToEdit = _repo.GetCustomerById(id);
             //return View(recordToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult EditCustomer(Customer updatedCustomer)
+        {
+            _repo.UpdateUser(updatedCustomer);
+            _repo.SaveChanges();
+
+            return RedirectToAction("AdminUsers", "Admin");
+
         }
 
         [HttpPost]

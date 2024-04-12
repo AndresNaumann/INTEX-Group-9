@@ -195,7 +195,7 @@ namespace BrickwellStore.Controllers
                 return NotFound();
             } else
             {
-                _repo.UpdateUser(userToEdit.CustomerId);
+                _repo.UpdateUser(userToEdit);
                 _repo.SaveChanges();
 
                 return RedirectToAction("Index", "Home");

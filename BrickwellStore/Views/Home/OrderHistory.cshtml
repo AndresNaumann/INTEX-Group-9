@@ -6,6 +6,7 @@
 
 @model ProductsListViewModel
 
+<br />
 <h2>My Order History</h2>
 
 <table class="table">
@@ -24,7 +25,8 @@
             <tr>
                 <td>@order.TransactionId</td>
                 <td>@order.CustomerId</td>
-                <td><a asp-route-id="@order.Date">@order.Date</a></td>
+                <td>@order.Date</td>
+
                 @if (order.Fraud == true)
                 {
                     <td>Pending</td>
@@ -38,7 +40,6 @@
                         <td>Complete</td>
                     }
                 }
-                <td>@order.IsCompleted</td>
                 <td><a class="btn btn-primary" asp-controller="Order" asp-action="ViewOrder" asp-route-id="@order.TransactionId">View</a></td>
             </tr>
         }

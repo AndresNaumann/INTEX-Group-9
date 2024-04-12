@@ -5,16 +5,34 @@
 }
 @model Customer
 
+<br />
 <a href="javascript:history.back()">
     <img src="~/img/back-icon.svg" />
 </a>
+<br /><br />
 <h4>
     @Model.CustomerFirstName @Model.CustomerLastName
 </h4>
-<ul>
-    <li>User ID: @Model.UserId</li>
-    <li>Email: @Model.Email</li>
-    <li>Phone Number: @Model.Phone</li>
-</ul>
+<br />
+<h4>Personal Information</h4>
+<br />
+<p>User ID: @Model.UserId</p>
+<p>Age: @Model.Age</p>
+<p>Birthdate: @Model.BirthDate</p>
+<p>Gender: @Model.Gender</p>
+<br />
+<h4>Contact Information</h4>
+<br />
+<p>Email: @Model.Email</p>
+<p>Phone Number: @Model.Phone</p>
+<br />
+<h4>Address</h4>
+<br />
+<p>@Model.Address1 @Model.Address2</p>
+<p>@Model.City</p>
+<p>@Model.State</p>
+<p>@Model.Zip</p>
+<p>@Model.Country</p>
 
-<a class="our-custom-button" asp-controller="Home" asp-action="EditUser" asp-route-id="@Model.CustomerId">Edit</a>
+<br />
+<a class="our-custom-button" asp-controller="Home" asp-action="EditCustomer" asp-route-id="@Model.CustomerId">Edit</a>

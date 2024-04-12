@@ -7,8 +7,8 @@
 @model Customer
 
 <!--Basically this is a AddCustomerForm-->
-
-<h2>Fill out your other information</h2>
+<br />
+<h2>Edit Information for @Model.UserId</h2>
 
 <form method="post">
 
@@ -17,55 +17,56 @@
     <input type="hidden" asp-for="CustomerId" />
 
     <label asp-for="CustomerFirstName">First Name:</label><br>
-    <input asp-for="CustomerFirstName" type="text" required /><br>
+    <input asp-for="CustomerFirstName" type="text" /><br>
 
     <label asp-for="CustomerLastName">Last Name:</label><br>
-    <input asp-for="CustomerLastName" type="text" required /><br>
+    <input asp-for="CustomerLastName" type="text" /><br>
 
     <label asp-for="BirthDate">Birth Date:</label><br>
-    <input asp-for="BirthDate" type="date" required /><br>
+    <input asp-for="BirthDate" type="date" /><br>
 
     <label asp-for="Gender">Gender:</label><br>
-    <input asp-for="Gender" type="text" required /><br>
+    <input asp-for="Gender" type="text" /><br>
 
     <label asp-for="Age">Age:</label><br>
-    <input asp-for="Age" type="number" required /><br>
+    <input asp-for="Age" type="number" /><br>
 
     <label asp-for="Address1">Address 1:</label><br>
-    <input asp-for="Address1" type="text" required /><br>
+    <input asp-for="Address1" type="text" /><br>
 
     <label asp-for="Address2">Address 2:</label><br>
-    <input asp-for="Address2" type="text" required /><br>
+    <input asp-for="Address2" type="text" /><br>
 
     <label asp-for="City">City:</label><br>
-    <input asp-for="City" type="text" required /><br>
+    <input asp-for="City" type="text" /><br>
 
     <label asp-for="State">State:</label><br>
-    <input asp-for="State" type="text" required /><br>
+    <input asp-for="State" type="text" /><br>
 
     <label asp-for="Country">Country:</label><br>
-    <input asp-for="Country" type="text" required /><br>
+    <input asp-for="Country" type="text" /><br>
 
     <label asp-for="Phone">Phone:</label><br>
-    <input asp-for="Phone" type="tel" required /><br>
+    <input asp-for="Phone" type="tel" /><br>
 
     <label asp-for="Email">Email:</label><br>
-    <input asp-for="Email" type="email" required /><br>
+    <input asp-for="Email" type="email" /><br>
 
     <label asp-for="Zip">Zip:</label><br>
-    <input asp-for="Zip" type="text" required /><br>
+    <input asp-for="Zip" type="text" /><br>
 
     <label asp-for="CCNumber">Credit Card Number:</label><br>
-    <input asp-for="CCNumber" type="number" required /><br>
+    <input asp-for="CCNumber" type="text" minlength="16" maxlength="16" pattern="\d{16}" /><br>
 
     <label asp-for="CCDate">Credit Card Expiry Date:</label><br>
-    <input asp-for="CCDate" type="date" required /><br>
+    <input asp-for="CCDate" type="text" pattern="(0[1-9]|1[0-2])\/\d{2}" placeholder="mm/yy" /><br>
 
     <label asp-for="CCCode">Credit Card CVV:</label><br>
-    <input asp-for="CCCode" type="number" required /><br>
+    <input asp-for="CCCode" type="text" minlength="3" maxlength="3" pattern="\d{3}" /><br>
 
     <label asp-for="CardholderName">Cardholder Name:</label><br>
-    <input asp-for="CardholderName" type="text" required /><br>
+    <input asp-for="CardholderName" type="text" /><br><br />
 
-    <button type="submit">Submit</button>
+    <br />
+    <button class="btn btn-primary" type="submit">Submit</button>
 </form>

@@ -18,7 +18,7 @@
         void AddUser(Customer customer);
         void UpdateProduct(Product product);
         void DeleteProduct(int id);
-        void UpdateUser(int id);
+        void UpdateUser(Customer customer);
         void DeleteUser(int id);
         void AddOrder(Order order);
         void UpdateOrder(Order order);

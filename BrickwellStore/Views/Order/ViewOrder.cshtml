@@ -6,20 +6,33 @@
 
 @model Order
 
+<br />
 <a class="btn btn-primary" asp-controller="Home" asp-action="OrderHistory">Back</a>
+<br /><br />
+<h4>
+    Order #: @Model.TransactionId
+</h4>
+<br /><br />
+<p>Customer ID: @Model.CustomerId</p>
+<p>Amount: @Model.Amount</p>
+<p>Date: @Model.Date</p>
+<p>Phone: @Model.ShippingAddress</p>
+<p>Email: @Model.TransactionCountry</p>
+<p>Fraudulent?: @Model.Fraud</p>
+ 
+    @if (Model.Fraud == true)
+    {
+    <p>Status: Pending</p>
+} else
+{
+    if (Model.IsCompleted == true)
+    {
+        <p>Status: Completed</p>
+    } else
+    {
+        <p>Status: Not Completed</p>
+    }
+}
+<br />
+<a class="btn btn-outline-primary" asp-controller="Product" asp-action="ViewLineItems" asp-route-id="@Model.TransactionId">See Order Items</a>
 
-<div class="card m-1 p-1">
-    <h4>
-        @Model.TransactionId
-    </h4>
-    <ul>
-        <li>User ID: @Model.TransactionId</li>
-        <li>Customer ID: @Model.CustomerId</li>
-        <li>Amount: @Model.Amount</li>
-        <li>Phone: @Model.ShippingAddress</li>
-        <li>Email: @Model.TransactionCountry</li>
-        <li>Fraudulent?: @Model.Fraud</li>
-        <li>Completed?: @Model.IsCompleted</li>
-        <a asp-controller="Product" asp-action="ViewLineItems" asp-route-id="@Model.TransactionId">See Items</a>
-    </ul>
-</div>

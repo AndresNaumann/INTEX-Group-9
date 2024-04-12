@@ -6,9 +6,11 @@
 
 @model Microsoft.AspNetCore.Identity.IdentityUser
 
-<h2>Confirm Deletion</h2>
-<h3>@Model.UserName: @Model.Id</h3>
-
+<br />
+<h2>Confirm Deletion of User</h2>
+<br />
+<h4>@Model.UserName: @Model.Id</h4>
+<br />
 <form method="post">
     <input type="hidden" asp-for="Id" />
 

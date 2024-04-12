@@ -102,7 +102,7 @@ namespace BrickwellStore.Controllers
         [HttpPost]
         public IActionResult EditCustomer(Customer updatedInfo)
         {
-            _repo.UpdateUser(updatedInfo.CustomerId);
+            _repo.UpdateUser(updatedInfo);
             _repo.SaveChanges();
             return RedirectToAction("AdminUsers");
         }

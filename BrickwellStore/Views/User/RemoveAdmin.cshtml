@@ -6,13 +6,13 @@
 
 @model Microsoft.AspNetCore.Identity.IdentityUser
 
-<h2>Are you sure you want to remove Admin Privileges from @Model.UserName an Admin?</h2>
-
+<br />
+<h2>Are you sure you want to remove @Model.UserName as an admin?</h2>
+<br />
 <h3>User ID: @Model.Id</h3>
-
+<br />
 <form method="post">
     <input type="hidden" asp-for="Id" />
-
     <button class="our-custom-button" type="submit">Remove Admin Privileges</button>
     <a class="our-custom-button" asp-controller="Admin" asp-action="AdminUsers">Cancel</a>
 </form>

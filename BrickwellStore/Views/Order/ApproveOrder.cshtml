@@ -6,15 +6,14 @@
 
 @model Order
 
-<a class="btn btn-primary" asp-controller="Admin" asp-action="AdminOrders">Cancel</a>
-
+<br />
 <h2>Confirm that Order is Not Fraudulent?</h2>
 <p>Only confirm if you know that the customer is not trying to scam you.</p>
-<h3>@Model.TransactionId</h3>
-
+<br />
+<h3>Order #: @Model.TransactionId</h3>
+<br />
 <form method="post">
     <input type="hidden" asp-for="TransactionId" />
-
     <button class="btn btn-success" type="submit">Confirm</button>
-    <a class="btn btn-info" asp-controller="Admin" asp-action="AdminOrders">Cancel</a>
+    <a class="btn btn-outline-primary" asp-controller="Admin" asp-action="AdminOrders">Cancel</a>
 </form>

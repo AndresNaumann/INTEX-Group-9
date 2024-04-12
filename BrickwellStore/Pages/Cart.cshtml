@@ -7,9 +7,10 @@
 @* @await Component.InvokeAsync("CartSummary")
  *@
 
+<br />
 <h2>Your Cart</h2>
 
-<h4>ID: @{var userId = ViewData["UserId"];} @userId</h4>
+<p>ID: @{var userId = ViewData["UserId"];} @userId</p>
 
 <table class="table table-boardered table-striped">
 
@@ -19,8 +20,7 @@
             <th>Quantity:</th>
             <th class="text-right">Amount:</th>
             <th class="text-right">Subtotal:</th>
-@*             <th>Edit Quantity:</th>
- *@            <th>Remove Item:</th>
+            <th>Remove Item:</th>
         </tr>
     </thead>
 
@@ -29,10 +29,10 @@
         {
             <tr>
                 <td class="text-left">@l.Product.Name</td>
-                <td class="text-center">@l.Quantity</td>
+                <td class="text-left">@l.Quantity</td>
                 <td class="text-right">$@l.Product.Price</td>
                 <td class="text-right">@((@l.Quantity * @l.Product.Price).ToString("c"))</td>
-                <td class="text-center">
+                <td class="text-left">
                     <form asp-page-handler="Remove" method="post">
                         <input type="hidden" name="ProductId" value="@l.Product.ProductId" />
                         <input type="hidden" name="returnUrl" value="@Model?.ReturnUrl" />

@@ -5,14 +5,21 @@
 }
 @model IEnumerable<LineItem>
 
+<br />
+<a href="javascript:history.back()">
+    <img src="~/img/back-icon.svg" />
+</a>
+<br />
 <h2>Line Items for order</h2>
 
 <table class="table">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>Order ID</th>
+            <th>Product ID</th>
             <th>Name</th>
             <th>Price</th>
+            <th>Quantity</th>
         </tr>
     </thead>
     <tbody>
@@ -22,8 +29,8 @@
                 <td>@item.TransactionId</td>
                 <td>@item.ProductId</td>
                 <td>@item.ProductName</td>
+                <td>@item.ProductPrice</td>
                 <td>@item.Quantity</td>
-                <td>@item.Rating</td>
             </tr>
         }
     </tbody>

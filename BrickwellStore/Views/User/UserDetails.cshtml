@@ -4,32 +4,32 @@
 @{
 }
 @model BrickwellStore.Data.ViewModels.UserInfoViewModel
+<br />
 <a href="javascript:history.back()">
     <img src="~/img/back-icon.svg" />
 </a>
-<div class="card m-1 p-1">
-    <h4>
-        @Model.UserId
-    </h4>
-    <ul>
-        <li><a asp-controller="User" asp-action="CustomerDetails" asp-route-id="@Model.UserId">See Personal Detail</a> </li>
-        <li>User ID: @Model.UserId</li>
-        <li>Customer ID: @Model.CustomerId</li>
-        <li>Name: @Model.CustomerFirstName @Model.CustomerLastName</li>
-        <li>Email: @Model.Email</li>
-        <li>Phone: @Model.Phone</li>
-        <li>Role: @string.Join(", ", Model.Roles)</li>
+<br />
+<br />
+<h4>
+    @Model.UserId
+</h4>
+<p><a asp-controller="User" asp-action="CustomerDetails" asp-route-id="@Model.UserId">See Personal Details</a> </p>
+<p>User ID: @Model.UserId</p>
+<p>Customer ID: @Model.CustomerId</p>
+<p>Name: @Model.CustomerFirstName @Model.CustomerLastName</p>
+<p>Email: @Model.Email</p>
+<p>Phone: @Model.Phone</p>
+<p>Role: @string.Join(", ", Model.Roles)</p><br />
 
-        <!--Only show this button if the user is not an admin-->
-        @if (!Model.Roles.Contains("Admin"))
-        {
-            <a class="btn btn-success" asp-controller="User" asp-action="MakeAdmin" asp-route-id="@Model.UserId">Make Admin?</a>
-        }
-        else
-        {
-            <a class="btn btn-danger" asp-controller="User" asp-action="RemoveAdmin" asp-route-id="@Model.UserId">Remove Admin Privileges?</a>
-        }
+<!--Only show this button if the user is not an admin-->
+@if (!Model.Roles.Contains("Admin"))
+{
+    <a class="btn btn-success" asp-controller="User" asp-action="MakeAdmin" asp-route-id="@Model.UserId">Make Admin?</a>
+}
+else
+{
+    <a class="btn btn-primary" asp-controller="User" asp-action="RemoveAdmin" asp-route-id="@Model.UserId">Remove Admin Privileges?</a>
+}
 
-        <a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@Model.UserId">Delete</a>
-    </ul>
-</div>
+<a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@Model.UserId">Delete</a>
+
