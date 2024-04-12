@@ -1,4 +1,5 @@
 ﻿using BrickwellStore.Data;
+using BrickwellStore.Data.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,7 @@ namespace BrickwellStore.Controllers
             var viewModel = new ProductDetailViewModel
             {
                 Product = product,
+                ProductId = id,
                 Recommendations = recommendations
             };
 

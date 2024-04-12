@@ -3,7 +3,9 @@
 *@
 @{
 }
-@model BrickwellStore.Data.ProductDetailViewModel
+@using BrickwellStore.Infrastructure
+
+@model ProductDetailViewModel
 
 <div class="container mt-3">
     <div class="row">
@@ -15,8 +17,9 @@
         <div class="col-md-4 text-align-center">
             <h2>@Model.Product.Name</h2>
             <h3>$@Model.Product.Price</h3>
-            <form id="form-@Model.Product.ProductId" method="post" asp-page="/Cart">
-                <input type="hidden" asp-for="Product.ProductId" />
+            <form id=@Model.ProductId method="post" asp-page="/Cart">
+                <input type="hidden" asp-for="@Model.ProductId" />
+                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
                 <button type="submit" class="eighty-width" id="descriptionCartButton">Add to Bag</button>
             </form>
             <br />
