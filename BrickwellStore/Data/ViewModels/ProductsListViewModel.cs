@@ -14,5 +14,8 @@ namespace BrickwellStore.Data.ViewModels
 
         public string? CurrentProductColor { get; set; }
         public string? CurrentProductCategory { get; set; }
+
+        public int ItemsPerPage { get; set; } = 5; // Default value or based on user selection
+
     }
 }

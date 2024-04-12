@@ -47,7 +47,39 @@
     </div>
 
 
+    <form class="d-inline" method="get" action="@Url.Action("Product", "Home")">
+        <label for="itemsPerPage">Items per page:</label>
+        <select id="itemsPerPage" name="itemsPerPage">
+            @if (Model.PaginationInfo.ItemsPerPage == 5)
+            {
+                <option value="5" selected="selected">5</option>
+            }
+            else
+            {
+                <option value="5">5</option>
+            }
 
+            @if (Model.PaginationInfo.ItemsPerPage == 10)
+            {
+                <option value="10" selected="selected">10</option>
+            }
+            else
+            {
+                <option value="10">10</option>
+            }
+
+            @if (Model.PaginationInfo.ItemsPerPage == 20)
+            {
+                <option value="20" selected="selected">20</option>
+            }
+            else
+            {
+                <option value="20">20</option>
+            }
+        </select>
+
+        <button type="submit">Apply</button>
+    </form>
 
 
     </div>
@@ -92,15 +124,7 @@
 
 
     <div page-model="@Model.PaginationInfo" page-action="Product" page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-productColor="@Model.CurrentProductColor" page-url-productCategory="@Model.CurrentProductCategory" class="btn-group pull-right m-1"></div>
-    <form method="get" action="@Url.Action("Product", "Home")">
-        <label for="itemsPerPage">Items per page:</label>
-        <select id="itemsPerPage" name="itemsPerPage">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-        </select>
-        <button type="submit">Apply</button>
-    </form>
+
 
 
 </div>

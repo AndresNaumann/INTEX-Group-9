@@ -46,13 +46,13 @@ namespace BrickwellStore.Controllers
         // ADDING A PRODUCT TO THE DATABASE
 
         [HttpGet]
-        public IActionResult AddProduct()
+        public IActionResult AddProducts()
         {
-            return View("AddProduct");
+            return View();
         }
 
         [HttpPost]
-        public IActionResult AddProduct(Product product)
+        public IActionResult AddProducts(Product product)
         {
             _repo.AddProduct(product);
             _repo.SaveChanges();
@@ -66,7 +66,7 @@ namespace BrickwellStore.Controllers
         public IActionResult EditProduct(int id)
         {
             var product = _repo.GetProductById(id);
-            return View("AddProduct", product);
+            return View(product);
         }
 
         [HttpPost]
