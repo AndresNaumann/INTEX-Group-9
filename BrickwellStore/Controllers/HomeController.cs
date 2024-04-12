@@ -26,7 +26,6 @@ namespace BrickwellStore.Controllers
         private readonly Cart _cart;
         
 
-
         public HomeController(ILegoRepository temp, UserManager<IdentityUser> userManager, ILogger<HomeController> logger, IWebHostEnvironment environment, Cart cart)
         {
             _repo = temp;
