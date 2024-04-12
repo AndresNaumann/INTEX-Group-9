@@ -5,7 +5,7 @@
 }
 <br />
 
-<a class="btn btn-primary" asp-controller="Admin" asp-action="AddProduct">Add a New Product</a>
+<a class="our-custom-button" asp-controller="Admin" asp-action="AddProduct">Add a New Product</a>
 
 @model IEnumerable<Product>
 
@@ -28,8 +28,8 @@
                 <td>@product.ProductId</td>
                 <td><a asp-controller="Product" asp-action="AdminProductDetails" asp-route-id="@product.ProductId">@product.Name</a></td>
                 <td>@product.Price.ToString("C")</td>
-                <td><a class="btn btn-primary" asp-controller="Product" asp-action="EditProduct" asp-route-id="@product.ProductId">Edit</a></td>
-                <td><a class="btn btn-danger" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@product.ProductId">Delete</a></td>
+                <td><a class="btn btn-primary" asp-controller="Product" asp-action="EditProduct" asp-route-id="@product.ProductId"><img src="~/img/Edit-Icon.svg"/></a></td>
+                <td><a class="btn btn-danger" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@product.ProductId"><img src="~/img/trash-icon.svg"/></a></td>
             </tr>
         }
     </tbody>

@@ -18,8 +18,8 @@
         <li>Description: @Model.Description</li>
         <li>Category: @Model.Category</li>
         <li>
-            <a class="btn btn-info" asp-controller="Product" asp-action="EditProduct" asp-route-id="@Model.ProductId">Edit</a>
-            <a class="btn btn-danger" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@Model.ProductId">Delete</a>
+            <a class="btn btn-info" asp-controller="Product" asp-action="EditProduct" asp-route-id="@Model.ProductId"><img src="~/img/Edit-Icon.svg"/></a>
+            <a class="btn btn-danger" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@Model.ProductId"><img src="~/img/trash-icon.svg"/></a>
         </li>
     </ul>
 
