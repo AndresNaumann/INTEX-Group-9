@@ -51,11 +51,11 @@ namespace BrickwellStore.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminProducts(int pageNum)
         {
-            int pageSize = 10;
+            int pageSize = 40;
             var AdminBlah = new ProductsListViewModel
             {
                 Products = _repo.Products
-                .OrderBy(x => x.Name)
+                .OrderBy(x => x.ProductId)
                .Skip((pageNum - 1) * pageSize)
                .Take(pageSize),
 
@@ -75,7 +75,7 @@ namespace BrickwellStore.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminOrders(int pageNum)
         {
-            int pageSize = 10;
+            int pageSize = 20;
             var AdminBlah = new ProductsListViewModel
             {
                 Orders = _repo.Orders
